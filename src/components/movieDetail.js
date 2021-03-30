@@ -1,15 +1,18 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import MoviService from '../http/MoviService';
-import { call_MovieDetal } from '../modules/movieReducer';
+import { useSelector, useDispatch } from 'react-redux';
+import { callMovieDetailThunk } from '../modules/moviDetailInfoModule';
 
-const MovieDetail = ({dispatch, movieInfo})=>{
+const MovieDetail = ({MoviService})=>{
   const {movieCd} = useParams();
-  let {movieNm, actors, audits, companys, directors, genres, openDt} = movieInfo;
+  const dispatch = useDispatch();
+  const {movieInfo} = useSelector(({movieDetailReducer})=>{return movieDetailReducer});
+  const {movieNm, actors, audits, companys, directors, genres, openDt} = movieInfo;
+
   useEffect(()=>{
     MoviService.getMovieDetailInfo(movieCd).then(({data})=>{
       let info = data.movieInfoResult.movieInfo;
-      dispatch(call_MovieDetal(info));
+      dispatch(callMovieDetailThunk(info));
     });
   },[])
   console.log(movieInfo);

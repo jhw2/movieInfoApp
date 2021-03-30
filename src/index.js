@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
-import { movieReducer } from './modules/movieReducer';
+import movieReducer from './modules/index';
 import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.render(
   <BrowserRouter>
-    <Provider store={createStore(movieReducer)}>
+    <Provider store={createStore(movieReducer, applyMiddleware(thunk))}>
       <App />
     </Provider>
   </BrowserRouter>,
