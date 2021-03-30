@@ -3,21 +3,27 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { callDailyBoxofficeThunk } from '../modules/movieRankModule';
+import Loading from './loading';
 
 const DailyRank = ({MoviService, date})=>{
 
-  const {dailyRankList} = useSelector(({movieRankReducer})=>{return movieRankReducer});
+  const {dailyRankList, done} = useSelector(({movieRankReducer})=>{return movieRankReducer});
   const dispatch = useDispatch();
- 
-  useEffect(()=>{
+
+  const callList =()=>{
     MoviService.getDailyBoxoffice(date).then(({data, status})=>{
       let dataList = data.boxOfficeResult.dailyBoxOfficeList;
       dispatch(callDailyBoxofficeThunk({data: dataList, status}));
     });
-  },[]);
+  }
+ 
+  useEffect(()=>{
+    callList();
+  },[date]);
 
   return (
     <div>
+        <Loading done={done}></Loading>
         <ul>
         {
             dailyRankList.map((val, i)=>{

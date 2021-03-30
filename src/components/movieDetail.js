@@ -8,14 +8,17 @@ const MovieDetail = ({MoviService})=>{
   const dispatch = useDispatch();
   const {movieInfo} = useSelector(({movieDetailReducer})=>{return movieDetailReducer});
   const {movieNm, actors, audits, companys, directors, genres, openDt} = movieInfo;
-
-  useEffect(()=>{
+  const callMovieInfo = ()=>{
     MoviService.getMovieDetailInfo(movieCd).then(({data})=>{
       let info = data.movieInfoResult.movieInfo;
       dispatch(callMovieDetailThunk(info));
     });
-  },[])
-  console.log(movieInfo);
+  }
+  useEffect(()=>{
+    callMovieInfo();
+  },[movieCd])
+
+  
   if(movieNm){
     return(
       <div>
