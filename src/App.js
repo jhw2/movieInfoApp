@@ -1,20 +1,26 @@
 import './App.css';
 import { Route } from 'react-router-dom';
-import MoviService from './http/MoviService';
-import { getToday } from './modules/dayInfo';
+import Header from './components/header';
+import Footer from './components/footer';
 import DailyRank from './components/dailyRank';
 import MovieDetail from './components/movieDetail';
 
 const App = ()=>{
 
   return (
-    <div>
-      <Route exact path="/">
-        <DailyRank MoviService={MoviService} date={getToday()}></DailyRank>
-      </Route>
-      <Route exact path="/movieDetail/:movieCd">
-        <MovieDetail MoviService={MoviService}></MovieDetail>
-      </Route>
+    <div id="wrap">
+      <Header></Header>
+
+      <section id="contents">
+        <Route exact path="/">
+          <DailyRank></DailyRank>
+        </Route>
+        <Route exact path="/movieDetail/:movieCd/">
+          <MovieDetail></MovieDetail>
+        </Route>
+      </section>
+
+      <Footer></Footer>
     </div>
   );
 }

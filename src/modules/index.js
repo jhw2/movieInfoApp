@@ -3,8 +3,8 @@ import movieRankReducer from "./movieRankModule";
 import movieDetailReducer from "./moviDetailInfoModule";
 
 const movieReducer = combineReducers({
-    movieRankReducer,
-    movieDetailReducer
+    movieRankList: movieRankReducer,
+    movieDetailInfo: movieDetailReducer
 });
 
 export default movieReducer;

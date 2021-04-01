@@ -3,20 +3,17 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { callMovieDetailThunk } from '../modules/moviDetailInfoModule';
 
-const MovieDetail = ({MoviService})=>{
+const MovieDetail = ()=>{
   const {movieCd} = useParams();
   const dispatch = useDispatch();
-  const {movieInfo} = useSelector(({movieDetailReducer})=>{return movieDetailReducer});
+  const {movieInfo} = useSelector(({movieDetailInfo})=>{return movieDetailInfo});
   const {movieNm, actors, audits, companys, directors, genres, openDt} = movieInfo;
   const callMovieInfo = ()=>{
-    MoviService.getMovieDetailInfo(movieCd).then(({data})=>{
-      let info = data.movieInfoResult.movieInfo;
-      dispatch(callMovieDetailThunk(info));
-    });
+    dispatch(callMovieDetailThunk(movieCd));
   }
   useEffect(()=>{
     callMovieInfo();
-  },[movieCd])
+  },[])
 
   
   if(movieNm){

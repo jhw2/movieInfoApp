@@ -2,10 +2,11 @@
 
 import '../loading.css';
 const Loading = ({done})=>{
-    const loadingHtml = <div className="loading"></div>;
+    console.log(done)
     return (
         <div>
-            { done ? '':loadingHtml }
+            <div className={done ? 'loading':'loading show' }></div>
+            
         </div>
     );
 }

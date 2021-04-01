@@ -1,38 +1,22 @@
-.App {
-  text-align: center;
-}
+#root{min-height: 100%;padding-top: 80px;}
+.group{max-width: 1320px;padding: 0 20px;box-sizing: border-box;margin: 0 auto;}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.mv-header{position: fixed;left: 0;right: 0;top: 0;height: 80px;z-index: 99;background-color: #fff;border-bottom: 1px solid #dadada;box-sizing: border-box;}
+.mv-header .group{display: flex;align-items: center;}
+.mv-header .hd-logo{font-family: 'Do Hyeon', sans-serif;font-size: 35px;color: #6AAFE6;}
+.mv-header .hd-logo strong{color: #353866;}
+.mv-header .gnb{display: flex;align-items: center;margin-left: 30px;line-height: 79px;}
+.mv-header .gnb li{margin: 0 15px;}
+.mv-header .gnb li a{display: block;color: #333;font-size: 22px;font-weight: 500;padding: 0 14px;transition: color 0.3s;}
+.mv-header .gnb li.active a{color: #353866;border-bottom: 2px solid #353866;}
+.mv-header .gnb li a:hover{color: #353866;}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+#contents{min-height: calc(100vh - 110px);}
+#contents .group{padding: 40px 20px;}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+.search-form{background-color: #f9fafc;padding: 20px;margin-bottom: 20px;border-radius: 5px;}
+.movie-list{border-top: 1px solid #000;}
+.movie-list>li{padding: 15px 20px;border: 1px solid #ddd;margin-bottom: -1px;}
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+footer{padding: 15px 0;color: #888;background-color: #f9fafc;}
