@@ -7,29 +7,29 @@ export const ERROR = 'ERROR';
 export const callLoading = (done)=>{
     return {type : CALL_LOADING, done}
 }
-export const callDailyBoxoffice = ({currentDate, data, status})=>{
-    return {type : CALL_DAILYBOXOFFICE, dailyRankList: data, status, currentDate}
+export const callDailyBoxoffice = ({currentDate, data, status, repNationCd})=>{
+    return {type : CALL_DAILYBOXOFFICE, dailyRankList: data, status, currentDate, repNationCd}
 }
 export const dataError = (error)=>{
     return {type: ERROR, error}
 }
 
-export const callDailyBoxofficeThunk = ({currentDateTxt, currentDate}) => async (dispatch, getState) => {
+export const callDailyBoxofficeThunk = ({currentDateTxt, currentDate, repNationCd}) => async (dispatch, getState) => {
     dispatch(callLoading(false))
-    await MoviService.getDailyBoxoffice(currentDateTxt).then(({data, status})=>{
+    await MoviService.getDailyBoxoffice(currentDateTxt, repNationCd).then(({data, status})=>{
         let dataList = data.boxOfficeResult.dailyBoxOfficeList;
-        dispatch(callDailyBoxoffice({currentDate, data: dataList, status}));
+        dispatch(callDailyBoxoffice({currentDate, data: dataList, status, repNationCd}));
     }).catch(error=>{dispatch(dataError(error))});
     
 };
 
 
-const initailState = {currentDate: null, dailyRankList: [], status: 200, error: null, done: false};
+const initailState = {currentDate: null, dailyRankList: [], status: 200, repNationCd:'', error: null, done: false};
 export default function movieRankReducer(state = initailState, action){
     switch(action.type){
         case CALL_DAILYBOXOFFICE:
-            let {dailyRankList, status, currentDate} = action;
-            return {...state, dailyRankList, status, currentDate, done: true}
+            let {dailyRankList, status, currentDate, repNationCd} = action;
+            return {...state, dailyRankList, status, currentDate, repNationCd, done: true}
         case CALL_LOADING:
             return {...state, done: action.done}
         case ERROR:

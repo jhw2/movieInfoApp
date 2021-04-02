@@ -1,27 +1,40 @@
 
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
 import { callDailyBoxofficeThunk } from '../modules/movieRankModule';
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
 import { getDayTxt, getDateObj } from '../utils/dayInfo';
 import Loading from './loading';
+import Tab from './movieTypeTab';
 
 const DailyRank = ()=>{
 
-  const {dailyRankList, currentDate, done} = useSelector(({movieRankList})=>{return movieRankList}, shallowEqual);
+  const {dailyRankList, currentDate, repNationCd, done} = useSelector(({movieRankList})=>{return movieRankList}, shallowEqual);
   console.log(dailyRankList);
   const dispatch = useDispatch();
-  const callList =(date)=>{
-    dispatch(callDailyBoxofficeThunk({currentDateTxt: getDayTxt(date), currentDate: date}));
+  
+  const callList = useCallback(
+    (date, repNationCd)=>{
+      dispatch(callDailyBoxofficeThunk({currentDateTxt: getDayTxt(date), currentDate: date, repNationCd}));
+    }
+  , [dispatch]);
+
+  const tabEvt = (e)=>{
+    e.preventDefault();
+    const repNationCd = e.target.dataset.type;
+    callList(currentDate, repNationCd);
   }
 
   useEffect(()=>{
-    let selectedDate = currentDate ? currentDate : getDateObj(getDayTxt());
-    callList(selectedDate);
-  },[]);
+    if(dailyRankList.length === 0){
+      let selectedDate = currentDate ? currentDate : getDateObj(getDayTxt());
+      callList(selectedDate, '');
+    }
+    
+  },[dailyRankList, callList, currentDate]);
 
   return (
     <div>
@@ -38,6 +51,8 @@ const DailyRank = ()=>{
               name='start'
             />
           </div>
+
+          <Tab repNationCd={repNationCd} tabEvt={tabEvt}></Tab>
           
 
           <ul className='movie-list'>
