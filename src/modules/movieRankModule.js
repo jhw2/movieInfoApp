@@ -33,7 +33,7 @@ export default function movieRankReducer(state = initailState, action){
         case CALL_LOADING:
             return {...state, done: action.done}
         case ERROR:
-            return {...state, error: action.error}
+            return {...state, error: action.error, done: true}
         default:
             return state;
     }

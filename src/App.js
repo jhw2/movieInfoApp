@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Header from './components/header';
 import Footer from './components/footer';
 import DailyRank from './components/dailyRank';
+import WeeklyRank from './components/weeklyRank';
 import MovieDetail from './components/movieDetail';
 
 const App = ()=>{
@@ -14,6 +15,9 @@ const App = ()=>{
       <section id="contents">
         <Route exact path="/">
           <DailyRank></DailyRank>
+        </Route>
+        <Route exact path="/weeklyRank">
+          <WeeklyRank></WeeklyRank>
         </Route>
         <Route exact path="/movieDetail/:movieCd/">
           <MovieDetail></MovieDetail>

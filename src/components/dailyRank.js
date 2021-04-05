@@ -8,7 +8,7 @@ import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
 import { getDayTxt, getDateObj } from '../utils/dayInfo';
 import Loading from './loading';
-import Tab from './movieTypeTab';
+// import Tab from './movieTypeTab';
 
 const DailyRank = ()=>{
 
@@ -52,7 +52,7 @@ const DailyRank = ()=>{
             />
           </div>
 
-          <Tab repNationCd={repNationCd} tabEvt={tabEvt}></Tab>
+          {/* <Tab repNationCd={repNationCd} tabEvt={tabEvt}></Tab> */}
           
 
           <ul className='movie-list'>

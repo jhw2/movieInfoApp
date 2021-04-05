@@ -1,13 +1,16 @@
 import http from "./http-common";
 
 /**
- * 
+ * url : http://www.kobis.or.kr/kobisopenapi/
  * 
  */
 class MoviService {
-  getDailyBoxoffice(date, repNationCd) { 
-    console.log(repNationCd)
-    return http.get(`/boxoffice/searchDailyBoxOfficeList.json`, {params: {targetDt: date, repNationCd}});
+  getDailyBoxoffice(targetDt, repNationCd) { 
+    return http.get(`/boxoffice/searchDailyBoxOfficeList.json`, {params: {targetDt, repNationCd}});
+  }
+
+  getWeeklyBoxOffice(targetDt, weekGb, repNationCd) {
+    return http.get(`/boxoffice/searchWeeklyBoxOfficeList.json`, {params: {targetDt, weekGb, repNationCd}});
   }
 
   getMovieDetailInfo(code) {
