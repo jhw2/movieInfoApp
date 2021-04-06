@@ -8,33 +8,29 @@ import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
 import { getDayTxt, getDateObj } from '../utils/dayInfo';
 import Loading from './loading';
-// import Tab from './movieTypeTab';
+import Tab from './movieTypeTab';
 
 const DailyRank = ()=>{
 
-  const {dailyRankList, currentDate, repNationCd, done} = useSelector(({movieRankList})=>{return movieRankList}, shallowEqual);
-  console.log(dailyRankList);
   const dispatch = useDispatch();
-  
-  const callList = useCallback(
-    (date, repNationCd)=>{
-      dispatch(callDailyBoxofficeThunk({currentDateTxt: getDayTxt(date), currentDate: date, repNationCd}));
-    }
-  , [dispatch]);
+  const {dailyRankList, currentDate, repNationCd, done} = useSelector(({movieRankList})=>{return movieRankList}, shallowEqual);
+  let defaultDate = currentDate ? currentDate : getDateObj(getDayTxt());
 
   const tabEvt = (e)=>{
     e.preventDefault();
     const repNationCd = e.target.dataset.type;
     callList(currentDate, repNationCd);
   }
-
-  useEffect(()=>{
-    if(dailyRankList.length === 0){
-      let selectedDate = currentDate ? currentDate : getDateObj(getDayTxt());
-      callList(selectedDate, '');
+  
+  const callList = useCallback(
+    (date = defaultDate, repNationCd = '')=>{
+      dispatch(callDailyBoxofficeThunk({currentDateTxt: getDayTxt(date), currentDate: date, repNationCd}));
     }
-    
-  },[dailyRankList, callList, currentDate]);
+  , [dispatch, defaultDate]);
+  
+  useEffect(()=>{
+    callList();
+  },[callList]); 
 
   return (
     <div>
@@ -52,7 +48,7 @@ const DailyRank = ()=>{
             />
           </div>
 
-          {/* <Tab repNationCd={repNationCd} tabEvt={tabEvt}></Tab> */}
+          <Tab repNationCd={repNationCd} tabEvt={tabEvt}></Tab>
           
 
           <ul className='movie-list'>
@@ -68,7 +64,7 @@ const DailyRank = ()=>{
                 })
             }
             {/* 데이터 없는 경우 */}
-          {dailyRankList.length === 0 ? <div class="no-data">데이터가 없습니다.</div>:''}
+          {dailyRankList.length === 0 ? <div className="no-data">데이터가 없습니다.</div>:''}
           </ul>
         </div>
     </div>

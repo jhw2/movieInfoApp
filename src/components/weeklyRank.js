@@ -8,24 +8,24 @@ import { getDateObj, getWeekNo, getMothLastWeekNo } from '../utils/dayInfo';
 import Loading from './loading';
 
 const WeeklyRank = ()=>{
-
-  const {WeeklyRankList, month: currentMonth, week: currentWeek, weekGb, done} = useSelector(({movieWeeklyRankList})=>{return movieWeeklyRankList}, shallowEqual);
   const dispatch = useDispatch();
-
-  const createWeekList = (lastWeek, selectedWeek)=>{
+  const {WeeklyRankList, month: currentMonth, week: currentWeek, weekGb, done} = useSelector(({movieWeeklyRankList})=>{return movieWeeklyRankList}, shallowEqual);
+/**
+ * 주차 셀렉트박스 option 태그 생성
+ * @param {*} countWeek :  현재 선택된 월의 주차 수
+ * @returns 주차 option 태그
+ */
+  const createWeekList = (countWeek)=>{
     let weekList = [];
-    
-    for(let i = 1; i <= lastWeek; i++){
-      let selected =  Number(selectedWeek) === i ? 'selected':'';
-      weekList.push(<option value={i} selected={selected}>{i}</option>)
+    for(let i = 1; i <= countWeek; i++){
+      weekList.push(<option key={i} value={i}>{i}</option>)
     }
     return weekList;
   }
-  
-  const defaultWeekList = createWeekList(getMothLastWeekNo(), currentWeek);
-  let [weekList, setWeekList] = useState(defaultWeekList);
-
-
+  /**
+   * 월이 변경되면 주차 셀렉스박스 변경
+   * @param {*} event 
+   */
   const changeWeekNo = ({target})=>{
     const year = target.parentNode.year.value;
     let month = target.value;
@@ -33,33 +33,41 @@ const WeeklyRank = ()=>{
 
     let date = getDateObj(`${year}${month}01`);
     let lastWeek = getMothLastWeekNo(date);
+    target.parentNode.week.value = '1';
 
-    setWeekList(createWeekList(lastWeek, '1'))
+    setWeekList(createWeekList(lastWeek));
   }
-  
+
+  let [weekList, setWeekList] = useState();
+
+
+  const handleChange = ({target})=>{
+    target.checked = 'checked';
+  }
+
+  /**
+   * 주간 박스오피스 api call
+   */
   const callList = useCallback(
     (date, repNationCd)=>{
       dispatch(callWeeklyBoxofficeThunk({...date, weekGb}));
     }
-  , [dispatch]);
-
+  , [dispatch, weekGb]);
   const searchList = (e)=>{
     e.preventDefault();
     let year = e.target.year.value;
     let month = e.target.month.value;
     let week = e.target.week.value;
     let weekGb = e.target.weekGb.value;
-
     callList({year, month, week, weekGb});
   }
 
-
   useEffect(()=>{
-    if(WeeklyRankList.length === 0){
       callList(getWeekNo(), '0');
-    }
-    
-  },[WeeklyRankList, callList]);
+      const defaultWeekList = createWeekList(getMothLastWeekNo());
+      setWeekList(defaultWeekList);
+
+  },[callList]);
 
   return (
     <div>
@@ -68,29 +76,28 @@ const WeeklyRank = ()=>{
         <div className='group'>
           <div className='search-form'>
             <form action="/" onSubmit={searchList}>
-              <label><input type='radio' name='weekGb' value="0" checked={ weekGb === '0' ? 'true':''} />주간</label>
-              <label><input type='radio' name='weekGb' value="1" checked={ weekGb === '1' ? 'true':''} />주말</label>
-              <label><input type='radio' name='weekGb' value="2" checked={ weekGb === '2' ? 'true':''} />주중</label>
-
+              <label><input type='radio' name='weekGb' value="0" onChange={handleChange} defaultChecked={weekGb} />주간</label>
+              <label><input type='radio' name='weekGb' value="1" onChange={handleChange} />주말</label>
+              <label><input type='radio' name='weekGb' value="2" onChange={handleChange} />주중</label>
               <label>
                 <select name='year'>
                     <option value='2021'>2021</option>
                 </select>
                 년
               </label>
-              <select name='month' onChange={changeWeekNo}>
+              <select name='month' defaultValue={currentMonth} onChange={changeWeekNo}>
               {
                 (()=>{
                   let options = [];
                   for(let m = 1; m < 13; m++){
-                    options.push(<option val={m} selected={ Number(currentMonth) === m ? 'selected':'' }>{m}</option>)
+                    options.push(<option key={m} value={m}>{m}</option>)
                   }
                   return options;
                 })()
               }
               </select>
 
-              <select name='week'>
+              <select name='week' defaultValue={currentWeek}>
                 {weekList}
               </select>
               <input type="submit" value="검색" />
@@ -111,7 +118,7 @@ const WeeklyRank = ()=>{
             }
           
             {/* 데이터 없는 경우 */}
-            {WeeklyRankList.length === 0 ? <div class="no-data">데이터가 없습니다.</div>:''}
+            {WeeklyRankList.length === 0 ? <div className="no-data">데이터가 없습니다.</div>:''}
           </ul>
         </div>
     </div>

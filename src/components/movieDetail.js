@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { callMovieDetailThunk } from '../modules/moviDetailInfoModule';
 
@@ -8,12 +8,14 @@ const MovieDetail = ()=>{
   const dispatch = useDispatch();
   const {movieInfo} = useSelector(({movieDetailInfo})=>{return movieDetailInfo});
   const {movieNm, actors, audits, companys, directors, genres, openDt} = movieInfo;
-  const callMovieInfo = ()=>{
+
+  const callMovieInfo = useCallback(()=>{
     dispatch(callMovieDetailThunk(movieCd));
-  }
+  },[dispatch, movieCd]);
+  
   useEffect(()=>{
     callMovieInfo();
-  },[])
+  },[callMovieInfo])
 
   
   if(movieNm){

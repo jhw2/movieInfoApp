@@ -6,14 +6,14 @@ import DailyRank from './components/dailyRank';
 import WeeklyRank from './components/weeklyRank';
 import MovieDetail from './components/movieDetail';
 
-const App = ()=>{
-
+const App = ({location})=>{
+  console.log(location + 'ddd')
   return (
     <div id="wrap">
-      <Header></Header>
+      <Header location={location}></Header>
 
       <section id="contents">
-        <Route exact path="/">
+        <Route exact path="/dailyRank">
           <DailyRank></DailyRank>
         </Route>
         <Route exact path="/weeklyRank">

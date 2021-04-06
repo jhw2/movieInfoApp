@@ -18,10 +18,8 @@ export const dataError = (error)=>{
 export const callWeeklyBoxofficeThunk = ({year, month, week, weekGb}) => async (dispatch, getState) => {
     dispatch(callLoading(false))
     let date = getWeekFirstDate(year, month, week);
-    console.log(date)
     await MoviService.getWeeklyBoxOffice(date, weekGb).then(({data, status})=>{
         let dataList = data.boxOfficeResult.weeklyBoxOfficeList;
-        if(dataList.length === 0){dataList = ['']}
         dispatch(callWeeklyBoxoffice({year, month, week, data: dataList, status, weekGb}));
         
     }).catch(error=>{dispatch(dataError(error))});

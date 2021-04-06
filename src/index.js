@@ -11,11 +11,11 @@ import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={createStore(movieReducer, applyMiddleware(thunk))}>
+  <Provider store={createStore(movieReducer, applyMiddleware(thunk))}>
+    <BrowserRouter>
       <App />
-    </Provider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
