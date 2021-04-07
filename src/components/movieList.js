@@ -1,0 +1,23 @@
+
+import { Link } from 'react-router-dom';
+const MovieList = ({rankList})=>{
+    return (
+        <ul className='movie-list'>
+            {
+                rankList.map((val, i)=>{
+                    const {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd} = val;
+                    return  <li key={i}>
+                                <strong>{rankOldAndNew} {rankInten} {rank}</strong>
+                                <h6><Link to={'/movieDetail/'+movieCd}>{movieNm}</Link></h6>
+                                <p><em>개봉</em><span>{openDt}</span></p>
+                                <p><em>누적</em><span>{audiAcc}</span></p>
+                            </li>;
+                })
+            }
+            {/* 데이터 없는 경우 */}
+            {rankList.length === 0 ? <div className="no-data">데이터가 없습니다.</div>:''}
+        </ul>
+    );
+}
+
+export default MovieList;

@@ -54,16 +54,15 @@ export const getMothLastWeekNo = (dateObj = lastWeek)=>{
     let lastOfdate = new Date(year, month, 0);
     
     let _date = lastOfdate.getDate();
-    let week = parseInt((6 + _date - lastOfdate.getNewDay()) / 7) + 1;
+    let week = parseInt((6 + _date + lastOfdate.getNewDay() - 1) / 7);
     console.log('dd'+lastOfdate.getDay(), lastOfdate);
 
-    return lastOfdate.getDay() === 0 ? week : week-1;
+    return lastOfdate.getNewDay() === 0 ? week : week-1;
 }
 
 export const getWeekFirstDate = (year, month, week)=>{
-    let dayOfWeek = new Date(year, month, 1).getDay() - 1;
-    if(dayOfWeek === -1){dayOfWeek = 6;}
-    let day = Math.abs((7 * (week-1)) - (6 - dayOfWeek));
+    let dayOfWeek = new Date(year, month-1, 1).getNewDay();
+    let day = Math.abs((7 * week) - dayOfWeek - 6);
     month = month < 10 ? '0'+month : month; 
     day = day < 10 ? '0'+day : day; 
     return `${year}${month}${day}`;
