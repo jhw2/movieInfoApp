@@ -12,7 +12,7 @@ const WeeklySearchForm = ({currentMonth, currentWeek, searchList, weekGb})=>{
      * 월 셀렉트박스 option 태그 생성
      */
     let createMonthOption = [];
-    for(let m = 1; m < 13; m++){ createMonthOption.push(<option key={m} value={m}>{m}</option>);};
+    for(let m = 1; m < 13; m++){ createMonthOption.push(<option key={'month'+m} value={m}>{m}</option>);};
     
     /**
      * 주차 셀렉트박스 option 태그 생성
@@ -22,7 +22,7 @@ const WeeklySearchForm = ({currentMonth, currentWeek, searchList, weekGb})=>{
     const createWeekOption = (countWeek)=>{
         let weekOption = [];
         for(let i = 1; i <= countWeek; i++){
-            weekOption.push(<option key={i} value={i}>{i}</option>);
+            weekOption.push(<option key={'week'+i} value={i}>{i}</option>);
         }
         return weekOption;
     }

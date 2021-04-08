@@ -6,7 +6,7 @@ const MovieList = ({rankList})=>{
             {
                 rankList.map((val, i)=>{
                     const {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd} = val;
-                    return  <li key={i}>
+                    return  <li key={'lank'+i}>
                                 <strong>{rankOldAndNew} {rankInten} {rank}</strong>
                                 <h6><Link to={'/movieDetail/'+movieCd}>{movieNm}</Link></h6>
                                 <p><em>개봉</em><span>{openDt}</span></p>

@@ -1,11 +1,12 @@
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Header from './components/header';
 import Footer from './components/footer';
 import Lnb from './components/lnb';
 import DailyRank from './components/dailyRank';
 import WeeklyRank from './components/weeklyRank';
 import MovieDetail from './components/movieDetail';
+import ActorList from './components/actorList';
 
 const App = ()=>{
   const menuList = [
@@ -17,19 +18,29 @@ const App = ()=>{
   return (
     <div id="wrap">
       <Header menuList={menuList}></Header>
+
+      <div className="visual-txt">
+        비주얼 텍스트
+      </div>
+
       <section id="contents">
         <div className='group'>
-          <Lnb menuList={menuList}></Lnb>
+          {/* <Lnb menuList={menuList}></Lnb> */}
           <div className='cont'>
-            <Route exact path="/dailyRank">
-              <DailyRank></DailyRank>
-            </Route>
-            <Route exact path="/weeklyRank">
-              <WeeklyRank></WeeklyRank>
-            </Route>
-            <Route exact path="/movieDetail/:movieCd/">
-              <MovieDetail></MovieDetail>
-            </Route>
+            <Switch>
+              <Route exact path="/dailyRank">
+                <DailyRank></DailyRank>
+              </Route>
+              <Route exact path="/weeklyRank">
+                <WeeklyRank></WeeklyRank>
+              </Route>
+              <Route exact path="/movieDetail/:movieCd/">
+                <MovieDetail></MovieDetail>
+              </Route>
+              <Route exact path="/actors">
+                <ActorList></ActorList>
+              </Route>
+            </Switch>
           </div>
         </div>
       </section>
