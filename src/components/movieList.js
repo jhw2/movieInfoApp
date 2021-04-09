@@ -6,7 +6,7 @@ const MovieList = ({rankList})=>{
             {
                 rankList.map((val, i)=>{
                     const {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd} = val;
-                    return  <li key={'lank'+i}>
+                    return  <li key={movieCd}>
                                 <strong>{rankOldAndNew} {rankInten} {rank}</strong>
                                 <h6><Link to={'/movieDetail/'+movieCd}>{movieNm}</Link></h6>
                                 <p><em>개봉</em><span>{openDt}</span></p>
@@ -15,7 +15,7 @@ const MovieList = ({rankList})=>{
                 })
             }
             {/* 데이터 없는 경우 */}
-            {rankList.length === 0 ? <div className="no-data">데이터가 없습니다.</div>:''}
+            {rankList.length === 0 ? <li className="no-data">데이터가 없습니다.</li>:''}
         </ul>
     );
 }

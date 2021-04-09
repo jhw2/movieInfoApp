@@ -8,7 +8,7 @@ const Header = ({menuList})=>{
             <ul className="gnb">
                 {menuList.map((menu, i)=>{
                     const {txt, url} = menu;
-                    return <li><NavLink exact to={url} activeClassName='active'>{txt}</NavLink></li>
+                    return <li key={url}><NavLink exact to={url} activeClassName='active'>{txt}</NavLink></li>
                 })}
             </ul>
             </div>
