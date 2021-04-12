@@ -21,6 +21,10 @@ class MoviService {
     return http.get(`/people/searchPeopleList.json`, {params: {curPage, itemPerPage, peopleNm}});
   }
 
+  getActorDetailInfo(peopleCd){
+    return http.get(`people/searchPeopleInfo.json`, {params: {peopleCd}});
+  }
+
 }
 
 export default new MoviService();

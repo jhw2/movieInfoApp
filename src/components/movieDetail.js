@@ -8,6 +8,8 @@ const MovieDetail = ()=>{
   const dispatch = useDispatch();
   const {movieInfo} = useSelector(({movieDetailInfo})=>{return movieDetailInfo});
   const {movieNm, actors, audits, companys, directors, genres, openDt} = movieInfo;
+  let watchGradeNm = '';
+  if(audits && audits.length > 0){watchGradeNm = audits[0].watchGradeNm}
 
   const callMovieInfo = useCallback(()=>{
     dispatch(callMovieDetailThunk(movieCd));
@@ -23,7 +25,7 @@ const MovieDetail = ()=>{
       <div>
           
           <h2>{movieNm}</h2>
-          <p>등급 : {audits[0].watchGradeNm} 개봉일 : {openDt}</p>
+          <p>등급 : {watchGradeNm} 개봉일 : {openDt}</p>
           <p>
             [
               {genres.map(({genreNm}, i)=>{

@@ -7,12 +7,13 @@ import DailyRank from './components/dailyRank';
 import WeeklyRank from './components/weeklyRank';
 import MovieDetail from './components/movieDetail';
 import ActorList from './components/actorList';
+import ActorDetail from './components/actorDetail';
 
 const App = ()=>{
   const menuList = [
     {txt: '일간박스오피스', url: '/dailyRank'},
     {txt: '주간박스오피스', url: '/weeklyRank'},
-    {txt: '배우정보', url: '/actors'}
+    {txt: '영화인정보', url: '/actors'}
   ]
 
   return (
@@ -39,6 +40,9 @@ const App = ()=>{
               </Route>
               <Route exact path="/actors">
                 <ActorList></ActorList>
+              </Route>
+              <Route exact path="/actorDetail/:peopleCd/">
+                <ActorDetail></ActorDetail>
               </Route>
             </Switch>
           </div>

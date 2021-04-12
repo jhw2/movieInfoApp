@@ -16,18 +16,21 @@ export const dataError = (error)=>{
 }
 
 export const callActorListThunk = ({curPage, itemPerPage, peopleNm}) => async (dispatch, getState) => {
-    dispatch(callLoading(false));
-    await MoviService.getActorList({curPage, itemPerPage, peopleNm}).then(({data, status})=>{
-        const actorList = data.peopleListResult.peopleList;
-        const totCnt = data.peopleListResult.totCnt;
 
-        dispatch(setPage(totCnt));
-        dispatch(changePage(curPage));
-        console.log('curPage',curPage)
+    const prevActorState = getState().actorList;
+    //if(prevActorState.curPage !== curPage || prevActorState.itemPerPage !== itemPerPage || prevActorState.peopleNm !== peopleNm){
+        dispatch(callLoading(false));
 
-        dispatch(callActorList({totCnt, actorList, curPage, itemPerPage, peopleNm}));
-    }).catch(error=>{dispatch(dataError(error))});
+        await MoviService.getActorList({curPage, itemPerPage, peopleNm}).then(({data, status})=>{
+            const actorList = data.peopleListResult.peopleList;
+            const totCnt = data.peopleListResult.totCnt;
     
+            dispatch(setPage(totCnt));
+            dispatch(changePage(curPage));
+    
+            dispatch(callActorList({totCnt, actorList, curPage, itemPerPage, peopleNm}));
+        }).catch(error=>{dispatch(dataError(error))});
+    //}
 };
 
 

@@ -1,7 +1,8 @@
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState, useRef } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
+import { Link  } from 'react-router-dom';
 import { callActorListThunk } from '../modules/actorListModule';
 import Loading from './loading';
 
@@ -18,10 +19,20 @@ const ActorList = ()=>{
         }
         , [dispatch]
     );
+
+    /** 
+     * 영화인 이름 검색
+     */
+    let peopleInput = useRef();
+    const [name, setName] = useState();
     const searchList = (e)=>{
+        const peopleNm = peopleInput.current.value;
+        callList(1, peopleNm);
         e.preventDefault();
-        callList();
     }
+    const onInputChange = e => {
+        setName(peopleInput.current.value);
+    };
 
     useEffect(()=>{
         callList();
@@ -35,26 +46,25 @@ const ActorList = ()=>{
         let pageList = [];
         let start = (Math.ceil(page/10) - 1) * 10 + 1;
         let end = lastPageNum < start + 10 ? lastPageNum + 1 : start + 10;
-        console.log(start, end)
         for(let i = start; i < end; i++){
             pageList.push(<li key={i} className={page === i ? 'active':''}><a href='/' key={i} onClick={(e)=>{e.preventDefault();chPageEvt(i);}} >{i}</a></li>);
         }
         return pageList;
     }
     const chPageEvt = (curPage)=>{
-        callList(curPage);
+        callList(curPage, peopleNm);
     }
     const chPrevPageEvt = (e)=>{
         e.preventDefault();
         let page = curPage - 10 <= 1 ? 1 : curPage - 10;
         let start = (Math.ceil(page/10) - 1) * 10 + 1;
-        callList(start);
+        callList(start, peopleNm);
     }
     const chNextPageEvt = (e)=>{
         e.preventDefault();
         let page = curPage + 10 >= lastPageNum ? lastPageNum : curPage + 10;
         let start = (Math.ceil(page/10) - 1) * 10 + 1;
-        callList(start);
+        callList(start, peopleNm);
     }
     let [pageList, setPageList] = useState();
     useEffect(()=>{
@@ -66,12 +76,20 @@ const ActorList = ()=>{
     <div>
         <Loading done={done}></Loading>
 
+        <div className='search-form'>
+            <form action='' onSubmit={searchList}>
+                <input type='text' placeholder='영화인 이름을 입력해주세요.' name='peopleNm' value={name} ref={peopleInput} onChange={onInputChange} />
+                <input type='submit' value='검색' />
+            </form>
+        </div>
+        
+
         <ul className='actorList'>
             {
                 actorList.map((actor, i)=>{
                     const {peopleCd, peopleNm, repRoleNm, filmoNames} = actor;
                     return  <li key={peopleCd}>
-                                <div>{peopleNm}[{repRoleNm}]</div>
+                                <div><Link to={'/actorDetail/'+peopleCd}>{peopleNm}[{repRoleNm}]</Link></div>
                                 <p>{filmoNames}</p>
                             </li>
                 })
