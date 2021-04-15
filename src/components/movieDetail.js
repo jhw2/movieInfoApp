@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { callMovieDetailThunk } from '../modules/moviDetailInfoModule';
+import  MovieSearchService from '../http/movieSearchService';
 
 const MovieDetail = ()=>{
   const {movieCd} = useParams();

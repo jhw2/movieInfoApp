@@ -9,7 +9,6 @@ const ActorDetail = ()=>{
     const dispatch = useDispatch();
     const {actorInfo} = useSelector(({actorDetailInfo})=>{return actorDetailInfo});
     let {peopleNm, filmos, repRoleNm, sex, homepages} = actorInfo;
-    console.log(homepages)
     if(!filmos){filmos = []};
 
     const callActorInfo = useCallback(()=>{

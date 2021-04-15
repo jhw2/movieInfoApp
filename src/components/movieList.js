@@ -5,8 +5,9 @@ const MovieList = ({rankList})=>{
         <ul className='movie-list'>
             {
                 rankList.map((val, i)=>{
-                    const {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd} = val;
+                    const {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd, poster} = val;
                     return  <li key={movieCd}>
+                                <img src={poster} alt={movieNm + '포스터'} />
                                 <strong>{rankOldAndNew} {rankInten} {rank}</strong>
                                 <h6><Link to={'/movieDetail/'+movieCd}>{movieNm}</Link></h6>
                                 <p><em>개봉</em><span>{openDt}</span></p>
