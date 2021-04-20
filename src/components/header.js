@@ -4,7 +4,7 @@ const Header = ({menuList})=>{
     return (
         <header className='mv-header'>
             <div className='group'>
-            <div className="hd-logo"><a href="/">영화정보 <strong>사이트</strong></a></div>
+            <div className="hd-logo"><a href="/">Movie<strong>Box</strong></a></div>
             <ul className="gnb">
                 {menuList.map((menu, i)=>{
                     const {txt, url} = menu;

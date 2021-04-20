@@ -1,5 +1,6 @@
 import MoviService from '../http/MoviService';
 import { getWeekFirstDate, getWeekNo } from '../utils/dayInfo';
+import {getPoster} from '../utils/getMovieList';
 
 export const CALL_WEEKLYBOXOFFICE = 'CALL_WEEKLYBOXOFFICE';
 export const CALL_LOADING = 'CALL_LOADING';
@@ -15,12 +16,22 @@ export const dataError = (error)=>{
     return {type: ERROR, error}
 }
 
-export const callWeeklyBoxofficeThunk = ({year, month, week, weekGb}) => async (dispatch, getState) => {
+export const callWeeklyBoxofficeThunk = ({year, month, week, weekGb}) => (dispatch, getState) => {
     dispatch(callLoading(false))
     let date = getWeekFirstDate(year, month, week);
-    await MoviService.getWeeklyBoxOffice(date, weekGb).then(({data, status})=>{
+    MoviService.getWeeklyBoxOffice(date, weekGb).then( async ({data, status})=>{
         let dataList = data.boxOfficeResult.weeklyBoxOfficeList;
         let {showRange} = data.boxOfficeResult;
+
+        let posters = await Promise.all(
+            dataList.map( async (val, i)=>{
+                const {movieNm} = val;
+                return await getPoster(movieNm);
+            })
+        );
+        posters.map((poster, i)=>{
+            dataList[i].poster = poster;
+        })
         dispatch(callWeeklyBoxoffice({year, month, week, data: dataList, status, weekGb, showRange}));
         
     }).catch(error=>{dispatch(dataError(error))});

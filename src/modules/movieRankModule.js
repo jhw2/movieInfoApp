@@ -1,5 +1,5 @@
 import MoviService from '../http/MoviService';
-import MovieSearchService from '../http/movieSearchService';
+import {getPoster} from '../utils/getMovieList';
 
 export const CALL_DAILYBOXOFFICE = 'CALL_DAILYBOXOFFICE';
 export const CALL_LOADING = 'CALL_LOADING';
@@ -14,14 +14,6 @@ export const callDailyBoxoffice = ({currentDate, data, status, repNationCd})=>{
 }
 export const dataError = (error)=>{
     return {type: ERROR, error}
-}
-
-const getPoster = async(movieNm)=>{
-    return new Promise((resolve,reject)=>{
-        MovieSearchService.getSearchPoster(movieNm).then(({data})=>{
-            resolve(data.items[0].image)
-        });
-    });
 }
 
 export const callDailyBoxofficeThunk = ({currentDateTxt, currentDate, repNationCd}) => (dispatch, getState) => {
@@ -42,7 +34,6 @@ export const callDailyBoxofficeThunk = ({currentDateTxt, currentDate, repNationC
 
     }).catch(error=>{dispatch(dataError(error))});
 
-    console.log("testddd")
     
 };
 

@@ -5,6 +5,7 @@ import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
 import { Link  } from 'react-router-dom';
 import { callActorListThunk } from '../modules/actorListModule';
 import Loading from './loading';
+import {getPoster} from '../utils/getMovieList';
 
 const ActorList = ()=>{
     const dispatch = useDispatch();
@@ -36,6 +37,8 @@ const ActorList = ()=>{
 
     useEffect(()=>{
         callList();
+        getPoster('무서운이야기');
+        
     },[callList]);
     
 
