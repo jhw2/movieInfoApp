@@ -29,7 +29,7 @@ export const callWeeklyBoxofficeThunk = ({year, month, week, weekGb}) => (dispat
                 return await getPoster(movieNm);
             })
         );
-        posters.map((poster, i)=>{
+        posters.forEach((poster, i)=>{
             dataList[i].poster = poster;
         })
         dispatch(callWeeklyBoxoffice({year, month, week, data: dataList, status, weekGb, showRange}));

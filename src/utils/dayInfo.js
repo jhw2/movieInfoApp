@@ -2,8 +2,8 @@ const today = new Date();
 const yesterday = new Date(new Date().setDate(today.getDate()-1));
 const lastWeek = new Date(new Date().setDate(today.getDate()-6));
 
-Date.prototype.getNewDay = function(){
-    let dayOfWeek = this.getDay() -1;
+const getNewDay = (date)=>{
+    let dayOfWeek = date.getDay() -1;
     if(dayOfWeek === -1){dayOfWeek = 6}
     return dayOfWeek;
 }
@@ -37,13 +37,13 @@ export const getWeekNo = (date = lastWeek)=>{
         dateObj = new Date(date);
     }
 
-    dateObj.setDate(dateObj.getDate()+(6 -  dateObj.getNewDay()));
+    dateObj.setDate(dateObj.getDate()+(6 - getNewDay(dateObj)));
 
     let _year = dateObj.getFullYear();
     let _month = dateObj.getMonth()+1;
     let _date = dateObj.getDate();
    
-    const week = parseInt((6 + _date - dateObj.getNewDay()) / 7) + 1;
+    const week = parseInt((6 + _date - getNewDay(dateObj)) / 7) + 1;
 
     return {year: _year, month: _month, week};
 }
@@ -54,14 +54,13 @@ export const getMothLastWeekNo = (dateObj = lastWeek)=>{
     let lastOfdate = new Date(year, month, 0);
     
     let _date = lastOfdate.getDate();
-    let week = parseInt((6 + _date + lastOfdate.getNewDay() - 1) / 7);
-    console.log('dd'+lastOfdate.getDay(), lastOfdate);
+    let week = parseInt((6 + _date + getNewDay(lastOfdate) - 1) / 7);
 
-    return lastOfdate.getNewDay() === 0 ? week : week-1;
+    return getNewDay(lastOfdate) === 0 ? week : week-1;
 }
 
 export const getWeekFirstDate = (year, month, week)=>{
-    let dayOfWeek = new Date(year, month-1, 1).getNewDay();
+    let dayOfWeek = getNewDay(new Date(year, month-1, 1));
     let day = Math.abs((7 * week) - dayOfWeek - 6);
     month = month < 10 ? '0'+month : month; 
     day = day < 10 ? '0'+day : day; 

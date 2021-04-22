@@ -45,7 +45,10 @@ const ActorList = ()=>{
     /**
      * 페이징 이벤트
      */
-    const createPageNumList = (page = curPage)=>{
+    const chPageEvt = useCallback((curPage)=>{
+        callList(curPage, peopleNm);
+    },[callList, peopleNm])
+    const createPageNumList = useCallback((page = curPage)=>{
         let pageList = [];
         let start = (Math.ceil(page/10) - 1) * 10 + 1;
         let end = lastPageNum < start + 10 ? lastPageNum + 1 : start + 10;
@@ -53,10 +56,8 @@ const ActorList = ()=>{
             pageList.push(<li key={i} className={page === i ? 'active':''}><a href='/' key={i} onClick={(e)=>{e.preventDefault();chPageEvt(i);}} >{i}</a></li>);
         }
         return pageList;
-    }
-    const chPageEvt = (curPage)=>{
-        callList(curPage, peopleNm);
-    }
+
+    },[chPageEvt, curPage, lastPageNum]);
     const chPrevPageEvt = (e)=>{
         e.preventDefault();
         let page = curPage - 10 <= 1 ? 1 : curPage - 10;
@@ -72,7 +73,7 @@ const ActorList = ()=>{
     let [pageList, setPageList] = useState();
     useEffect(()=>{
         setPageList(createPageNumList(curPage));
-    },[curPage, lastPageNum]);
+    },[curPage, lastPageNum, createPageNumList]);
     
 
     return (

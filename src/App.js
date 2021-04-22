@@ -2,7 +2,6 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Header from './components/header';
 import Footer from './components/footer';
-import Lnb from './components/lnb';
 import DailyRank from './components/dailyRank';
 import WeeklyRank from './components/weeklyRank';
 import MovieDetail from './components/movieDetail';

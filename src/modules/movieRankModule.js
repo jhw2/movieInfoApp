@@ -27,7 +27,7 @@ export const callDailyBoxofficeThunk = ({currentDateTxt, currentDate, repNationC
                 return await getPoster(movieNm);
             })
         );
-        posters.map((poster, i)=>{
+        posters.forEach((poster, i)=>{
             dataList[i].poster = poster;
         })
         dispatch(callDailyBoxoffice({currentDate, data: dataList, status, repNationCd}));

@@ -2,11 +2,11 @@
 import { useState, useEffect } from 'react';
 import { getDateObj, getMothLastWeekNo } from '../utils/dayInfo';
 const WeeklySearchForm = ({currentMonth, currentWeek, searchList, weekGb})=>{
-    let [weekOption, setWeekOption] = useState(); 
+    let [weekSelect, setWeekSelect] = useState(); 
     useEffect(()=>{
-        const defaultWeekOption = createWeekOption(getMothLastWeekNo());
-        setWeekOption(defaultWeekOption);
-    },[]);
+        const defaultWeekOption = createWeekSelect(getMothLastWeekNo(), currentWeek);
+        setWeekSelect(defaultWeekOption);
+    },[currentWeek]);
 
     /**
      * 월 셀렉트박스 option 태그 생성
@@ -19,27 +19,28 @@ const WeeklySearchForm = ({currentMonth, currentWeek, searchList, weekGb})=>{
      * @param {*} countWeek :  현재 선택된 월의 주차 수
      * @returns 주차 option 태그
      */
-    const createWeekOption = (countWeek)=>{
+    const createWeekSelect = (countWeek, defaultWeek)=>{
         let weekOption = [];
         for(let i = 1; i <= countWeek; i++){
             weekOption.push(<option key={'week'+i} value={i}>{i}</option>);
         }
-        return weekOption;
+        const weekSelect = <select name='week' defaultValue={defaultWeek}>{weekOption}</select>;
+        return weekSelect;
     }
     /**
      * 월이 변경되면 주차 셀렉스박스 변경
      * @param {*} event 
      */
     const changeWeekNo = ({target})=>{
-        const year = target.parentNode.year.value;
+        const year = target.parentNode.parentNode.year.value;
         let month = target.value;
         month = month < 10 ? '0'+month : month; 
 
         let date = getDateObj(`${year}${month}01`);
         let lastWeek = getMothLastWeekNo(date);
-        target.parentNode.week.value = '1';
+        target.parentNode.parentNode.week.value = '1';
 
-        setWeekOption(createWeekOption(lastWeek));
+        setWeekSelect(createWeekSelect(lastWeek, 1));
     }
     /**
      * 라디오버튼 선택 이벤트
@@ -66,9 +67,7 @@ const WeeklySearchForm = ({currentMonth, currentWeek, searchList, weekGb})=>{
                     월
                 </label>
                 <label>
-                    <select name='week' defaultValue={currentWeek}>
-                        {weekOption}
-                    </select>
+                    {weekSelect}
                     주차
                 </label>
                 <input type="submit" value="검색" />

@@ -15,22 +15,18 @@ export const dataError = (error)=>{
     return {type: ERROR, error}
 }
 
-export const callActorListThunk = ({curPage, itemPerPage, peopleNm}) => async (dispatch, getState) => {
+export const callActorListThunk = ({curPage, itemPerPage, peopleNm}) => (dispatch, getState) => {
 
-    const prevActorState = getState().actorList;
-    //if(prevActorState.curPage !== curPage || prevActorState.itemPerPage !== itemPerPage || prevActorState.peopleNm !== peopleNm){
-        dispatch(callLoading(false));
+    dispatch(callLoading(false));
+    MoviService.getActorList({curPage, itemPerPage, peopleNm}).then(({data, status})=>{
+        const actorList = data.peopleListResult.peopleList;
+        const totCnt = data.peopleListResult.totCnt;
 
-        await MoviService.getActorList({curPage, itemPerPage, peopleNm}).then(({data, status})=>{
-            const actorList = data.peopleListResult.peopleList;
-            const totCnt = data.peopleListResult.totCnt;
-    
-            dispatch(setPage(totCnt));
-            dispatch(changePage(curPage));
-    
-            dispatch(callActorList({totCnt, actorList, curPage, itemPerPage, peopleNm}));
-        }).catch(error=>{dispatch(dataError(error))});
-    //}
+        dispatch(setPage(totCnt));
+        dispatch(changePage(curPage));
+
+        dispatch(callActorList({totCnt, actorList, curPage, itemPerPage, peopleNm}));
+    }).catch(error=>{dispatch(dataError(error))});
 };
 
 

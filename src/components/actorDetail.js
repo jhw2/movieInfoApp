@@ -23,8 +23,8 @@ const ActorDetail = ()=>{
     if(peopleCd){
         return(
             <div>
-                <h4>{peopleNm}[{repRoleNm}]</h4>
-                <p><a href={homepages} target='_blank'>{homepages}</a></p>
+                <h4>{peopleNm}[{sex}][{repRoleNm}]</h4>
+                <p><a href={homepages} target='_blank' rel="noreferrer">{homepages}</a></p>
                 <ul>
                     {
                         filmos.map((filmo, i)=>{
