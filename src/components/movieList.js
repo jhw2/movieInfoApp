@@ -14,7 +14,7 @@ const MovieList = ({rankList})=>{
                                 <p><em>누적</em><span>{audiAcc}</span></p>
                             </li>;
                 })
-            }
+            } 
             {/* 데이터 없는 경우 */}
             {rankList.length === 0 ? <li className="no-data">데이터가 없습니다.</li>:''}
         </ul>
