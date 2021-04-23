@@ -25,24 +25,13 @@ const App = ()=>{
 
       <section id="contents">
         <div className='group'>
-          {/* <Lnb menuList={menuList}></Lnb> */}
           <div className='cont'>
             <Switch>
-              <Route exact path="/dailyRank">
-                <DailyRank></DailyRank>
-              </Route>
-              <Route exact path="/weeklyRank">
-                <WeeklyRank></WeeklyRank>
-              </Route>
-              <Route exact path="/movieDetail/:movieCd/">
-                <MovieDetail></MovieDetail>
-              </Route>
-              <Route exact path="/actors">
-                <ActorList></ActorList>
-              </Route>
-              <Route exact path="/actorDetail/:peopleCd/">
-                <ActorDetail></ActorDetail>
-              </Route>
+              <Route exact path="/dailyRank" component={DailyRank} />
+              <Route exact path="/weeklyRank" component={WeeklyRank} />
+              <Route exact path="/movieDetail/:movieCd/" component={MovieDetail} />
+              <Route exact path="/actors" component={ActorList} />
+              <Route exact path="/actorDetail/:peopleCd/" component={ActorDetail} />
             </Switch>
           </div>
         </div>

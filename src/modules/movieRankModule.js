@@ -9,7 +9,6 @@ export const callLoading = (done)=>{
     return {type : CALL_LOADING, done}
 }
 export const callDailyBoxoffice = ({currentDate, data, status, repNationCd})=>{
-    console.log("최종s",data);
     return {type : CALL_DAILYBOXOFFICE, dailyRankList: data, status, currentDate, repNationCd}
 }
 export const dataError = (error)=>{

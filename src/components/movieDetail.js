@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
+import queryString from "query-string";
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { callMovieDetailThunk } from '../modules/moviDetailInfoModule';
 
-const MovieDetail = ()=>{
+const MovieDetail = ({ location })=>{
   const {movieCd} = useParams();
+  const {poster} = queryString.parse(location.search);
   const dispatch = useDispatch();
   const {movieInfo} = useSelector(({movieDetailInfo})=>{return movieDetailInfo});
   const {movieNm, actors, audits, companys, directors, genres, openDt} = movieInfo;
@@ -22,42 +24,45 @@ const MovieDetail = ()=>{
   
   if(movieNm){
     return(
-      <div>
-          
-          <h2>{movieNm}</h2>
-          <p>등급 : {watchGradeNm} 개봉일 : {openDt}</p>
-          <p>
-            [
-              {genres.map(({genreNm}, i)=>{
-                const type = genres.length-1 === i ?  genreNm : genreNm+'>';
-                return type;
-              })}
-            ]
-          </p>
-          <p>감독 : {directors.map(({peopleNm}, i)=>{
-                      const nm = directors.length-1 === i ?  peopleNm : peopleNm+',';
-                      return nm;
-                    })}
-          </p>
-          <ul>
-            {
-              companys.map(({companyPartNm, companyNm, companyCd}, i)=>{
-                return <li key={i}>{companyPartNm} : {companyNm}</li>
-              })
-            }
-            
-          </ul>
-          <div>
-            <p>출연배우</p>
-            <div>
+      <div className='movie-detail'>
+          <div className='movie-poster'><img src={poster} alt={movieNm} /></div>
+          <div className='movie-txt'>
+            <h2>{movieNm}</h2>
+            <p>등급 : {watchGradeNm} 개봉일 : {openDt}</p>
+            <p>
+              [
+                {genres.map(({genreNm}, i)=>{
+                  const type = genres.length-1 === i ?  genreNm : genreNm+'>';
+                  return type;
+                })}
+              ]
+            </p>
+            <p>감독 : {directors.map(({peopleNm}, i)=>{
+                        const nm = directors.length-1 === i ?  peopleNm : peopleNm+',';
+                        return nm;
+                      })}
+            </p>
+            <ul>
               {
-                actors.map(({peopleNm}, i)=>{
-                  const people = actors.length-1 === i ?  peopleNm : peopleNm+', ';
-                  return people
+                companys.map(({companyPartNm, companyNm, companyCd}, i)=>{
+                  return <li key={i}>{companyPartNm} : {companyNm}</li>
                 })
               }
+              
+            </ul>
+            <div>
+              <p>출연배우</p>
+              <div>
+                {
+                  actors.map(({peopleNm}, i)=>{
+                    const people = actors.length-1 === i ?  peopleNm : peopleNm+', ';
+                    return people
+                  })
+                }
+              </div>
             </div>
           </div>
+          
           
       </div>
     );

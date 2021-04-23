@@ -41,4 +41,11 @@
 .pageNation ul li.active{border-color: #6AAFE6;}
 .pageNation ul li.active a{color: #6AAFE6;}
 
+
+.movie-detail{display: flex;}
+.movie-detail .movie-poster{margin-right: 20px;}
+.movie-detail .movie-txt{background-color: #f7f7f7;padding: 20px 30px;flex-basis: calc(100% - 130px);box-sizing: border-box;}
+
+
+
 footer{padding: 15px 0;color: #888;background-color: #f9fafc;}
