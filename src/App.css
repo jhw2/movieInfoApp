@@ -11,7 +11,8 @@
 .mv-header .gnb li a.active{color: #353866;border-bottom: 2px solid #353866;}
 .mv-header .gnb li a:hover{color: #353866;}
 
-.visual-txt{display: flex;align-items: center;justify-content: center;color: #fff;background-color:#ccc;height: 150px;text-align: center;}
+.visual-txt{display: flex;flex-direction: column;align-items: center;justify-content: center;color: #fff;background-color:#ccc;height: 150px;text-align: center;}
+.visual-txt h5{font-size: 22px;margin-bottom: 7px;}
 
 #contents{min-height: calc(100vh - 132px);}
 #contents .group{display: flex;align-items: flex-start;padding: 40px 20px;}

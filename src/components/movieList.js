@@ -9,7 +9,7 @@ const MovieList = ({rankList})=>{
                     return  <li key={movieCd}>
                                 <img src={poster} alt={movieNm + '포스터'} />
                                 <strong>{rankOldAndNew} {rankInten} {rank}</strong>
-                                <h6><Link to={'/movieDetail/'+movieCd+'?poster='+poster}>{movieNm}</Link></h6>
+                                <h6><Link to={{pathname: '/movieDetail/'+movieCd, state: {poster: poster, key: 'movieDetail'}}}>{movieNm}</Link></h6>
                                 <p><em>개봉</em><span>{openDt}</span></p>
                                 <p><em>누적</em><span>{audiAcc}</span></p>
                             </li>;

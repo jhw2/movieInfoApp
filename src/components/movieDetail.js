@@ -1,12 +1,12 @@
-import { useParams } from 'react-router-dom';
-import queryString from "query-string";
+import { useParams, useLocation } from 'react-router-dom';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { callMovieDetailThunk } from '../modules/moviDetailInfoModule';
 
 const MovieDetail = ({ location })=>{
   const {movieCd} = useParams();
-  const {poster} = queryString.parse(location.search);
+  const {state} = useLocation();
+  const {poster} = state;
   const dispatch = useDispatch();
   const {movieInfo} = useSelector(({movieDetailInfo})=>{return movieDetailInfo});
   const {movieNm, actors, audits, companys, directors, genres, openDt} = movieInfo;

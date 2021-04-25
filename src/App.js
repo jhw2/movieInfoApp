@@ -1,37 +1,30 @@
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import Header from './components/header';
 import Footer from './components/footer';
-import DailyRank from './components/dailyRank';
-import WeeklyRank from './components/weeklyRank';
-import MovieDetail from './components/movieDetail';
-import ActorList from './components/actorList';
-import ActorDetail from './components/actorDetail';
+import VisualTxt from './components/visualTxt';
+import menu from './menus';
 
 const App = ()=>{
-  const menuList = [
-    {txt: '일간박스오피스', url: '/dailyRank'},
-    {txt: '주간박스오피스', url: '/weeklyRank'},
-    {txt: '영화인정보', url: '/actors'}
-  ]
+  const location = useLocation();
+  console.log(location)
+  const {menuList, menuInfo} = menu;
+  const currentPage = location.state.key;
+  const pageTitle = menuInfo[currentPage].title;
+  const pageInfo = menuInfo[currentPage].cont;
 
   return (
     <div id="wrap">
       <Header menuList={menuList}></Header>
-
-      <div className="visual-txt">
-        비주얼 텍스트
-      </div>
-
+      <VisualTxt pageTitle={pageTitle} pageInfo={pageInfo}></VisualTxt>
       <section id="contents">
         <div className='group'>
           <div className='cont'>
             <Switch>
-              <Route exact path="/dailyRank" component={DailyRank} />
-              <Route exact path="/weeklyRank" component={WeeklyRank} />
-              <Route exact path="/movieDetail/:movieCd/" component={MovieDetail} />
-              <Route exact path="/actors" component={ActorList} />
-              <Route exact path="/actorDetail/:peopleCd/" component={ActorDetail} />
+              {menuList.map((menu, i)=>{
+                const { url, component, key } = menu;
+                return  <Route key={key} exact path={url} component={component} />
+              })}
             </Switch>
           </div>
         </div>

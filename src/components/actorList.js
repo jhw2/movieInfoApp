@@ -93,7 +93,7 @@ const ActorList = ()=>{
                 actorList.map((actor, i)=>{
                     const {peopleCd, peopleNm, repRoleNm, filmoNames} = actor;
                     return  <li key={peopleCd}>
-                                <div><Link to={'/actorDetail/'+peopleCd}>{peopleNm}[{repRoleNm}]</Link></div>
+                                <div><Link to={{pathname: '/actorDetail/'+peopleCd, state: {key: 'actorDetail'}}} >{peopleNm}[{repRoleNm}]</Link></div>
                                 <p>{filmoNames}</p>
                             </li>
                 })

@@ -7,8 +7,12 @@ const Header = ({menuList})=>{
             <div className="hd-logo"><a href="/">Movie<strong>Box</strong></a></div>
             <ul className="gnb">
                 {menuList.map((menu, i)=>{
-                    const {txt, url} = menu;
-                    return <li key={url}><NavLink exact to={url} activeClassName='active'>{txt}</NavLink></li>
+                    const {key, txt, url, gnb} = menu;
+                    if(gnb){
+                        return <li key={url}><NavLink exact to={{pathname: url, state: {key: key}}} activeClassName='active'>{txt}</NavLink></li>
+                    }else{
+                        return false;
+                    }
                 })}
             </ul>
             </div>

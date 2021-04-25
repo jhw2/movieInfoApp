@@ -1,6 +1,6 @@
 const today = new Date();
 const yesterday = new Date(new Date().setDate(today.getDate()-1));
-const lastWeek = new Date(new Date().setDate(today.getDate()-6));
+const lastWeek = new Date(new Date().setDate(today.getDate()-7));
 
 const getNewDay = (date)=>{
     let dayOfWeek = date.getDay() -1;

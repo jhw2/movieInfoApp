@@ -9,7 +9,6 @@ import App from './App';
 import movieReducer from './modules/index';
 import reportWebVitals from './reportWebVitals';
 
-
 ReactDOM.render(
   <Provider store={createStore(movieReducer, applyMiddleware(thunk))}>
     <BrowserRouter>
