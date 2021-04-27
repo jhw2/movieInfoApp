@@ -4,9 +4,9 @@ import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
 import { callWeeklyBoxofficeThunk } from '../modules/movieWeeklyRankModule';
 import { getWeekNo } from '../utils/dayInfo';
-import Loading from './loading';
-import MovieList from './movieList';
-import WeeklySearchForm from './weeklySearchForm';
+import Loading from './Loading';
+import MovieList from './MovieList';
+import WeeklySearchForm from './WeeklySearchForm';
 
 const WeeklyRank = ()=>{
   const dispatch = useDispatch();

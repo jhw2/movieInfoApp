@@ -4,7 +4,7 @@ import { useEffect, useCallback, useState, useRef } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
 import { Link  } from 'react-router-dom';
 import { callActorListThunk } from '../modules/actorListModule';
-import Loading from './loading';
+import Loading from './Loading';
 import {getPoster} from '../utils/getMovieList';
 
 const ActorList = ()=>{

@@ -6,10 +6,10 @@ import { callDailyBoxofficeThunk } from '../modules/movieRankModule';
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
 import { getDayTxt, getDateObj } from '../utils/dayInfo';
-import Loading from './loading';
-import Tab from './movieTypeTab';
-import MovieList from './movieList';
-
+import Loading from './Loading';
+import Tab from './MovieTypeTab';
+import MovieList from './MovieList';
+ 
 const DailyRank = ()=>{
 
   const dispatch = useDispatch();

@@ -1,8 +1,8 @@
-import DailyRank from '../components/dailyRank';
-import WeeklyRank from '../components/weeklyRank';
-import MovieDetail from '../components/movieDetail';
-import ActorList from '../components/actorList';
-import ActorDetail from '../components/actorDetail';
+import DailyRank from '../components/DailyRank';
+import WeeklyRank from '../components/WeeklyRank';
+import MovieDetail from '../components/MovieDetail';
+import ActorList from '../components/ActorList';
+import ActorDetail from '../components/ActorDetail';
 
 export const menuList = [
     {key: 'dailyRank', txt: '일간박스오피스', cont: '일간 박스오피스를 조회해보세요.', url: '/dailyRank', component: DailyRank, gnb: true},

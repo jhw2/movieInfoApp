@@ -1,17 +1,20 @@
 import './App.css';
 import { Route, Switch, useLocation } from 'react-router-dom';
-import Header from './components/header';
-import Footer from './components/footer';
-import VisualTxt from './components/visualTxt';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import VisualTxt from './components/VisualTxt';
 import menu from './menus';
 
 const App = ()=>{
   const location = useLocation();
   console.log(location)
   const {menuList, menuInfo} = menu;
-  const currentPage = location.state.key;
-  const pageTitle = menuInfo[currentPage].title;
-  const pageInfo = menuInfo[currentPage].cont;
+  let currentPage = '', pageTitle ='', pageInfo = '';
+  if(location.state){
+    currentPage = location.state.key;
+    pageTitle = menuInfo[currentPage].title;
+    pageInfo = menuInfo[currentPage].cont;
+  }
 
   return (
     <div id="wrap">
