@@ -1,32 +1,30 @@
 
-import "react-datepicker/dist/react-datepicker.css";
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, memo } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
 import { callDailyBoxofficeThunk } from '../modules/movieRankModule';
-import DatePicker from "react-datepicker";
-import { ko } from "date-fns/esm/locale";
 import { getDayTxt, getDateObj } from '../utils/dayInfo';
 import Loading from './Loading';
+import DailyRankSearchFrom from './DailyRankSearchFrom';
 import Tab from './MovieTypeTab';
 import MovieList from './MovieList';
  
-const DailyRank = ()=>{
+const DailyRank = memo(()=>{
+  
 
   const dispatch = useDispatch();
   const {dailyRankList, currentDate, repNationCd, done} = useSelector(({movieRankList})=>{return movieRankList}, shallowEqual);
-  let defaultDate = currentDate ? currentDate : getDateObj(getDayTxt());
 
-  const tabEvt = (e)=>{
+  const callList = useCallback(
+    (date = getDateObj(getDayTxt()), repNationCd = '')=>{
+      dispatch(callDailyBoxofficeThunk({currentDateTxt: getDayTxt(date), currentDate: date, repNationCd}));
+    }
+  , [dispatch]);
+
+  const tabEvt = useCallback( (e)=>{
     e.preventDefault();
     const repNationCd = e.target.dataset.type;
     callList(currentDate, repNationCd);
-  }
-  
-  const callList = useCallback(
-    (date = defaultDate, repNationCd = '')=>{
-      dispatch(callDailyBoxofficeThunk({currentDateTxt: getDayTxt(date), currentDate: date, repNationCd}));
-    }
-  , [dispatch, defaultDate]);
+  },[currentDate, callList]);
   
   useEffect(()=>{
     callList();
@@ -35,20 +33,11 @@ const DailyRank = ()=>{
   return (
     <div>
         <Loading done={done}></Loading>
-        <div className='search-form'>
-          <DatePicker
-            locale={ko}
-            selected={currentDate}
-            onChange={(date) => callList(date)}
-            dateFormat = "yyyy-MM-dd"
-            shouldCloseOnSelect={true}
-            name='start'
-          />
-        </div>
+        <DailyRankSearchFrom currentDate={currentDate} callList={callList}></DailyRankSearchFrom>
         <Tab repNationCd={repNationCd} tabEvt={tabEvt}></Tab>
         <MovieList rankList={dailyRankList}></MovieList>
     </div>
   );
-}
+})
 
 export default DailyRank;
