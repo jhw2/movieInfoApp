@@ -21,6 +21,7 @@ const DailyRank = memo(()=>{
   , [dispatch]);
 
   const tabEvt = useCallback( (e)=>{
+    console.log('test')
     e.preventDefault();
     const repNationCd = e.target.dataset.type;
     callList(currentDate, repNationCd);
