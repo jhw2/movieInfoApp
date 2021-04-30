@@ -1,5 +1,5 @@
 
-import { useEffect, useCallback, memo } from 'react';
+import { useEffect, useMemo, memo } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
 import { callDailyBoxofficeThunk } from '../modules/movieRankModule';
 import { getDayTxt, getDateObj } from '../utils/dayInfo';
@@ -14,14 +14,12 @@ const DailyRank = memo(()=>{
   const dispatch = useDispatch();
   const {dailyRankList, currentDate, repNationCd, done} = useSelector(({movieRankList})=>{return movieRankList}, shallowEqual);
 
-  const callList = useCallback(
-    (date = getDateObj(getDayTxt()), repNationCd = '')=>{
+  const callList = useMemo(()=> (date = getDateObj(getDayTxt()), repNationCd = '')=>{
       dispatch(callDailyBoxofficeThunk({currentDateTxt: getDayTxt(date), currentDate: date, repNationCd}));
     }
   , [dispatch]);
 
-  const tabEvt = useCallback( (e)=>{
-    console.log('test')
+  const tabEvt = useMemo(()=>(e)=>{
     e.preventDefault();
     const repNationCd = e.target.dataset.type;
     callList(currentDate, repNationCd);
