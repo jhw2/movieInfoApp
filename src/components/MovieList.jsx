@@ -1,6 +1,7 @@
 
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
-const MovieList = ({rankList})=>{
+const MovieList = memo(({rankList})=>{
     return (
         <ul className='movie-list'>
             {
@@ -19,6 +20,6 @@ const MovieList = ({rankList})=>{
             {rankList.length === 0 ? <li className="no-data">데이터가 없습니다.</li>:''}
         </ul>
     );
-}
+})
 
 export default MovieList;

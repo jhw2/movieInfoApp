@@ -14,19 +14,18 @@ const WeeklyRank = ()=>{
   /**
    * 주간 박스오피스 api call
    */
-  const callList = useCallback(
-    (date, repNationCd)=>{
+  const callList = useCallback((date, repNationCd)=>{
       dispatch(callWeeklyBoxofficeThunk({...date, weekGb}));
     }
   , [dispatch, weekGb]);
-  const searchList = (e)=>{
+  const searchList = useCallback((e)=>{
     e.preventDefault();
     let year = e.target.year.value;
     let month = e.target.month.value;
     let week = e.target.week.value;
     let weekGb = e.target.weekGb.value;
     callList({year, month, week, weekGb});
-  }
+  },[callList])
 
   useEffect(()=>{
       callList(getWeekNo(), '0');

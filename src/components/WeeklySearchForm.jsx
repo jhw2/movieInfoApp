@@ -1,12 +1,8 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, memo } from 'react';
 import { getDateObj, getMothLastWeekNo } from '../utils/dayInfo';
-const WeeklySearchForm = ({currentMonth, currentWeek, searchList, weekGb})=>{
+const WeeklySearchForm = memo(({currentMonth, currentWeek, searchList, weekGb})=>{
     let [weekSelect, setWeekSelect] = useState(); 
-    useEffect(()=>{
-        const defaultWeekOption = createWeekSelect(getMothLastWeekNo(), currentWeek);
-        setWeekSelect(defaultWeekOption);
-    },[currentWeek]);
 
     /**
      * 월 셀렉트박스 option 태그 생성
@@ -19,19 +15,19 @@ const WeeklySearchForm = ({currentMonth, currentWeek, searchList, weekGb})=>{
      * @param {*} countWeek :  현재 선택된 월의 주차 수
      * @returns 주차 option 태그
      */
-    const createWeekSelect = (countWeek, defaultWeek)=>{
+    const createWeekSelect = useMemo(()=>(countWeek, defaultWeek)=>{
         let weekOption = [];
         for(let i = 1; i <= countWeek; i++){
             weekOption.push(<option key={'week'+i} value={i}>{i}</option>);
         }
         const weekSelect = <select name='week' defaultValue={defaultWeek}>{weekOption}</select>;
         return weekSelect;
-    }
+    },[])
     /**
      * 월이 변경되면 주차 셀렉스박스 변경
      * @param {*} event 
      */
-    const changeWeekNo = ({target})=>{
+    const changeWeekNo = useMemo(()=>({target})=>{
         const year = target.parentNode.parentNode.year.value;
         let month = target.value;
         month = month < 10 ? '0'+month : month; 
@@ -41,13 +37,18 @@ const WeeklySearchForm = ({currentMonth, currentWeek, searchList, weekGb})=>{
         target.parentNode.parentNode.week.value = '1';
 
         setWeekSelect(createWeekSelect(lastWeek, 1));
-    }
+    },[createWeekSelect])
     /**
      * 라디오버튼 선택 이벤트
      */
-    const handleChange = ({target})=>{
+    const handleChange = useMemo(()=>({target})=>{
         target.checked = 'checked';
-    }
+    },[])
+
+    useEffect(()=>{
+        const defaultWeekOption = createWeekSelect(getMothLastWeekNo(), currentWeek);
+        setWeekSelect(defaultWeekOption);
+    },[currentWeek, createWeekSelect]);
     return (
         <div className='search-form'>
             <form action="/" onSubmit={searchList}>
@@ -74,6 +75,6 @@ const WeeklySearchForm = ({currentMonth, currentWeek, searchList, weekGb})=>{
             </form>
         </div>
     );
-}
+})
 
 export default WeeklySearchForm;
