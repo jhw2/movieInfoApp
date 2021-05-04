@@ -1,7 +1,7 @@
 import DailyRank from '../components/DailyRank';
 import WeeklyRank from '../components/WeeklyRank';
 import MovieDetail from '../components/MovieDetail';
-import ActorList from '../components/ActorList';
+import ActorList from '../components/ActorSearch';
 import ActorDetail from '../components/ActorDetail';
 
 export const menuList = [
