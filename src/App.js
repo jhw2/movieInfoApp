@@ -1,8 +1,6 @@
 import './App.css';
 import { Route, Switch, useLocation } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import VisualTxt from './components/VisualTxt';
+import { Header, VisualTxt, Footer } from './components/layout'; 
 import menu from './menus';
 
 const App = ()=>{
@@ -32,10 +30,9 @@ const App = ()=>{
           </div>
         </div>
       </section>
-
       <Footer></Footer>
     </div>
   );
-}
+} 
 
 export default App;

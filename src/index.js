@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
-import movieReducer from './modules/index';
+import movieReducer from './modules';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

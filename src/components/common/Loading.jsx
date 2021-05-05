@@ -1,6 +1,6 @@
 
 
-import '../loading.css';
+import '../../loading.css';
 const Loading = ({done})=>{
     return (
         <div>

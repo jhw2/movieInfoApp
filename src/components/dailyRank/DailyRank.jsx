@@ -1,12 +1,12 @@
 
 import { useEffect, memo, useCallback } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
-import { callDailyBoxofficeThunk } from '../modules/movieRankModule';
-import { getDayTxt, getDateObj } from '../utils/dayInfo';
-import Loading from './Loading';
+import { callDailyBoxofficeThunk } from '../../modules/movieRankModule';
+import { getDayTxt, getDateObj } from '../../utils/dayInfo';
+import Loading from '../common';
 import DailyRankSearchFrom from './DailyRankSearchFrom';
 import Tab from './MovieTypeTab';
-import MovieList from './MovieList';
+import MovieList from '../movieList';
  
 const DailyRank = memo(()=>{
   

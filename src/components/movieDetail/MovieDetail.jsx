@@ -1,7 +1,7 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { callMovieDetailThunk } from '../modules/moviDetailInfoModule';
+import { callMovieDetailThunk } from '../../modules/moviDetailInfoModule';
 
 const MovieDetail = ({ location })=>{
   const {movieCd} = useParams();

@@ -2,11 +2,11 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect, useCallback, useRef } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
-import { callActorListThunk } from '../modules/actorListModule';
-import Loading from './Loading';
+import { callActorListThunk } from '../../modules/actorListModule';
+import Loading from '../common/Loading';
 import ActorSearchForm from './ActorSearchForm';
 import ActorList from './ActorList';
-import PageNation from './PageNation';
+import PageNation from '../weeklyRank/PageNation';
 
 const ActorSearch = ()=>{
     const dispatch = useDispatch();
@@ -33,7 +33,6 @@ const ActorSearch = ()=>{
     useEffect(()=>{
         callList();
     },[callList]);
-    
 
     return (
     <div>

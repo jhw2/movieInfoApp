@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { callactorDetailThunk } from '../modules/actorDetailInfoModul';
+import { callactorDetailThunk } from '../../modules/actorDetailInfoModul';
 
 const ActorDetail = ()=>{
     const {peopleCd} = useParams();
