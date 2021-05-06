@@ -44,7 +44,6 @@ export const getWeekNo = (date = lastWeek)=>{
     let _date = dateObj.getDate();
    
     const week = parseInt((6 + _date - getNewDay(dateObj)) / 7) + 1;
-
     return {year: _year, month: _month, week};
 }
 
@@ -62,8 +61,17 @@ export const getMothLastWeekNo = (dateObj = lastWeek)=>{
 export const getWeekFirstDate = (year, month, week)=>{
     let dayOfWeek = getNewDay(new Date(year, month-1, 1));
     let day = Math.abs((7 * week) - dayOfWeek - 6);
-    month = month < 10 ? '0'+month : month; 
-    day = day < 10 ? '0'+day : day; 
+    console.log('week',week)
+    if(Number(week) === 1){
+        const dateObj = new Date(year, month - 1, 1); 
+        dateObj.setDate(dateObj.getDate() - dayOfWeek);
+        year = dateObj.getFullYear();
+        month = dateObj.getMonth() + 1;
+        day = dateObj.getDate();
+    }
+    month = month < 10 ? '0'+ month : month; 
+    day = day < 10 ? '0'+ day : day; 
+    console.log('test',`${year}${month}${day}`)
     return `${year}${month}${day}`;
 }
 
