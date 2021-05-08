@@ -3,11 +3,11 @@ import { getWeekFirstDate, getWeekNo } from '../utils/dayInfo';
 import {getPoster} from '../utils/getMovieList';
 
 export const CALL_WEEKLYBOXOFFICE = 'CALL_WEEKLYBOXOFFICE';
-export const CALL_LOADING = 'CALL_LOADING';
+export const WEEKLY_CALL_LOADING = 'WEEKLY_CALL_LOADING';
 export const ERROR = 'ERROR';
 
-export const callLoading = (done)=>{
-    return {type : CALL_LOADING, done}
+export const weeklyCallLoading = (done)=>{
+    return {type : WEEKLY_CALL_LOADING, done}
 }
 export const callWeeklyBoxoffice = ({year, month, week, data, status, weekGb, showRange})=>{
     return {type : CALL_WEEKLYBOXOFFICE, WeeklyRankList: data, status, year, month, week, weekGb, showRange}
@@ -17,7 +17,7 @@ export const dataError = (error)=>{
 }
 
 export const callWeeklyBoxofficeThunk = ({year, month, week, weekGb}) => (dispatch, getState) => {
-    dispatch(callLoading(false))
+    dispatch(weeklyCallLoading(false))
     let date = getWeekFirstDate(year, month, week);
     MoviService.getWeeklyBoxOffice(date, weekGb).then( async ({data, status})=>{
         let dataList = data.boxOfficeResult.weeklyBoxOfficeList;
@@ -45,7 +45,7 @@ export default function movieWeeklyRankReducer(state = initailState, action){
         case CALL_WEEKLYBOXOFFICE:
             let {WeeklyRankList, status, year, month, week, weekGb, showRange} = action;
             return {...state, WeeklyRankList, status, year, month, week, weekGb, showRange, done: true}
-        case CALL_LOADING:
+        case WEEKLY_CALL_LOADING:
             return {...state, done: action.done}
         case ERROR:
             return {...state, error: action.error, done: true}

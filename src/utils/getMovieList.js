@@ -8,6 +8,8 @@ export const getPoster = async(movieNm)=>{
                 poster = data.items[0].image;
             }
             resolve(poster)
+        }).catch((data)=>{
+            resolve('no-data')
         });
     });
 }

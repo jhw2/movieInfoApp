@@ -1,39 +1,48 @@
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css"
-import Slider from "react-slick";
+import { useEffect, memo, useCallback } from 'react';
+import { getDayTxt, getDateObj } from '../../utils/dayInfo';
+import { getWeekNo } from '../../utils/dayInfo';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { callDailyBoxofficeThunk } from '../../modules/movieRankModule';
+import { callWeeklyBoxofficeThunk } from '../../modules/movieWeeklyRankModule';
+import MainSlider from './MainSlider';
 
-const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5
-  };
-const Main = ()=>{
+const Main = memo(()=>{
+    const dispatch = useDispatch();
+    const dispatch2 = useDispatch();
+    const { movieRankList, movieWeeklyRankList } = useSelector((movieData)=>{ return movieData;}, shallowEqual);
+    const { dailyRankList, done: dailyDone } = movieRankList;
+    const { WeeklyRankList, showRange, done: weeklyDone } = movieWeeklyRankList;
+
+    console.log(dailyDone, WeeklyRankList)
+
+    const callDailyRank = useCallback(()=>{
+        dispatch(callDailyBoxofficeThunk({currentDateTxt:  getDayTxt(), currentDate:getDateObj(getDayTxt())}));
+    },[dispatch])
+
+    const callWeeklyRank = useCallback(()=>{
+        if(dailyRankList.length > 0){
+            dispatch2(callWeeklyBoxofficeThunk(getWeekNo(), '0'));
+        }
+    },[dispatch2, dailyRankList])
+
+
+    useEffect(()=>{
+        callDailyRank();
+    },[callDailyRank]);
+    
+    useEffect(()=>{
+        callWeeklyRank();
+    },[callWeeklyRank]);
+
+
     return (
         <>
-            <Slider {...settings}>
-            <div>
-                <h3>1</h3>
-            </div>
-            <div>
-                <h3>2</h3>
-            </div>
-            <div>
-                <h3>3</h3>
-            </div>
-            <div>
-                <h3>4</h3>
-            </div>
-            <div>
-                <h3>5</h3>
-            </div>
-            <div>
-                <h3>6</h3>
-            </div>
-            </Slider>
+            <MainSlider movieList={dailyRankList} title={'일간박스오피스('+getDayTxt()+')'} done={dailyDone}></MainSlider>
+
+            <MainSlider movieList={WeeklyRankList} title={'주간박스오피스('+showRange+')'} done={weeklyDone}></MainSlider>
+            
         </>
     )
-}
+})
 
 export default Main;

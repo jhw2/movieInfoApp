@@ -2,11 +2,11 @@ import MoviService from '../http/MoviService';
 import {getPoster} from '../utils/getMovieList';
 
 export const CALL_DAILYBOXOFFICE = 'CALL_DAILYBOXOFFICE';
-export const CALL_LOADING = 'CALL_LOADING';
+export const DAILY_CALL_LOADING = 'CALL_LOADING';
 export const ERROR = 'ERROR';
 
-export const callLoading = (done)=>{
-    return {type : CALL_LOADING, done}
+export const dailycallLoading = (done)=>{
+    return {type : DAILY_CALL_LOADING, done}
 }
 export const callDailyBoxoffice = ({currentDate, data, status, repNationCd})=>{
     return {type : CALL_DAILYBOXOFFICE, dailyRankList: data, status, currentDate, repNationCd}
@@ -16,7 +16,7 @@ export const dataError = (error)=>{
 }
 
 export const callDailyBoxofficeThunk = ({currentDateTxt, currentDate, repNationCd}) => (dispatch, getState) => {
-    dispatch(callLoading(false))
+    dispatch(dailycallLoading(false))
     MoviService.getDailyBoxoffice(currentDateTxt, repNationCd).then( async ({data, status})=>{
         let dataList = data.boxOfficeResult.dailyBoxOfficeList;
         let posters = await Promise.all(
@@ -43,7 +43,7 @@ export default function movieRankReducer(state = initailState, action){
         case CALL_DAILYBOXOFFICE:
             let {dailyRankList, status, currentDate, repNationCd} = action;
             return {...state, dailyRankList, status, currentDate, repNationCd, done: true}
-        case CALL_LOADING:
+        case DAILY_CALL_LOADING:
             return {...state, done: action.done}
         case ERROR:
             return {...state, error: action.error, done: true}
