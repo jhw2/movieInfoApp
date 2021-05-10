@@ -1,16 +1,18 @@
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
+import queryString from "query-string";
 import { callActorListThunk } from '../../modules/actorListModule';
 import Loading from '../common/Loading';
 import ActorSearchForm from './ActorSearchForm';
 import ActorList from './ActorList';
 import PageNation from '../weeklyRank/PageNation';
 
-const ActorSearch = ()=>{
+const ActorSearch = ({ location })=>{
     const dispatch = useDispatch();
     const {actorList, peopleNm, done} = useSelector(({actorList})=>{return actorList}, shallowEqual);
+    const {search: searchTxt} = queryString.parse(location.search);
     /**
      * 배우 리스트 api call
      */
@@ -20,26 +22,17 @@ const ActorSearch = ()=>{
         , [dispatch, peopleNm]
     );
 
-    /** 
-     * 영화인 이름 검색
-     */
-    let peopleInput = useRef();
-    const searchList = (e)=>{
-        const peopleNm = peopleInput.current.value;
-        callList(1, peopleNm);
-        e.preventDefault();
-    }
 
     useEffect(()=>{
-        callList();
-    },[callList]);
+        dispatch(callActorListThunk({curPage: 1, peopleNm: searchTxt}));
+    },[dispatch, searchTxt]);
 
     return (
     <div>
         <Loading done={done}></Loading>
 
-        <ActorSearchForm searchList={searchList} peopleInput={peopleInput} ></ActorSearchForm>
-        <ActorList actorList={actorList} ></ActorList>
+        <ActorSearchForm callList={callList} searchTxt={searchTxt}></ActorSearchForm>
+        <ActorList actorList={actorList}></ActorList>
         <PageNation callList={callList}></PageNation>
         
     </div>

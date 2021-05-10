@@ -5,7 +5,6 @@ import menu from './menus';
 
 const App = ()=>{
   const location = useLocation();
-  console.log(location)
   const {menuList, menuInfo} = menu;
   let currentPage = '', pageTitle ='', pageInfo = '';
   if(location.state){

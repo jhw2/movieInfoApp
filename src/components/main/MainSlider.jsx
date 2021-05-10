@@ -23,7 +23,7 @@ const MainSlider = memo(({movieList, title, done})=>{
                     movieList.map((movie, i)=>{
                         const {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd, poster} = movie;
                         return (
-                            <div>
+                            <div key={movieCd}>
                                 <img src={poster} alt={movieNm + '포스터'} />
                                 <strong>{rankOldAndNew} {rankInten} {rank}</strong>
                                 <h6><Link to={{pathname: '/movieDetail/'+movieCd, state: {poster: poster, key: 'movieDetail'}}}>{movieNm}</Link></h6>
