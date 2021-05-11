@@ -13,7 +13,6 @@ const settings = {
     slidesToScroll: 5
 };
 const MainSlider = memo(({movieList, title, done})=>{
-
     return(
         <div className='mainSliderGrp'>
             <Loading done={done}></Loading>
