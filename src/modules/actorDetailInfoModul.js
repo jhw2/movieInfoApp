@@ -14,9 +14,9 @@ export const dataError = (error)=>{
     return {type: ERROR, error}
 }
 
-export const callactorDetailThunk = (peopleCd) => async (dispatch, getState) => {
-    await dispatch(dataReset());
-    await MoviService.getActorDetailInfo(peopleCd).then(({data})=>{
+export const callactorDetailThunk = (peopleCd) => (dispatch, getState) => {
+    dispatch(dataReset());
+    MoviService.getActorDetailInfo(peopleCd).then(({data})=>{
         let info = data.peopleInfoResult.peopleInfo;
         dispatch(callactorDetail(info))
     }).catch(error=>{dispatch(dataError(error))});

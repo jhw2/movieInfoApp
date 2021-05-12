@@ -1,4 +1,5 @@
-const Footer = ()=>{
+import { memo } from 'react';
+const Footer = memo(()=>{
     return (
         <footer>
             <div className='group'>
@@ -6,6 +7,6 @@ const Footer = ()=>{
             </div>
         </footer>
     );
-}
+})
 
 export default Footer;

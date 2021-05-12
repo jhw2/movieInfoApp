@@ -1,6 +1,6 @@
-
+import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
-const Header = ({menuList})=>{
+const Header = memo(({menuList})=>{
     return (
         <header className='mv-header'>
             <div className='group'>
@@ -18,6 +18,6 @@ const Header = ({menuList})=>{
             </div>
         </header>
     );
-}
+})
 
 export default Header;

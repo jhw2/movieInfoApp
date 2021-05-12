@@ -10,7 +10,6 @@ import { useHistory } from "react-router-dom";
 
 const Main = memo(()=>{
     const dispatch = useDispatch();
-    const dispatch2 = useDispatch();
     const { movieRankList, movieWeeklyRankList } = useSelector((movieData)=>{ return movieData;}, shallowEqual);
     const { dailyRankList, done: dailyDone } = movieRankList;
     const { WeeklyRankList, showRange, done: weeklyDone } = movieWeeklyRankList;
@@ -21,10 +20,9 @@ const Main = memo(()=>{
 
     const callWeeklyRank = useCallback(()=>{
         if(dailyRankList.length > 0){
-            dispatch2(callWeeklyBoxofficeThunk(getWeekNo(), '0'));
+            dispatch(callWeeklyBoxofficeThunk(getWeekNo(), '0'));
         }
-    },[dispatch2, dailyRankList])
-
+    },[dispatch, dailyRankList])
 
     useEffect(()=>{
         callDailyRank();
