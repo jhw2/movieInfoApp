@@ -16,4 +16,12 @@ module.exports = function(app) {
             changeOrigin: true,
         }) 
     );
+
+    app.use(
+        '/api',
+        createProxyMiddleware({
+            target: 'http://3.142.245.197:8080/',
+            changeOrigin: true,
+        }) 
+    );
 };
