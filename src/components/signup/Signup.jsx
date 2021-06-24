@@ -1,11 +1,22 @@
 
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useState } from 'react';
+import Loading from '../common';
 import UserService from '../../http/UserService';
 
 const Signup = memo(({history})=>{
+
+    const [isLodingDone, setIsLoadingDone] = useState(true);
+
     const onSignup = useCallback((e)=>{
         e.preventDefault();
-        const formData = new FormData(document.getElementById('signupForm'));
+        const signupForm = document.getElementById('signupForm');
+        const formData = new FormData(signupForm);
+        if(formData.get('userPw') !== formData.get('userPwComfirm')){
+            document.querySelector('input[name=userPwComfirm]').setCustomValidity("비밀번호가 일치하지 않습니다");
+            signupForm.reportValidity();
+            return false;
+        }
+        setIsLoadingDone(false);
         const userPhone = formData.get('userPhone01') + formData.get('userPhone02') + formData.get('userPhone03');
         formData.delete('userPhone01');
         formData.delete('userPhone02');
@@ -13,6 +24,7 @@ const Signup = memo(({history})=>{
         formData.delete('userPwComfirm');
         formData.append('userPhone', userPhone);
         UserService.signupUser(formData).then((response)=>{
+            setIsLoadingDone(true);
             if(response.status === 200){
                 alert(response.data.msg);
                 history.push('/');
@@ -26,6 +38,7 @@ const Signup = memo(({history})=>{
 
     return (
         <>
+            <Loading done={isLodingDone} />
             <h4>회원가입을 해주세요.</h4>
             <form onSubmit={onSignup} method='post' id='signupForm'>
                 <p><label><span>email</span><input type='email' name='userEmail' placeholder='메일을 입력해주세요.' required/></label></p>
