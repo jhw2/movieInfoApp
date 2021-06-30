@@ -67,7 +67,6 @@ const Signup = memo(({history})=>{
                     <label>
                         <span>비밀번호</span>
                         <input type='password' name='userPw' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,25}$" title='영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상' placeholder='비밀번호를 입력해주세요.' required/>
-                        <span className='t-red'>영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상</span>
                     </label>
                 </p>
                 <p>

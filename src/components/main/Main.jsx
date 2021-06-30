@@ -14,33 +14,25 @@ const Main = memo(()=>{
     const { dailyRankList, done: dailyDone } = movieRankList;
     const { WeeklyRankList, showRange, done: weeklyDone } = movieWeeklyRankList;
 
-    const callDailyRank = useCallback(()=>{
+    useEffect(()=>{
         dispatch(callDailyBoxofficeThunk({currentDateTxt:  getDayTxt(), currentDate:getDateObj(getDayTxt())}));
-    },[dispatch])
-
-    const callWeeklyRank = useCallback(()=>{
+    },[dispatch]);
+    
+    useEffect(()=>{
         if(dailyRankList.length > 0){
             dispatch(callWeeklyBoxofficeThunk(getWeekNo(), '0'));
         }
-    },[dispatch, dailyRankList])
-
-    useEffect(()=>{
-        callDailyRank();
-    },[callDailyRank]);
-    
-    useEffect(()=>{
-        callWeeklyRank();
-    },[callWeeklyRank]);
+    },[dispatch, dailyRankList]);
 
     const searchTxt = useRef();
     const history = useHistory();
-    const onSubmit = (e)=>{
+    const onSubmit = useCallback((e)=>{
         e.preventDefault();
         history.push({
             pathname: '/actors',
             search: '?search='+searchTxt.current.value
         });
-    }
+    }, [history])
     return (
         <>
             <form onSubmit={onSubmit}>

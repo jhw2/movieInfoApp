@@ -9,6 +9,10 @@ class UserService {
     return http.post(`/signup`, userData);
   }
 
+  loginUser(userData) { 
+    return http.post(`/login`, userData);
+  }
+
 
 }
 

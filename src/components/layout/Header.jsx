@@ -17,6 +17,7 @@ const Header = memo(({menuList})=>{
                 </ul>
                 <div className='right'>
                     <span><NavLink exact to="/signup">회원가입</NavLink></span>
+                    <span><NavLink exact to="/login">로그인</NavLink></span>
                 </div>
             </div>
         </header>
