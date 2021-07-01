@@ -9,8 +9,12 @@ class UserService {
     return http.post(`/signup`, userData);
   }
 
+  checkEmail(email) { 
+    return http.get(`/count`, email);
+  }
+
   loginUser(userData) { 
-    return http.post(`/login`, userData);
+    return http.post(`/signin`, userData);
   }
 
 

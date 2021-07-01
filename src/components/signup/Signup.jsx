@@ -11,8 +11,8 @@ const Signup = memo(({history})=>{
         e.preventDefault();
         const signupForm = document.getElementById('signupForm');
         const formData = new FormData(signupForm);
-        if(formData.get('userPw') !== formData.get('userPwComfirm')){
-            document.querySelector('input[name=userPwComfirm]').setCustomValidity("비밀번호가 일치하지 않습니다");
+        if(formData.get('userPw') !== formData.get('userPwConfirm')){
+            document.querySelector('input[name=userPwConfirm]').setCustomValidity("비밀번호가 일치하지 않습니다");
             signupForm.reportValidity();
             return false;
         }
@@ -21,7 +21,7 @@ const Signup = memo(({history})=>{
         formData.delete('userPhone01');
         formData.delete('userPhone02');
         formData.delete('userPhone03');
-        formData.delete('userPwComfirm');
+        formData.delete('userPwConfirm');
         formData.append('userPhone', userPhone);
         UserService.signupUser(formData).then((response)=>{
             setIsLoadingDone(true);
@@ -72,7 +72,7 @@ const Signup = memo(({history})=>{
                 <p>
                     <label>
                         <span>비밀번호 확인</span>
-                        <input type='password' name='userPwComfirm' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,25}$" title='영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상' placeholder='비밀번호를 입력해주세요.' required/>
+                        <input type='password' name='userPwConfirm' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,25}$" title='영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상' placeholder='비밀번호를 입력해주세요.' required/>
                         <span className='t-red'>영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상</span>
                     </label>
                 </p>

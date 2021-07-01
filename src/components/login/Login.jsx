@@ -1,10 +1,13 @@
 
 import { memo, useCallback, useState, useRef } from 'react';
+import { useDispatch } from "react-redux";
+import { withRouter } from "react-router-dom";
 import Loading from '../common';
-import UserService from '../../http/UserService';
+import { loginUser } from '../../modules/userInfoModule';
 
 const Login = memo(({history})=>{
 
+    const dispatch = useDispatch();
     const [isLodingDone, setIsLoadingDone] = useState(true);
     const saveId = localStorage.getItem('saveId');
     const saveIdCk = useRef();
@@ -12,28 +15,33 @@ const Login = memo(({history})=>{
     const onSignup = useCallback((e)=>{
         e.preventDefault();
         const signupForm = document.getElementById('loginForm');
-        const formData = new FormData(signupForm);
-        const userId = formData.get('userId');
+        const userData = new FormData(signupForm);
+        const userId = userData.get('userId');
 
-        if(userId && saveIdCk.current.checked){
-            localStorage.setItem('saveId', userId)
-        }
-        if(userId && !saveIdCk.current.checked){
-            localStorage.removeItem('saveId')
-        }
-        // setIsLoadingDone(false);
-        // UserService.loginUser(formData).then((response)=>{
-        //     setIsLoadingDone(true);
-        //     if(response.status === 200){
-        //         console.log(response.data);
-        //         history.push('/');
-        //     }
-        //     if(response.status === 400){
-        //         alert('아이디 혹은 비밀번호를 확인해주세요');
-        //         return false;
-        //     }
-        // });
-    }, [history]);
+        setIsLoadingDone(false);
+
+        dispatch(loginUser(userData))
+        .then(({payload})=>{
+            setIsLoadingDone(true);
+            if(payload.success){ 
+                if(userId && saveIdCk.current.checked){
+                    localStorage.setItem('saveId', payload.data.userEmail);
+                }
+                if(userId && !saveIdCk.current.checked){
+                    localStorage.removeItem('saveId');
+                }
+                sessionStorage.setItem('userId', payload.data.userEmail);
+                sessionStorage.setItem('userNic', payload.data.userNic);
+                sessionStorage.setItem('token', payload.data.userToken);
+                history.push('/');
+            }
+        })
+        .catch(error=>{
+            setIsLoadingDone(true);
+            if(error.response.status === 500){alert('로그인실패');}
+            if(!error.response.data.success){alert(error.response.data.msg);}
+        })
+    }, [history, dispatch]);
 
     return (
         <>
@@ -44,7 +52,7 @@ const Login = memo(({history})=>{
                 <p>
                     <label>
                         <span>비밀번호</span>
-                        <input type='password' name='userPw' placeholder='비밀번호를 입력해주세요.' required/>
+                        <input type='password' name='password' placeholder='비밀번호를 입력해주세요.' required/>
                     </label>
                 </p>
                 <p>
@@ -56,4 +64,4 @@ const Login = memo(({history})=>{
     );
 })
 
-export default Login;
+export default withRouter(Login);
