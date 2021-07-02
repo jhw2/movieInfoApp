@@ -10,7 +10,7 @@ class UserService {
   }
 
   checkEmail(email) { 
-    return http.get(`/count`, email);
+    return http.get(`/count`, {params: {email}});
   }
 
   loginUser(userData) { 

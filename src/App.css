@@ -1,3 +1,6 @@
+.t-red{color: rgba(235, 12, 49, 0.938);}
+.t-blue{color: #1f48ad;}
+
 #root{min-height: 100%;padding-top: 80px;box-sizing: border-box;}
 .group{max-width: 1320px;padding: 0 20px;box-sizing: border-box;margin: 0 auto;}
 
