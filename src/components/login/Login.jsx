@@ -29,10 +29,10 @@ const Login = memo(({history})=>{
                 if(userId && !saveIdCk.current.checked){
                     localStorage.removeItem('saveId');
                 }
-                sessionStorage.setItem('userId', payload.data.userEmail);
-                sessionStorage.setItem('userNic', payload.data.userNic);
-                sessionStorage.setItem('token', payload.data.userToken);
-                history.push('/');
+                localStorage.setItem('userId', payload.data.userEmail);
+                localStorage.setItem('userNic', payload.data.userNic);
+                localStorage.setItem('token', payload.data.userToken);
+                history.go(-1);
             }
         })
         .catch(error=>{

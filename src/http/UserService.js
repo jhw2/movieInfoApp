@@ -8,7 +8,12 @@ class UserService {
   signupUser(userData) { 
     return http.post(`/signup`, userData);
   }
-
+  signoutUser() { 
+    const config ={
+      headers: {'X-AUTH-TOKEN': localStorage.getItem('token') }
+    }
+    return http.post(`/signout`, {}, config);
+  }
   checkEmail(email) { 
     return http.get(`/count`, {params: {email}});
   }
