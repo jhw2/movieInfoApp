@@ -17,6 +17,10 @@ class UserService {
     return http.post(`/signin`, userData);
   }
 
+  findPw(email ) { 
+    return http.post(`/reset`, email );
+  }
+
 
 }
 

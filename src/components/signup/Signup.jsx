@@ -9,10 +9,10 @@ const Signup = memo(({history})=>{
     const [checkEmailTxt, setCheckEmailTxt] = useState('');
     const [isCheckEmail, setIsCheckEmail] = useState(false);
 
-    const validateEmail = (e)=>{
+    const validateEmail = useCallback((e)=>{
         setIsCheckEmail(false);
         setCheckEmailTxt('')
-    };
+    },[]);
 
     const checkEmail = useCallback((e)=>{
         const signupForm = document.getElementById('signupForm');
@@ -44,13 +44,13 @@ const Signup = memo(({history})=>{
         })
     }, []);
 
-    const checkPassword = (e)=>{
+    const checkPassword =  useCallback((e)=>{
         if(document.querySelector('input[name=userPwConfirm]').value !== document.querySelector('input[name=userPw]').value){
             e.target.setCustomValidity("비밀번호가 일치하지 않습니다");
         }else{
             e.target.setCustomValidity("");
         }
-    }
+    }, [])
 
     const onSignup = useCallback((e)=>{
         e.preventDefault();

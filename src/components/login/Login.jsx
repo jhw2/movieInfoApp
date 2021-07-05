@@ -1,7 +1,6 @@
 
 import { memo, useCallback, useState, useRef } from 'react';
 import { useDispatch } from "react-redux";
-import { withRouter } from "react-router-dom";
 import Loading from '../common';
 import { loginUser } from '../../modules/userInfoModule';
 
@@ -38,7 +37,10 @@ const Login = memo(({history})=>{
         })
         .catch(error=>{
             setIsLoadingDone(true);
-            if(error.response.status === 500){alert('로그인실패');}
+            if(!error.response || error.response.status === 500){
+                alert('로그인실패');
+                return false;
+            }
             if(!error.response.data.success){alert(error.response.data.msg);}
         })
     }, [history, dispatch]);
@@ -59,9 +61,10 @@ const Login = memo(({history})=>{
                     <label><input type='checkbox' name='saveId' ref={saveIdCk} defaultChecked={saveId ? true : false} /> 아이디 저장</label>
                 </p>
                 <input type='submit' value="로그인" />
+                <p><a href='/findPw'>비밀번호찾기</a></p>
             </form>
         </>
     );
 })
 
-export default withRouter(Login);
+export default Login;
