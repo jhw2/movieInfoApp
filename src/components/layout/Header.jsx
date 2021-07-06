@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import Loading from '../common';
 import { logoutUser } from '../../modules/userInfoModule';
 
@@ -23,13 +23,13 @@ const Header = memo(({menuList})=>{
             }
         }).catch(error=>{
             setIsLoadingDone(true);
-            console.log('로그아웃 실패!!', error);
+            console.log('로그아웃 실패', error);
         });
     }, [dispatch]);
     const {loginSucces} = useSelector(({userInfo})=>{return userInfo});
     const userNic = loginSucces && loginSucces.data && loginSucces.data.userNic ? loginSucces.data.userNic : localStorage.getItem('userNic');
     const logoutMenu = [ <span key='signin'><NavLink exact to="/login">로그인</NavLink></span>, <span key='signup'><NavLink exact to="/signup">회원가입</NavLink></span>]
-    const loginMenu = <span><button type='button' onClick={logout}>{userNic}</button>님 안녕하세요</span>
+    const loginMenu = <span><Link to='/changePw'>{userNic}님 안녕하세요</Link><button type='button' onClick={logout}>로그아웃</button></span>
 
     return (
         <header className='mv-header'>

@@ -8,9 +8,9 @@ const FindPW = memo(({history})=>{
     const [isLodingDone, setIsLoadingDone] = useState(true);
     const [resetPw, setResetPw] = useState();
 
-    const onSignup = useCallback((e)=>{
+    const onPwReset = useCallback((e)=>{
         e.preventDefault();
-        const signupForm = document.getElementById('findIdForm');
+        const signupForm = document.getElementById('findPwForm');
         const email = new FormData(signupForm);
         setIsLoadingDone(false);
 
@@ -32,7 +32,7 @@ const FindPW = memo(({history})=>{
         <>
             <Loading done={isLodingDone} /> 
             <h4>비밀번호 찾기</h4>
-            <form onSubmit={onSignup} method='post' id='findIdForm'>
+            <form onSubmit={onPwReset} method='post' id='findPwForm'>
                 <p><label><span>아이디</span><input type='email' name='email' placeholder='이메일(example@gmail.com)' required/></label></p>
                 <input type='submit' value="비밀번호 초기화" /> 
             </form>

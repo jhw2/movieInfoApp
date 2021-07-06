@@ -29,6 +29,7 @@ const Login = memo(({history})=>{
                 if(userId && !saveIdCk.current.checked){
                     localStorage.removeItem('saveId');
                 }
+                //console.log(payload)
                 localStorage.setItem('userId', payload.data.userEmail);
                 localStorage.setItem('userNic', payload.data.userNic);
                 localStorage.setItem('token', payload.data.userToken);
