@@ -2,6 +2,7 @@ import './App.css';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { Header, VisualTxt, Footer } from './components/layout'; 
 import menu from './menus';
+import Auth from './hoc/auth';
 
 const App = ()=>{
   const location = useLocation();
@@ -22,8 +23,8 @@ const App = ()=>{
           <div className='cont'>
             <Switch>
               {menuList.map((menu, i)=>{
-                const { url, component, key } = menu;
-                return  <Route key={key} exact path={url} component={component} />
+                const { url, component, key, auth } = menu;
+                return  <Route key={key} exact path={url} component={Auth(component, auth)} />
               })}
             </Switch>
           </div>

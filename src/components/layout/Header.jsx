@@ -26,6 +26,7 @@ const Header = memo(({menuList})=>{
             console.log('로그아웃 실패', error);
         });
     }, [dispatch]);
+    
     const {loginSucces} = useSelector(({userInfo})=>{return userInfo});
     const userNic = loginSucces && loginSucces.data && loginSucces.data.userNic ? loginSucces.data.userNic : localStorage.getItem('userNic');
     const logoutMenu = [ <span key='signin'><NavLink exact to="/login">로그인</NavLink></span>, <span key='signup'><NavLink exact to="/signup">회원가입</NavLink></span>]
