@@ -19,7 +19,7 @@ const Signup = memo(({history})=>{
 
     const checkEmail = useCallback((e)=>{
         const signupForm = document.getElementById('signupForm');
-        const emailInput = userEmail.current.value;
+        const emailInput = userEmail.current;
         const email = emailInput.value;
         if(!email){
             emailInput.setCustomValidity("메일을 입력해주세요");
