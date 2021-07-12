@@ -1,6 +1,6 @@
 import React from 'react';
 
-const auto = (Component, option)=>{
+const auth = (Component, option)=>{
     //option
     // null => 아무나 출입가능
     // true => 로그인한 유저만 출입 가능
@@ -21,4 +21,4 @@ const auto = (Component, option)=>{
     }
     return authCheck;
 }
-export default auto;
+export default auth;
