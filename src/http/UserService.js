@@ -25,6 +25,11 @@ class UserService {
     const config ={headers: {'X-AUTH-TOKEN': localStorage.getItem('token')}}
     return http.post(`/update-password`, userData, config);
   }
+  userProfile() {
+    const config ={headers: {'X-AUTH-TOKEN': localStorage.getItem('token')}}
+    const userNo = localStorage.getItem('userNo');
+    return http.get(`/${userNo}`, config);
+  }
 
 }
 

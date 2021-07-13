@@ -32,6 +32,7 @@ const Login = memo(({history})=>{
                 console.log(payload)
                 localStorage.setItem('userId', payload.data.userEmail);
                 localStorage.setItem('userNic', payload.data.userNic);
+                localStorage.setItem('userNo', payload.data.userNo);
                 localStorage.setItem('token', payload.data.userToken);
                 history.go(-1);
             }
