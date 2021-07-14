@@ -1,12 +1,17 @@
 
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
+import noImage from '../../images/no-data.jpg';
+
 const MovieList = memo(({rankList})=>{
     return (
         <ul className='movie-list'>
             {
                 rankList.map((val, i)=>{
-                    const {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd, poster} = val;
+                    let {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd, poster} = val;
+                    if(!poster || poster === 'no-data'){ 
+                        poster = noImage;
+                    }
                     return  <li key={movieCd}>
                                 <img src={poster} alt={movieNm + '포스터'} />
                                 <strong>{rankOldAndNew} {rankInten} {rank}</strong>

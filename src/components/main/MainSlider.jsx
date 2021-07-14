@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../common';
+import noImage from '../../images/no-data.jpg';
 
 const settings = {
     dots: true,
@@ -20,7 +21,10 @@ const MainSlider = memo(({movieList, title, done})=>{
             <Slider {...settings}>
                 {
                     movieList.map((movie, i)=>{
-                        const {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd, poster} = movie;
+                        let {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd, poster} = movie;
+                        if(!poster || poster === 'no-data'){ 
+                            poster = noImage;
+                        }
                         return (
                             <div key={movieCd}>
                                 <img src={poster} alt={movieNm + '포스터'} />
