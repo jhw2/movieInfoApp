@@ -14,11 +14,8 @@ const RightMenu = memo(()=>{
             setIsLoadingDone(true);
             if(respons.payload.success){ 
                 alert(respons.payload.msg)
-                localStorage.removeItem('userId');
-                localStorage.removeItem('userNic');
                 localStorage.removeItem('userNo');
                 localStorage.removeItem('token');
-                window.location.reload();
             }else{
                 alert('로그아웃 실패');
             }
@@ -28,8 +25,9 @@ const RightMenu = memo(()=>{
         });
     }, [dispatch]);
     
-    const {loginSucces} = useSelector(({userInfo})=>{return userInfo});
-    const userNic = loginSucces && loginSucces.data && loginSucces.data.userNic ? loginSucces.data.userNic : localStorage.getItem('userNic');
+    const {loginSucces, userAuthInfo} = useSelector(({userInfo})=>{return userInfo});
+    const userNic = loginSucces && loginSucces.data ? loginSucces.data.userNic : userAuthInfo &&  userAuthInfo.data && userAuthInfo.data.userNic;
+    console.log('ttttttttt',userNic);
     const logoutMenu = [ <span key='signin'><NavLink exact to="/login">로그인</NavLink></span>, <span key='signup'><NavLink exact to="/signup">회원가입</NavLink></span>]
     const loginMenu = <span><Link to='/userProfile'>{userNic}님 안녕하세요</Link><button type='button' onClick={logout}>로그아웃</button></span>
 

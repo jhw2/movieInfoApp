@@ -46,7 +46,6 @@ const ChangePW = memo(()=>{
         UserService.userProfile().then(response=>{
             if(response.status === 200){
                 const {userEmail, userRealName, userNic, userPhone} = response.data.data;
-                console.log(response)
                 const userTable = <table className='table detail userTable'>
                     <tbody>
                         <tr>
