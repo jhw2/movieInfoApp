@@ -27,10 +27,8 @@ const RightMenu = memo(()=>{
     
     const {loginSucces, userAuthInfo} = useSelector(({userInfo})=>{return userInfo});
     const userNic = loginSucces && loginSucces.data ? loginSucces.data.userNic : userAuthInfo &&  userAuthInfo.data && userAuthInfo.data.userNic;
-    console.log('ttttttttt',userNic);
     const logoutMenu = [ <span key='signin'><NavLink exact to="/login">로그인</NavLink></span>, <span key='signup'><NavLink exact to="/signup">회원가입</NavLink></span>]
     const loginMenu = <span><Link to='/userProfile'>{userNic}님 안녕하세요</Link><button type='button' onClick={logout}>로그아웃</button></span>
-
     return (
         <>
             <Loading done={isLodingDone} />

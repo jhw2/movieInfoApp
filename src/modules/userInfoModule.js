@@ -17,7 +17,7 @@ export const logoutUser = ()=>{
     return {type : LOGOUT_USER, payload: request}
 }
 
-const initailState = {loginSucces: null};
+const initailState = {};
 export default function userInfoReducer(state = initailState, action){
     switch(action.type){
         case LOGIN_USER:
@@ -25,7 +25,7 @@ export default function userInfoReducer(state = initailState, action){
         case USER_AUTH:
             return { ...state, userAuthInfo: action.payload }
         case LOGOUT_USER:
-            return { ...state, logoutSucces: action.payload }
+            return { ...state, logoutSucces: action.payload, userAuthInfo: null, loginSucces: null }
         default:
             return state;
     }
