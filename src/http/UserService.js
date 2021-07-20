@@ -1,7 +1,7 @@
 import http from "./http-common-user";
 
 /**
- * url : http://3.142.245.197:8080/swagger-ui.html
+ * url : http://localhost:8081/swagger-ui.html
  * 
  */
 class UserService {
