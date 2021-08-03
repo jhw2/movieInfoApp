@@ -3,6 +3,7 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+// @num : 전화번호, @type type값이 0일 경우 가운데 숫자 별표시
 const phoneFormatter = (num, type)=> {
     let formatNum = '';
     try{

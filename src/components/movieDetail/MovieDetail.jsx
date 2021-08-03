@@ -2,11 +2,15 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { callMovieDetailThunk } from '../../modules/moviDetailInfoModule';
+import noImage from '../../images/no-data.jpg';
 
 const MovieDetail = ({ location })=>{
   const {movieCd} = useParams();
   const {state} = useLocation();
-  const {poster} = state;
+  let poster = state && state.poster;
+  if(!poster || poster === 'no-data'){ 
+    poster = noImage;
+  }
   const dispatch = useDispatch();
   const {movieInfo} = useSelector(({movieDetailInfo})=>{return movieDetailInfo});
   const {movieNm, actors, audits, companys, directors, genres, openDt} = movieInfo;
