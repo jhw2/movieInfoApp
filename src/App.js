@@ -1,23 +1,16 @@
 import './App.css';
-import { Route, Switch, useLocation } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Header, VisualTxt, Footer } from './components/layout'; 
 import menu from './menus';
 import Auth from './hoc/auth';
 
 const App = ()=>{
-  const location = useLocation();
-  const {menuList, menuInfo} = menu;
-  let currentPage = '', pageTitle ='', pageInfo = '';
-  if(location.state){
-    currentPage = location.state.key;
-    pageTitle = menuInfo[currentPage].title;
-    pageInfo = menuInfo[currentPage].cont;
-  }
+  const {menuList} = menu;
 
   return (
     <div id="wrap">
       <Header menuList={menuList}></Header>
-      <VisualTxt pageTitle={pageTitle} pageInfo={pageInfo}></VisualTxt>
+      <VisualTxt></VisualTxt>
       <section id="contents">
         <div className='group'>
           <div className='cont'>
