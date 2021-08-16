@@ -93,10 +93,13 @@ const Signup = memo(({history})=>{
         <>
             <Loading done={isLodingDone} />
             <h4>회원가입을 해주세요.</h4>
-            <form onSubmit={onSignup} method='post' id='signupForm'>
+            <form onSubmit={onSignup} method='post' className='formBox' id='signupForm'>
                 <p>
-                    <label><span>email</span><input type='email' name='userEmail' ref={userEmail} placeholder='이메일을 입력해주세요.' onChange={validateEmail} required/></label>
-                    <input type='button' value='이메일중복확인' name='checkEmail' onClick={checkEmail} />
+                    <label>
+                        <span>email</span>
+                        <input type='email' name='userEmail' ref={userEmail} placeholder='이메일을 입력해주세요.' onChange={validateEmail} required/>
+                        <input type='button' value='이메일중복확인' name='checkEmail' onClick={checkEmail} />
+                    </label>
                     <span className={isCheckEmail ? 't-blue' : 't-red'}>{checkEmailTxt}</span>
                     <input type='hidden' name='checkEmail' value={isCheckEmail} />
                 </p>
@@ -125,15 +128,15 @@ const Signup = memo(({history})=>{
                     <label>
                         <span>비밀번호</span>
                         <input type='password' name='userPw' ref={userPw} onInput={checkPassword} placeholder='비밀번호를 입력해주세요.' required/>
-                        <span className='required'>영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상</span>
                     </label>
+                    <span className='required'>영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상</span>
                 </p>
                 <p>
                     <label>
                         <span>비밀번호 확인</span>
                         <input type='password' name='userPwConfirm' ref={userPwConfirm} onInput={checkPassword} placeholder='비밀번호를 입력해주세요.' required/>
-                        <span className='required'>영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상</span>
                     </label>
+                    <span className='required'>영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상</span>
                 </p>
 
                 <input type='submit' value="가입하기" />

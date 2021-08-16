@@ -51,7 +51,7 @@ const Login = memo(({history})=>{
         <>
             <Loading done={isLodingDone} /> 
             <h4>로그인을 해주세요.</h4>
-            <form onSubmit={onSignup} method='post' id='loginForm'>
+            <form onSubmit={onSignup} method='post' className='formBox' id='loginForm'>
                 <p><label><span>아이디</span><input type='email' name='userId' placeholder='이메일(example@gmail.com)' defaultValue={saveId} required/></label></p>
                 <p>
                     <label>
@@ -59,11 +59,11 @@ const Login = memo(({history})=>{
                         <input type='password' name='password' placeholder='비밀번호를 입력해주세요.' required/>
                     </label>
                 </p>
-                <p>
+                <p className='findPw'>
                     <label><input type='checkbox' name='saveId' ref={saveIdCk} defaultChecked={saveId ? true : false} /> 아이디 저장</label>
+                    <a href='/findPw'>비밀번호찾기</a>
                 </p>
                 <input type='submit' value="로그인" />
-                <p><a href='/findPw'>비밀번호찾기</a></p>
             </form>
         </>
     );

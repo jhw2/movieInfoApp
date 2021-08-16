@@ -19,10 +19,18 @@ a:hover{text-decoration:none;cursor:pointer}
 a:active{text-decoration:none}
 a:focus{text-decoration:none}
 textarea{appearance: none;border: 1px solid #ddd;resize: none;padding: 10px;box-sizing: border-box;font-size: 14px;font-family: inherit;}
-input[type=text],input[type=password],select, input[type=number], input[type=search]{cursor: text;border-radius:0;border:1px solid #ddd;text-shadow:none;box-shadow:none;max-width:100%;height: 36px;box-sizing: border-box;padding: 5px 10px;font-size: 14px;vertical-align: middle;border-radius: 0;}
+input[type=text],input[type=password],select, input[type=number], input[type=email], input[type=search]{cursor: text;border-radius:0;border:1px solid #ddd;text-shadow:none;box-shadow:none;max-width:100%;height: 36px;box-sizing: border-box;padding: 5px 10px;font-size: 14px;vertical-align: middle;border-radius: 0;}
 input[type=button],input[type=submit],button, input[type=reset]{cursor: pointer;text-shadow:none;appearance:none;-webkit-appearance:none;vertical-align: middle;}
 input[type=search]{appearance: none; -webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; -o-appearance: none;}
 input[type=text],input[type=password], input[type=number]{appearance:none;-webkit-appearance:none}
 input[readonly]{cursor:default;background-color:#f1f1f1;border-color:#ddd}
 label{display:inline-block} 
 select::-ms-expand {display:none;}
+input[type=checkbox]{width: 16px;height: 16px;margin-right: 3px;vertical-align: middle;}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
+
+/* Firefox */
+input[type=number] {-moz-appearance: textfield;}
