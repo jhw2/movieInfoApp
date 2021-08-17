@@ -32,8 +32,8 @@ const DailyRank = memo(()=>{
   return (
     <div>
         <Loading done={done}></Loading>
-        <DailyRankSearchFrom currentDate={currentDate} callList={callList}></DailyRankSearchFrom>
         <Tab repNationCd={repNationCd} tabEvt={tabEvt}></Tab>
+        <DailyRankSearchFrom currentDate={currentDate} callList={callList}></DailyRankSearchFrom>
         <MovieList rankList={dailyRankList}></MovieList>
     </div>
   );
