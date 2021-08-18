@@ -1,4 +1,5 @@
 import { useEffect, memo, useCallback, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { getDayTxt, getDateObj } from '../../utils/dayInfo';
 import { getWeekNo } from '../../utils/dayInfo';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
@@ -12,7 +13,7 @@ const Main = memo(()=>{
     const dispatch = useDispatch();
     const { movieRankList, movieWeeklyRankList } = useSelector((movieData)=>{ return movieData;}, shallowEqual);
     const { dailyRankList, done: dailyDone } = movieRankList;
-    const { WeeklyRankList, showRange, done: weeklyDone } = movieWeeklyRankList;
+    const { WeeklyRankList, done: weeklyDone } = movieWeeklyRankList;
 
     useEffect(()=>{
         dispatch(callDailyBoxofficeThunk({currentDateTxt:  getDayTxt(), currentDate:getDateObj(getDayTxt())}));
@@ -35,12 +36,17 @@ const Main = memo(()=>{
     }, [history])
     return (
         <>
-            <form onSubmit={onSubmit}>
-                <input type='text' ref={searchTxt} placeholder='영화인정보를 검색해보세요.' />
-                <input type='submit' value='검색' />
-            </form>
-            <MainSlider movieList={dailyRankList} title={'일간박스오피스('+getDayTxt()+')'} done={dailyDone}></MainSlider>
-            <MainSlider movieList={WeeklyRankList} title={'주간박스오피스('+showRange+')'} done={weeklyDone}></MainSlider>
+            <div className='mainSearch'>
+                <div className='group'>
+                    <form onSubmit={onSubmit}>
+                        <input type='text' ref={searchTxt} placeholder='영화인정보를 검색해보세요.' />
+                        <input type='submit' value='검색' />
+                    </form>
+                </div>
+            </div>
+            
+            <MainSlider movieList={dailyRankList} title={<><em>일간</em> 박스오피스<Link to='/dailyRank' className='ic-more'>더보기</Link></>} done={dailyDone}></MainSlider>
+            <MainSlider movieList={WeeklyRankList} title={<><em>주간</em> 박스오피스<Link to='/weeklyRank'className='ic-more'>더보기</Link></>} done={weeklyDone}></MainSlider>
             
         </>
     )

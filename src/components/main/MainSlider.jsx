@@ -7,7 +7,7 @@ import Loading from '../common';
 import noImage from '../../images/no-data.jpg';
 
 const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 5,
@@ -16,27 +16,31 @@ const settings = {
 const MainSlider = memo(({movieList, title, done})=>{
     return(
         <div className='mainSliderGrp'>
-            <Loading done={done}></Loading>
-            <h3>{title}</h3>
-            <Slider {...settings}>
-                {
-                    movieList.map((movie, i)=>{
-                        let {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd, poster} = movie;
-                        if(!poster || poster === 'no-data'){ 
-                            poster = noImage;
-                        }
-                        return (
-                            <div key={movieCd}>
-                                <img src={poster} alt={movieNm + '포스터'} />
-                                <strong>{rankOldAndNew} {rankInten} {rank}</strong>
-                                <h6><Link to={{pathname: '/movieDetail/'+movieCd, state: {poster: poster, key: 'movieDetail'}}}>{movieNm}</Link></h6>
-                                <p><em>개봉</em><span>{openDt}</span></p>
-                                <p><em>누적</em><span>{audiAcc}</span></p>
-                            </div>
-                        )
-                    })
-                }
-            </Slider>
+            <div className='group'>
+                <Loading done={done}></Loading>
+                <h3>{title}</h3>
+                <Slider {...settings}>
+                    {
+                        movieList.map((movie, i)=>{
+                            let {rankOldAndNew, movieNm, openDt, audiAcc, movieCd, poster} = movie;
+                            if(!poster || poster === 'no-data'){ 
+                                poster = noImage;
+                            }
+                            const linkOption = {pathname: '/movieDetail/'+movieCd, state: {poster: poster, key: 'movieDetail'}};
+                            return (
+                                <div key={movieCd}>
+                                    <img src={poster} alt={movieNm + '포스터'} />
+                                    <h6><Link to={linkOption}><strong className={rankOldAndNew}>{rankOldAndNew}</strong>{movieNm}</Link></h6>
+                                    <ul>
+                                        <li><em>관객수</em><span>{audiAcc.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</span></li>
+                                        <li><em>개봉일</em><span>{openDt}</span></li>
+                                    </ul>
+                                </div>
+                            )
+                        })
+                    }
+                </Slider>
+            </div>
         </div>
     )
         

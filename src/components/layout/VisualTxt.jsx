@@ -10,6 +10,7 @@ import mainSlider02 from '../../images/main-slider02.jpg';
 
 const settings = {
     autoplay : true,
+    arrows: false,
 	autoplaySpeed : 5000, 
     infinite: true,
 };
@@ -18,7 +19,6 @@ const VisualTxt = memo(()=>{
     const {menuInfo} = menu;
     let currentPage = location?.state?.key, pageTitle = menuInfo[currentPage]?.title, pageInfo = menuInfo[currentPage]?.cont;
     
-    console.log('test',location)
     if(location.pathname === '/'){
         return (
             <Slider {...settings} className='mainSlider'>
