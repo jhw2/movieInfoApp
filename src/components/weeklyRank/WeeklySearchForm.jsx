@@ -1,8 +1,10 @@
 
 import { useState, useEffect, useMemo, memo } from 'react';
 import { getDateObj, getMothLastWeekNo } from '../../utils/dayInfo';
+
+const thisYear = new Date().getFullYear();
 const WeeklySearchForm = memo(({currentMonth, currentWeek, searchList, weekGb})=>{
-    let [weekSelect, setWeekSelect] = useState(); 
+    const [weekSelect, setWeekSelect] = useState(); 
 
     /**
      * 월 셀렉트박스 option 태그 생성
@@ -50,27 +52,27 @@ const WeeklySearchForm = memo(({currentMonth, currentWeek, searchList, weekGb})=
         setWeekSelect(defaultWeekOption);
     },[currentWeek, createWeekSelect]);
     return (
-        <div className='search-form'>
+        <div className='search-form week'>
             <form action="/" onSubmit={searchList}>
-                <label><input type='radio' name='weekGb' value="0" onChange={handleChange} defaultChecked={weekGb} />주간</label>
-                <label><input type='radio' name='weekGb' value="1" onChange={handleChange} />주말</label>
-                <label><input type='radio' name='weekGb' value="2" onChange={handleChange} />주중</label>
-                <label>
+                <label className='lineSelect'>
                     <select name='year'>
-                        <option value='2021'>2021</option>
+                        <option value={thisYear}>{thisYear}</option>
                     </select>
                     년
                 </label>
-                <label>
+                <label className='lineSelect'>
                     <select name='month' defaultValue={currentMonth} onChange={changeWeekNo}>
                         {createMonthOption}
                     </select>
                     월
                 </label>
-                <label>
+                <label className='lineSelect'>
                     {weekSelect}
                     주차
                 </label>
+                <label><input type='radio' name='weekGb' value="0" onChange={handleChange} defaultChecked={weekGb} />주간</label>
+                <label><input type='radio' name='weekGb' value="1" onChange={handleChange} />주말</label>
+                <label><input type='radio' name='weekGb' value="2" onChange={handleChange} />주중</label>
                 <input type="submit" value="검색" />
             </form>
         </div>

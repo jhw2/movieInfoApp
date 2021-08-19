@@ -7,7 +7,7 @@ import DatePicker from "react-datepicker";
 const DailyRankSearchFrom = memo(({currentDate, callList})=>{
 
   return (
-    <div className='search-form'>
+    <div className='search-form daily'>
         <DatePicker 
         locale={ko}
         selected={currentDate}

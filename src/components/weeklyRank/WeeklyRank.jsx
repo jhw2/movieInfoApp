@@ -34,8 +34,10 @@ const WeeklyRank = ()=>{
   return (
     <div>
         <Loading done={done}></Loading>
-        <p>기간:{showRange}</p>
-        <WeeklySearchForm currentMonth={currentMonth} currentWeek={currentWeek} searchList={searchList} weekGb={weekGb}></WeeklySearchForm>
+        <div className='search-grp'>
+          <WeeklySearchForm currentMonth={currentMonth} currentWeek={currentWeek} searchList={searchList} weekGb={weekGb}></WeeklySearchForm>
+          <p className='period'>기간:{showRange}</p>
+        </div>
         <MovieList rankList={WeeklyRankList}></MovieList>
     </div>
   );

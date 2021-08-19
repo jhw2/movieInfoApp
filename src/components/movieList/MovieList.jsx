@@ -8,16 +8,29 @@ const MovieList = memo(({rankList})=>{
         <ul className='movie-list'>
             {
                 rankList.map((val, i)=>{
-                    let {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd, poster} = val;
+                    let {rank, rankInten, rankOldAndNew, movieNm, openDt, audiAcc, movieCd, poster, scrnCnt, salesAmt} = val;
                     if(!poster || poster === 'no-data'){ 
                         poster = noImage;
                     }
+                    const linkOption = {pathname: '/movieDetail/'+movieCd, state: {poster: poster, key: 'movieDetail'}};
+                    let rankIntenClass = rankInten < 0 ? 'down' : 'up';
+                    if(rankInten === '0'){rankIntenClass = 'new'}
                     return  <li key={movieCd}>
-                                <img src={poster} alt={movieNm + '포스터'} />
-                                <strong>{rankOldAndNew} {rankInten} {rank}</strong>
-                                <h6><Link to={{pathname: '/movieDetail/'+movieCd, state: {poster: poster, key: 'movieDetail'}}}>{movieNm}</Link></h6>
-                                <p><em>개봉</em><span>{openDt}</span></p>
-                                <p><em>누적</em><span>{audiAcc}</span></p>
+                                <div className='img-area'>
+                                    <span className='rank'>{rank}</span>
+                                    <Link to={linkOption}><img src={poster} alt={movieNm + '포스터'} /></Link>
+                                </div>
+                                <div className='info-area'>
+                                    <p>
+                                        <span className={'oldNew ' + rankOldAndNew}>{rankOldAndNew}</span>
+                                        <strong className={rankIntenClass}>{Math.abs(rankInten)}</strong>
+                                    </p>
+                                    <h6><Link to={linkOption}>{movieNm}</Link></h6>
+                                    <p><em>개봉일</em><span>{openDt}</span></p>
+                                    <p><em>관객수</em><span>{audiAcc.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</span></p>
+                                    <p><em>스크린수</em><span>{scrnCnt.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</span></p>
+                                    <p><em>메츨액</em><span>{salesAmt.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</span></p>
+                                </div>
                             </li>;
                 })
             } 

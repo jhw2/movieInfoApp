@@ -4,7 +4,7 @@
 #root{min-height: 100%;padding-top: 80px;box-sizing: border-box;}
 .group{max-width: 1320px;padding: 0 20px;box-sizing: border-box;margin: 0 auto;}
 
-.mv-header{position: fixed;z-index: 99;left: 0;right: 0;top: 0;height: 80px;z-index: 99;background-color: #fff;box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.1);box-sizing: border-box;}
+.mv-header{position: fixed;z-index: 99;left: 0;right: 0;top: 0;height: 80px;background-color: #fff;box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.1);box-sizing: border-box;}
 .mv-header .group{display: flex;align-items: center;}
 .mv-header .hd-logo{font-size: 22px;font-weight: 700;font-family: 'Gowun Dodum', sans-serif;}
 .mv-header .hd-logo a{background: url('./images/ic-logo.svg') no-repeat top 2.5px left;background-size: 23px auto;padding-left: 27px;}
@@ -20,6 +20,24 @@
 #contents>.group{display: flex;align-items: flex-start;padding: 40px 20px;max-width: 1040px;}
 #contents .group .cont{width: 100%;}
 
+.mv-tab{display:flex;border-bottom:2px solid #adadad;max-width:400px;margin:0 auto 25px}
+.mv-tab>li.on{border-bottom:2px solid #000;color:#000;margin-bottom:-2px}
+.mv-tab>li{width:100%;font-size:18px;font-weight:500;height:100%;color:#adadad}
+.mv-tab>li:hover{color: #000;}
+.mv-tab>li a{display:flex;align-items:center;justify-content:center;height:100%;padding:10px 10px 15px}
+
+.search-form{margin-bottom: 15px;}
+.search-form input[type=submit]{box-sizing: border-box;border: 1px solid #555;padding: 5px;min-width: 70px;height: 36px;color: #333;margin-left: 5px;background-color: #fff;}
+.search-form input[type=text]{border-color: #555;}
+
+.pageNation{display: flex;justify-content: center;align-items: center;margin: 30px 0;}
+.pageNation ul{display: flex;}
+.pageNation ul li{width: 35px;height: 35px;border: 1px solid #ddd;}
+.pageNation ul li a{display: flex;align-items: center;justify-content: center;width: 100%;height: 100%;}
+.pageNation ul li.active{border-color: #6AAFE6;}
+.pageNation ul li.active a{color: #6AAFE6;}
+
+
 .mainSlider{height: 390px;}
 .mainSlider div{position: relative;}
 .mainSlider div::after{content: '';display: block;position: absolute;left: 0;top: 0;width: 100%;height: 380px;background: rgba(0,0,0,0.05);}
@@ -33,7 +51,6 @@
 .mainSearch input[type=text]{transition: opacity 0.3s;opacity: 0.6;font-size: 20px;height: 50px;width: calc(100% - 50px);font-size: 16px;border-color: #222;border-width: 2px;border-right: 0;border-radius: 3px 0 0 3px;padding: 0 15px;}
 .mainSearch input[type=submit]{transition: opacity 0.3s;opacity: 0.6;height: 50px;min-width: 50px;font-size: 0;background: #fff url('./images/ic-search.svg') no-repeat center / 30px 30px;border: 2px solid #222;border-left: 0;border-radius: 0 3px 3px 0;}
 .mainSearch input[type=text]:focus, .mainSearch input[type=text]:focus + input[type=submit]{outline: none;opacity: 1;}
-
 .mainSearch + .mainSliderGrp{margin-top: 60px;}
 .mainSearch + .mainSliderGrp::before{content: "";display: block;position: absolute;top:0;left: 0;right: 0;height: 100%;background-color: #f8f3f4;}
 .mainSliderGrp .group{max-width: 1040px;min-height: 413px;padding: 40px 20px 60px;position: relative;}
@@ -61,16 +78,8 @@
 .mainSliderGrp .slick-slider h6 strong{display: inline-block;font-weight: 200;font-size: 10px;letter-spacing: 0.8px;color: #fff;margin-right: 5px;padding: 0px 3px;background-color: #aaa;}
 .mainSliderGrp .slick-slider h6 strong.NEW{background-color: #ebc34c;vertical-align: middle;}
 .mainSliderGrp .slick-slide ul{font-size: 12px;color: #777;}
-/* .mainSliderGrp .slick-slide ul li:last-child{content: "";display: inline-block;vertical-align: middle;width: 1px;height: 10px;background: #000;} */
 .mainSliderGrp .slick-slide ul li em{display: inline-block;margin-right: 4px;}
 .mainSliderGrp .slick-slide ul li span{color: #444;}
-
-.visual-txt{display: flex;flex-direction: column;align-items: center;justify-content: center;font-family: 'Gowun Dodum', sans-serif;height: 150px;background: #ded4de url('./images/sub_bg.jpg') center right -60% no-repeat scroll;background-size: 70% auto;}
-.visual-txt h5{font-size: 18px;margin-bottom: 7px;font-weight: 500;}
-.visual-txt div{font-size: 13px;color: #555;}
-
-
-
 
 #contents .group .cont h4{font-size: 18px;text-align: center;margin-bottom: 20px;}
 .formBox{border: 1px solid #ddd;padding: 25px;max-width: 500px;margin: 0 auto;}
@@ -89,9 +98,42 @@
 .findPw{display: flex;align-items: center;margin-top: 18px;}
 .findPw>a{border-left: 1px solid #ddd;line-height: 13px;height: 13px;margin-left: 10px;padding-left: 10px;}
 
+.visual-txt{display: flex;flex-direction: column;align-items: center;justify-content: center;font-family: 'Gowun Dodum', sans-serif;height: 150px;background: #ded4de url('./images/sub_bg.jpg') center right -60% no-repeat scroll;background-size: 70% auto;}
+.visual-txt h5{font-size: 20px;margin-bottom: 3px;}
+.visual-txt div{font-size: 13px;color: #555;}
+
+.search-form.daily input[type='text']{background: url('./images/ic-calendar.svg') no-repeat right 10px center / 21px;width: 160px;border-color: #666;}
+.search-grp{display: flex;align-items: flex-end;margin-bottom: 15px;}
+.search-grp .period{margin-left: auto;color: #666;}
+.search-grp .period::before{content: '※';}
+.search-grp .search-form{margin-bottom: 0;}
+.search-form.week label{margin-right: 10px;}
+.search-form.week .lineSelect{border-bottom: 1px solid #555;font-size: 14px;padding-right: 10px;}
+.search-form.week .lineSelect select{border: 0;font-size: 15px;margin-right: 4px;}
+.search-form.week input[type=submit]{border-color: #555;color: #000;background-color: #fff;}
 .movie-list{border-top: 1px solid #000;}
-.movie-list>li{padding: 15px 20px;border: 1px solid #ddd;margin-bottom: -1px;}
-.movie-list>li h6{font-size: 18px;margin-bottom: 5px;font-weight: 500;}
+.movie-list>li{display: flex;padding: 15px 20px;border: 1px solid #ddd;margin-bottom: -1px;}
+.movie-list>li .img-area{position: relative;margin-right: 20px;}
+.movie-list>li .img-area img{border: 3px solid #999;}
+.movie-list>li:nth-child(1) .img-area img{border-color: #eb0c31;}
+.movie-list>li:nth-child(2) .img-area img{border-color: #ebc34c;}
+.movie-list>li:nth-child(3) .img-area img{border-color: #57b37d;}
+.movie-list>li .img-area .rank{display: block;font-family: 'Gowun Dodum', sans-serif;text-shadow: 0 0 white;position: absolute;left: -7px;top: -7px;color: #fff;width: 25px;height: 25px;line-height: 25px;border-radius: 100%;text-align: center;background-color: #999;}
+.movie-list>li:nth-child(1) .img-area .rank{background-color: #eb0c31;}
+.movie-list>li:nth-child(2) .img-area .rank{background-color: #ebc34c;}
+.movie-list>li:nth-child(3) .img-area .rank{background-color: #57b37d;}
+.movie-list>li .info-area .oldNew{display: inline-block;font-size: 12px;padding: 0 5px;background-color: #a0a0a0;color: #fff;margin-right: 6px;}
+.movie-list>li .info-area .oldNew.NEW{background-color: #ebc34c;}
+.movie-list>li .info-area strong::before{content: '';display: inline-block;vertical-align: middle;margin-right: 2px;}
+.movie-list>li .info-area strong.down{color: #be374e;}
+.movie-list>li .info-area strong.down::before{border-color: #be374e transparent transparent transparent;border-width: 5.5px;border-style: solid;margin-top: 4px;}
+.movie-list>li .info-area strong.new{color: #666;}
+.movie-list>li .info-area strong.new::before{background-color: #666;width: 6px;height: 2.5px;margin-top: -2px;}
+.movie-list>li .info-area strong.up{color: #493da5;}
+.movie-list>li .info-area strong.up::before{border-color: transparent transparent #493da5 transparent;border-width: 5.5px;border-style: solid;margin-bottom: 2px;vertical-align: baseline;}
+.movie-list>li .info-area h6{font-size: 18px;margin: 5px 0;font-weight: 500;}
+.movie-list>li .info-area p em{display: inline-block;color: #777;width: 55px;}
+.movie-list>li .info-area p span{color: #333;}
 
 .actorList{border-top: 1px solid #000;}
 .actorList>li{padding: 15px 20px;border: 1px solid #ddd;margin-bottom: -1px;}
@@ -99,27 +141,18 @@
 .actorList>li>div>a{text-decoration: underline;}
 .actorList>li>p{color: #777;}
 
-.mv-tab{display:flex;border-bottom:2px solid #adadad;max-width:400px;margin:0 auto 25px}
-.mv-tab>li.on{border-bottom:2px solid #000;color:#000;margin-bottom:-2px}
-.mv-tab>li{width:100%;font-size:18px;font-weight:500;height:100%;color:#adadad}
-.mv-tab>li:hover{color: #000;}
-.mv-tab>li a{display:flex;align-items:center;justify-content:center;height:100%;padding:10px 10px 15px}
-
-.search-form{margin-bottom: 15px;}
-.search-form input[type=submit]{box-sizing: border-box;border: 1px solid #ccc;padding: 5px;min-width: 70px;height: 36px;color: #333;margin-left: 5px;background-color: #f2f2f2;}
-
-.pageNation{display: flex;justify-content: center;align-items: center;margin: 30px 0;}
-.pageNation ul{display: flex;}
-.pageNation ul li{width: 35px;height: 35px;border: 1px solid #ddd;}
-.pageNation ul li a{display: flex;align-items: center;justify-content: center;width: 100%;height: 100%;}
-.pageNation ul li.active{border-color: #6AAFE6;}
-.pageNation ul li.active a{color: #6AAFE6;}
-
-
 .movie-detail{display: flex;}
 .movie-detail .movie-poster{margin-right: 20px;}
-.movie-detail .movie-txt{background-color: #f7f7f7;padding: 20px 30px;flex-basis: calc(100% - 130px);box-sizing: border-box;}
-
+.movie-detail .movie-poster img{border: 3px solid #999;}
+.movie-detail .movie-txt{background-color: #f4f4f4;padding: 20px 30px;flex-basis: calc(100% - 130px);box-sizing: border-box;}
+.movie-detail .movie-txt h2{font-size: 24px;margin-bottom: 8px;}
+.movie-detail .movie-txt h2::before{content: '';display: inline-block;vertical-align: middle;margin-right: 5px;width: 30px;height: 30px;background: url('./images/ic-ticket.svg') no-repeat center / 30px;}
+.movie-detail .movie-txt p, .movie-detail .movie-txt ul li{margin-bottom: 3px;}
+.movie-detail .movie-txt ul{margin-bottom: 10px;border-bottom: 1px dashed #ccc;padding-bottom: 10px;}
+.movie-detail .movie-txt p em, .movie-detail .movie-txt ul li em{display: inline-block;color: #777;min-width: 50px;}
+.movie-detail .movie-txt div p{font-weight: 500;margin-bottom: 5px;}
+.movie-detail .movie-txt div p::before{content: '';display: inline-block;width: 3px;height: 3px;background-color: #333;vertical-align: middle;margin-right: 4px;}
+.movie-detail .movie-txt div div{color: #555;padding-left: 8px;}
 
 /*#####################
 ##    table style
@@ -127,8 +160,6 @@
 table{border-spacing: 0; border-collapse: collapse;}
 table{margin-bottom: 25px;margin-top: 0;border-top: 1px solid #555;border-bottom: 1px solid #ccc;width: 100%;table-layout: fixed;}
 .detail{border-top: 2px solid #333;}
-
-
 
 thead {display: table-header-group;vertical-align: middle;border-color: inherit;}
 tr {display: table-row;vertical-align: inherit;border-color: inherit;}

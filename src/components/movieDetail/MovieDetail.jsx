@@ -32,8 +32,9 @@ const MovieDetail = ({ location })=>{
           <div className='movie-poster'><img src={poster} alt={movieNm} /></div>
           <div className='movie-txt'>
             <h2>{movieNm}</h2>
-            <p>등급 : {watchGradeNm} 개봉일 : {openDt}</p>
-            <p>
+            <p><em>등급</em> {watchGradeNm}</p>
+            <p><em>개봉일</em> {openDt}</p>
+            <p><em>장르</em>
               [
                 {genres.map(({genreNm}, i)=>{
                   const type = genres.length-1 === i ?  genreNm : genreNm+'>';
@@ -41,7 +42,7 @@ const MovieDetail = ({ location })=>{
                 })}
               ]
             </p>
-            <p>감독 : {directors.map(({peopleNm}, i)=>{
+            <p><em>감독</em> {directors.map(({peopleNm}, i)=>{
                         const nm = directors.length-1 === i ?  peopleNm : peopleNm+',';
                         return nm;
                       })}
@@ -49,7 +50,7 @@ const MovieDetail = ({ location })=>{
             <ul>
               {
                 companys.map(({companyPartNm, companyNm, companyCd}, i)=>{
-                  return <li key={i}>{companyPartNm} : {companyNm}</li>
+                  return <li key={i}><em>{companyPartNm}</em> {companyNm}</li>
                 })
               }
               

@@ -26,7 +26,7 @@ input[type=text],input[type=password], input[type=number]{appearance:none;-webki
 input[readonly]{cursor:default;background-color:#f1f1f1;border-color:#ddd}
 label{display:inline-block} 
 select::-ms-expand {display:none;}
-input[type=checkbox]{width: 16px;height: 16px;margin-right: 3px;vertical-align: middle;}
+input[type=checkbox], input[type=radio]{width: 17px;height: 17px;margin-right: 3px;margin-top: -2px;vertical-align: middle;}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

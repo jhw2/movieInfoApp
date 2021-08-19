@@ -7,7 +7,7 @@ import { callActorListThunk } from '../../modules/actorListModule';
 import Loading from '../common/Loading';
 import ActorSearchForm from './ActorSearchForm';
 import ActorList from './ActorList';
-import PageNation from '../weeklyRank/PageNation';
+import PageNation from './PageNation';
 
 const ActorSearch = ({ location })=>{
     const dispatch = useDispatch();
