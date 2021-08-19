@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { callMovieDetailThunk } from '../../modules/moviDetailInfoModule';
 import noImage from '../../images/no-data.jpg';
 
-const MovieDetail = ({ location })=>{
+const MovieDetail = ()=>{
   const {movieCd} = useParams();
   const {state} = useLocation();
   let poster = state && state.poster;
@@ -13,7 +13,7 @@ const MovieDetail = ({ location })=>{
   }
   const dispatch = useDispatch();
   const {movieInfo} = useSelector(({movieDetailInfo})=>{return movieDetailInfo});
-  const {movieNm, actors, audits, companys, directors, genres, openDt} = movieInfo;
+  const {movieNm, movieNmEn, actors, audits, companys, directors, genres, openDt} = movieInfo;
   let watchGradeNm = '';
   if(audits && audits.length > 0){watchGradeNm = audits[0].watchGradeNm}
 
@@ -31,7 +31,7 @@ const MovieDetail = ({ location })=>{
       <div className='movie-detail'>
           <div className='movie-poster'><img src={poster} alt={movieNm} /></div>
           <div className='movie-txt'>
-            <h2>{movieNm}</h2>
+            <h2>{movieNm}({movieNmEn})</h2>
             <p><em>등급</em> {watchGradeNm}</p>
             <p><em>개봉일</em> {openDt}</p>
             <p><em>장르</em>
@@ -59,9 +59,9 @@ const MovieDetail = ({ location })=>{
               <p>출연배우</p>
               <div>
                 {
-                  actors.map(({peopleNm}, i)=>{
-                    const people = actors.length-1 === i ?  peopleNm : peopleNm+', ';
-                    return people
+                  actors.map(({peopleNm, cast}, i)=>{
+                    const peopleNmCast = actors.length-1 === i ? <span key={peopleNm+cast}><em>{peopleNm}</em>({cast})</span> : <span><em>{peopleNm}</em>({cast}), </span>;
+                    return peopleNmCast;
                   })
                 }
               </div>

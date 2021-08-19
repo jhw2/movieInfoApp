@@ -70,7 +70,7 @@ const WeeklySearchForm = memo(({currentMonth, currentWeek, searchList, weekGb})=
                     {weekSelect}
                     주차
                 </label>
-                <label><input type='radio' name='weekGb' value="0" onChange={handleChange} defaultChecked={weekGb} />주간</label>
+                <label><input type='radio' name='weekGb' value="0" onChange={handleChange} defaultChecked={true} />주간</label>
                 <label><input type='radio' name='weekGb' value="1" onChange={handleChange} />주말</label>
                 <label><input type='radio' name='weekGb' value="2" onChange={handleChange} />주중</label>
                 <input type="submit" value="검색" />
