@@ -10,7 +10,7 @@ const FindPW = memo(({history})=>{
 
     const onPwReset = useCallback((e)=>{
         e.preventDefault();
-        const signupForm = document.getElementById('findPwForm');
+        const signupForm = document.getElementById('findPwForm'); 
         const email = new FormData(signupForm);
         setIsLoadingDone(false);
 
