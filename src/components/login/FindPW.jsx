@@ -32,7 +32,7 @@ const FindPW = memo(({history})=>{
         <>
             <Loading done={isLodingDone} /> 
             <h4>비밀번호 찾기</h4>
-            <form onSubmit={onPwReset} method='post' id='findPwForm'>
+            <form onSubmit={onPwReset} method='post' className='formBox' id='findPwForm'>
                 <p><label><span>아이디</span><input type='email' name='email' placeholder='이메일(example@gmail.com)' required/></label></p>
                 <input type='submit' value="비밀번호 초기화" /> 
             </form>

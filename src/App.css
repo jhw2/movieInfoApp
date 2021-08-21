@@ -6,7 +6,7 @@
 
 .mv-header{position: fixed;z-index: 99;left: 0;right: 0;top: 0;height: 80px;background-color: #fff;box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.1);box-sizing: border-box;}
 .mv-header .group{display: flex;align-items: center;}
-.mv-header .hd-logo{font-size: 22px;font-weight: 700;font-family: 'Gowun Dodum', sans-serif;}
+.mv-header .hd-logo{font-size: 22px;font-weight: 700;font-family: 'Gowun Dodum', sans-serif;white-space: nowrap;}
 .mv-header .hd-logo a{background: url('./images/ic-logo.svg') no-repeat top 2.5px left;background-size: 23px auto;padding-left: 27px;}
 .mv-header .hd-logo strong{color: rgb(235 12 49);}
 .mv-header .gnb{display: flex;justify-content: center;align-items: center;width: 100%;line-height: 79px;}
@@ -36,7 +36,6 @@
 .pageNation ul li a{display: flex;align-items: center;justify-content: center;width: 100%;height: 100%;}
 .pageNation ul li.active{border-color: #6AAFE6;}
 .pageNation ul li.active a{color: #6AAFE6;}
-
 
 .mainSlider{height: 390px;}
 .mainSlider div{position: relative;}
@@ -83,7 +82,7 @@
 
 #contents .group .cont h4{font-size: 18px;text-align: center;margin-bottom: 20px;}
 .formBox{border: 1px solid #ddd;padding: 25px;max-width: 500px;margin: 0 auto;}
-.formBox#loginForm{max-width: 400px;}
+.formBox#loginForm, .formBox#findPwForm{max-width: 400px;}
 .formBox>p:not(:last-child){margin-bottom: 10px;}
 .formBox>p label{display: flex;align-items: center;}
 .formBox>p label>span{display: inline-block;min-width: 80px;}
