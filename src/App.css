@@ -32,10 +32,16 @@
 
 .pageNation{display: flex;justify-content: center;align-items: center;margin: 30px 0;}
 .pageNation ul{display: flex;}
-.pageNation ul li{width: 35px;height: 35px;border: 1px solid #ddd;}
-.pageNation ul li a{display: flex;align-items: center;justify-content: center;width: 100%;height: 100%;}
-.pageNation ul li.active{border-color: #6AAFE6;}
-.pageNation ul li.active a{color: #6AAFE6;}
+.pageNation ul li, .pageNation p{width: 35px;height: 35px;border: 1px solid #ccc;margin: 0 2px;}
+.pageNation ul li a, .pageNation p a{display: flex;align-items: center;justify-content: center;width: 100%;height: 100%;}
+.pageNation ul li.active{border-color: rgb(235 12 49);background-color: rgb(235 12 49);}
+.pageNation ul li:hover, .pageNation p:hover{border-color: rgb(235 12 49);}
+.pageNation ul li.active a{color: #fff;font-weight: 500;}
+.pageNation ul li:not(.active):hover a{color: rgb(235 12 49);}
+.pageNation p.prev a{font-size: 0;background: url('./images/ic-next.svg') no-repeat center / 10px;transform: rotate(180deg);}
+.pageNation p.firstPage a{font-size: 0;background: url('./images/ic-last.svg') no-repeat center / 15px;transform: rotate(180deg);}
+.pageNation p.next a{font-size: 0;background: url('./images/ic-next.svg') no-repeat center / 10px;}
+.pageNation p.lastPage a{font-size: 0;background: url('./images/ic-last.svg') no-repeat center / 15px;}
 
 .mainSlider{height: 390px;}
 .mainSlider div{position: relative;}
