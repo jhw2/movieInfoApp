@@ -22,21 +22,22 @@ const ActorDetail = ()=>{
 
     if(peopleCd){
         return(
-            <div>
-                <h4>{peopleNm}[{sex}][{repRoleNm}]</h4>
+            <div className='actorDetail'>
+                <h5>{peopleNm}[{sex}][{repRoleNm}]</h5>
                 <p><a href={homepages} target='_blank' rel="noreferrer">{homepages}</a></p>
-                <ul>
-                    {
-                        filmos.map((filmo, i)=>{
-                            const {movieCd, movieNm, moviePartNm} = filmo;
-                            return <li key={movieCd}>
-                                        <Link to={'/movieDetail/'+movieCd}>{movieNm}[{moviePartNm}]</Link>
-                                    </li>
-                        })
-                    }
-                </ul>
-                
-                
+                <div className='fillmo'>
+                    <p>필모그래피</p>
+                    <ul>
+                        {
+                            filmos.map((filmo, i)=>{
+                                const {movieCd, movieNm, moviePartNm} = filmo;
+                                return <li key={movieCd}>
+                                            <Link to={'/movieDetail/'+movieCd}>{movieNm}[{moviePartNm}]</Link>
+                                        </li>
+                            })
+                        }
+                    </ul>
+                </div>
             </div>
         );
     }else{

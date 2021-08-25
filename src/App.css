@@ -140,12 +140,6 @@
 .movie-list>li .info-area p em{display: inline-block;color: #777;width: 55px;}
 .movie-list>li .info-area p span{color: #333;}
 
-.actorList{border-top: 1px solid #000;}
-.actorList>li{padding: 15px 20px;border: 1px solid #ddd;margin-bottom: -1px;}
-.actorList>li>div{font-size: 16px;color: #000;margin-bottom: 5px;}
-.actorList>li>div>a{text-decoration: underline;}
-.actorList>li>p{color: #777;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
-
 .movie-detail{display: flex;}
 .movie-detail .movie-poster{margin-right: 20px;}
 .movie-detail .movie-poster img{border: 3px solid #999;}
@@ -159,6 +153,21 @@
 .movie-detail .movie-txt div p::before{content: '';display: inline-block;width: 3px;height: 3px;background-color: #333;vertical-align: middle;margin-right: 4px;}
 .movie-detail .movie-txt div div{color: #666;padding-left: 8px;}
 .movie-detail .movie-txt div div em{color: #333;}
+
+.actorList{border-top: 1px solid #000;}
+.actorList>li{padding: 15px 20px;border: 1px solid #ddd;margin-bottom: -1px;}
+.actorList>li>div{font-size: 16px;color: #000;margin-bottom: 5px;}
+.actorList>li>div>a{text-decoration: underline;}
+.actorList>li>p{color: #777;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+
+.actorDetail{background-color: #f4edf7;padding: 20px 30px;}
+.actorDetail h5{font-size: 18px;margin-bottom: 15px;}
+.actorDetail h5::before{content: '';display: inline-block;vertical-align: middle;margin-right: 5px;width: 30px;height: 30px;background: url('./images/ic-ticket.svg') no-repeat center / 30px;}
+.actorDetail p{margin-bottom: 10px;}
+.actorDetail .fillmo p{margin-bottom: 5px;font-weight: 500;}
+.actorDetail .fillmo p::before{content: '';display: inline-block;width: 3px;height: 3px;background-color: #333;vertical-align: middle;margin-right: 3px;}
+.actorDetail .fillmo ul li{color: #666;padding-left: 10px;margin-bottom: 3px;}
+
 
 /*#####################
 ##    table style
