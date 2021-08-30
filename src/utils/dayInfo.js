@@ -1,6 +1,6 @@
 const today = new Date();
-const yesterday = new Date(new Date().setDate(today.getDate()-1));
-const lastWeek = new Date(new Date().setDate(today.getDate()-7));
+const yesterday = new Date(new Date().setDate(today.getDate() - 1));
+const lastWeek = new Date(new Date().setDate(today.getDate() - 7));
 
 const getNewDay = (date)=>{
     let dayOfWeek = date.getDay() -1;
@@ -30,46 +30,41 @@ export const getDateObj = (dateTxt)=>{
     return new Date(year, month, day)
 }
 
-//주차 확인
+//현재 날짜의 주차 확인
 export const getWeekNo = (date = lastWeek)=>{
     let dateObj = date;
-    if(typeof(date) === 'string'){
-        dateObj = new Date(date);
-    }
+    if(typeof(date) === 'string'){dateObj = new Date(date); }
 
-    dateObj.setDate(dateObj.getDate()+(6 - getNewDay(dateObj)));
+    dateObj.setDate(dateObj.getDate() + (6 - getNewDay(dateObj)));
 
     let _year = dateObj.getFullYear();
     let _month = dateObj.getMonth()+1;
     let _date = dateObj.getDate();
-   
+
     const week = parseInt((6 + _date - getNewDay(dateObj)) / 7) + 1;
     return {year: _year, month: _month, week};
 }
 
+//월별 총 주차 수 계산
 export const getMothLastWeekNo = (dateObj = lastWeek)=>{
     let year = dateObj.getFullYear();
     let month = dateObj.getMonth() + 1;
-    let lastOfdate = new Date(year, month, 0);
-    
-    let _date = lastOfdate.getDate();
-    let week = parseInt((6 + _date + getNewDay(lastOfdate) - 1) / 7);
 
-    return getNewDay(lastOfdate) === 0 ? week : week-1;
+    const firstOfDay = new Date(year, month - 1, 1);
+    const lastOfdate = new Date(year, month, 0);
+
+    return Math.floor((lastOfdate.getDate() - (7 - getNewDay(firstOfDay))) / 7) + 1;
 }
 
+
+//주차의 처음 날짜 
 export const getWeekFirstDate = (year, month, week)=>{
-    let dayOfWeek = getNewDay(new Date(year, month-1, 1));
-    let day = Math.abs((7 * week) - dayOfWeek - 6);
-    if(Number(week) === 1){
-        const dateObj = new Date(year, month - 1, 1); 
-        dateObj.setDate(dateObj.getDate() - dayOfWeek);
-        year = dateObj.getFullYear();
-        month = dateObj.getMonth() + 1;
-        day = dateObj.getDate();
-    }
+    const firstOfDay = new Date(year, month - 1, 1);
+    let day = ((week-1) * 7) + (7 - getNewDay(firstOfDay)) - 6;
+    
     month = month < 10 ? '0'+ month : month; 
     day = day < 10 ? '0'+ day : day; 
+
     return `${year}${month}${day}`;
 }
 

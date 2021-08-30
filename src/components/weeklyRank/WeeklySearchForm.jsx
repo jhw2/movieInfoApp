@@ -32,7 +32,7 @@ const WeeklySearchForm = memo(({currentMonth, currentWeek, searchList, weekGb})=
     const changeWeekNo = useMemo(()=>({target})=>{
         const year = target.parentNode.parentNode.year.value;
         let month = target.value;
-        month = month < 10 ? '0'+month : month; 
+        month = month < 10 ? '0' + month : month; 
 
         let date = getDateObj(`${year}${month}01`);
         let lastWeek = getMothLastWeekNo(date);
