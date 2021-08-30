@@ -8,7 +8,7 @@ const App = ()=>{
   const {menuList} = menu;
 
   return (
-    <div id="wrap">
+    <div id="wrap" >
       <Header menuList={menuList}></Header>
       <VisualTxt></VisualTxt>
       <section id="contents">

@@ -46,21 +46,20 @@ const ChangePW = memo(({history})=>{
         <>
             <Loading done={isLodingDone} /> 
             <h4>비밀번호 변경</h4>
-            <form onSubmit={onPwChange} method='post' id='findIdForm'>
-                <p><label><span>아이디</span><input type='email' name='userEmail' placeholder='이메일(example@gmail.com)' required/></label></p>
+            <form onSubmit={onPwChange} method='post' className='formBox' id='findIdForm'>
                 <p>
                     <label>
                         <span>비밀번호</span>
                         <input type='password' name='userPw' ref={userPw} onInput={checkPassword} placeholder='새로운 비밀번호를 입력해주세요.' required/>
-                        <span className='required'>영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상</span>
                     </label>
+                    <span className='required'>영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상</span>
                 </p>
                 <p>
                     <label>
                         <span>비밀번호 확인</span>
                         <input type='password' name='userPwConfirm' ref={userPwConfirm} onInput={checkPassword} placeholder=' 새로운 비밀번호를 입력해주세요.' required/>
-                        <span className='required'>영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상</span>
                     </label>
+                    <span className='required'>영문 대문자, 소문자, 특수문자, 숫자 각1자 이상 최소 10자 이상</span>
                 </p>
                 <input type='submit' value="비밀번호 변경" /> 
             </form>
