@@ -54,25 +54,29 @@ const WeeklySearchForm = memo(({currentMonth, currentWeek, searchList, weekGb})=
     return (
         <div className='search-form week'>
             <form action="/" onSubmit={searchList}>
-                <label className='lineSelect'>
-                    <select name='year'>
-                        <option value={thisYear}>{thisYear}</option>
-                    </select>
-                    년
-                </label>
-                <label className='lineSelect'>
-                    <select name='month' defaultValue={currentMonth} onChange={changeWeekNo}>
-                        {createMonthOption}
-                    </select>
-                    월
-                </label>
-                <label className='lineSelect'>
-                    {weekSelect}
-                    주차
-                </label>
-                <label><input type='radio' name='weekGb' value="0" onChange={handleChange} defaultChecked={true} />주간</label>
-                <label><input type='radio' name='weekGb' value="1" onChange={handleChange} />주말</label>
-                <label><input type='radio' name='weekGb' value="2" onChange={handleChange} />주중</label>
+                <p>
+                    <label className='lineSelect'>
+                        <select name='year'>
+                            <option value={thisYear}>{thisYear}</option>
+                        </select>
+                        년
+                    </label>
+                    <label className='lineSelect'>
+                        <select name='month' defaultValue={currentMonth} onChange={changeWeekNo}>
+                            {createMonthOption}
+                        </select>
+                        월
+                    </label>
+                    <label className='lineSelect'>
+                        {weekSelect}
+                        주차
+                    </label>
+                </p>
+                <p>
+                    <label><input type='radio' name='weekGb' value="0" onChange={handleChange} defaultChecked={true} />주간</label>
+                    <label><input type='radio' name='weekGb' value="1" onChange={handleChange} />주말</label>
+                    <label><input type='radio' name='weekGb' value="2" onChange={handleChange} />주중</label>
+                </p>
                 <input type="submit" value="검색" />
             </form>
         </div>

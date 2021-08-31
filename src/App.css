@@ -24,7 +24,7 @@
 #contents>.group{display: flex;align-items: flex-start;padding: 40px 20px;max-width: 1040px;}
 #contents .group .cont{width: 100%;}
 
-.mv-tab{display:flex;border-bottom:2px solid #adadad;max-width:400px;margin:0 auto 25px}
+.mv-tab{display:flex;border-bottom:2px solid #adadad;max-width:400px;width: 80%;margin:0 auto 25px}
 .mv-tab>li.on{border-bottom:2px solid #000;color:#000;margin-bottom:-2px}
 .mv-tab>li{width:100%;font-size:18px;font-weight:500;height:100%;color:#adadad}
 .mv-tab>li:hover{color: #000;}
@@ -106,6 +106,7 @@
 .formBox input[type=submit]{height: 45px;width: 100%;margin-top: 5px;background-color: #eb0c31;color: #fff;border: 0;font-size: 15px;}
 .findPw{display: flex;align-items: center;margin-top: 18px;}
 .findPw>a{border-left: 1px solid #ddd;line-height: 13px;height: 13px;margin-left: 10px;padding-left: 10px;}
+.formBox + .box{background: #f4f4f4;max-width: 400px;margin: 10px auto 0; padding: 15px;border: 1px solid #ddd;}
 
 .visual-txt{display: flex;flex-direction: column;align-items: center;justify-content: center;font-family: 'Gowun Dodum', sans-serif;height: 150px;background: #ded4de url('./images/sub_bg.jpg') center right -60% no-repeat scroll;background-size: 70% auto;}
 .visual-txt h5{font-size: 20px;margin-bottom: 3px;}
@@ -116,6 +117,7 @@
 .search-grp .period{margin-left: auto;color: #666;}
 .search-grp .period::before{content: '※';}
 .search-grp .search-form{margin-bottom: 0;}
+.search-grp .search-form form{display: flex;}
 .search-form.week label{margin-right: 10px;}
 .search-form.week .lineSelect{border-bottom: 1px solid #555;font-size: 14px;padding-right: 10px;}
 .search-form.week .lineSelect select{border: 0;font-size: 15px;margin-right: 4px;}
@@ -254,11 +256,75 @@ footer{padding: 15px 0;color: #888;background-color: #f9fafc;}
     .mainSliderGrp h3{font-size: 18px;margin-bottom: 3px;}
     .mainSliderGrp h3 .ic-more{background-size: 18px;margin-bottom: 5px;}
 
+    .mainSliderGrp .slick-next{right: 0;} 
+    .mainSliderGrp .slick-prev{left: 0;}
+
     footer{padding: 10px 0;font-size: 12px;text-align: center;}
-    
-    
-    
 }
 
+
+@media screen and (max-width: 768px) {
+    .visual-txt{height: 100px;}
+    .visual-txt h5{font-size: 17px;}
+    .visual-txt div{font-size: 12px;}
+
+    .mv-tab>li{font-size: 15px;}
+    .mv-tab>li a{padding: 5px 5px 10px;}
+    .search-form.daily input[type='text']{height: 30px;background-size: 18px;background-position: center right 7px;width: 130px;}
+    .movie-list>li{padding: 10px;}
+    .movie-list>li .img-area{margin-right: 10px;}
+    .movie-list>li .img-area img{width: 86px;}
+    .movie-list>li .info-area .oldNew{font-size: 10px;padding: 0 3px;}
+    .movie-list>li .info-area strong{font-size: 13px;}
+    .movie-list>li .info-area h6{font-size: 15px;margin: 2px 0;}
+    .movie-list>li .info-area p{font-size: 13px;}
+
+    .search-form{margin-bottom: 10px;}
+    .search-grp{flex-direction: column;align-items: flex-start;margin-bottom: 10px;}
+    .search-grp .search-form{width: 100%;margin-bottom: 8px;}
+    .search-grp .search-form form{flex-direction: column;}
+    .search-grp .search-form p{margin-bottom: 7px;display: flex;}
+    .search-form.week label{font-size: 13px;margin-right: 10px;}
+    .search-form.week .lineSelect{display: flex;white-space: nowrap;align-items: center;width: 33.33%;margin-right: 5px;}
+    .search-form.week .lineSelect select{height: 30px;font-size: 13px;padding: 2px 5px;width: 100%}
+    .search-form.week input[type=submit]{margin-left: 0;}
+
+    .search-form input[type=text]{height: 30px;}
+    .search-form input[type=submit]{height: 30px;min-width: 55px;}
+
+
+    .movie-detail .movie-poster{margin-right: 10px;}
+    .movie-detail .movie-poster img{width: 80px;}
+    .movie-detail .movie-txt{padding: 15px;flex-basis: calc(100% - 80px);}
+    .movie-detail .movie-txt h2{font-size: 16px;margin-bottom: 5px;word-break: break-all;}
+    .movie-detail .movie-txt h2::before {margin-right: 3px;width: 20px;height: 20px;background-size: 20px;}
+    .movie-detail .movie-txt p, .movie-detail .movie-txt ul li{font-size: 13px;display: flex;}
+    .movie-detail .movie-txt div p{margin-bottom: 2px;}
+    .movie-detail .movie-txt div p::before{margin-top: 7px;width: 2px;height: 2px;}
+    .movie-detail .movie-txt div div{font-size: 13px;}
+
+    .actorList>li{padding: 10px;}
+    .actorList>li>div{font-size: 15px;}
+    .actorDetail{padding: 15px;}
+    .actorDetail h5{font-size: 18px;margin-bottom: 7px;word-break: break-all;}
+    .actorDetail h5::before {margin-right: 3px;width: 20px;height: 20px;background-size: 20px;}
+
+    .pageNation p{height: 25px;width: 25px;}
+    .pageNation p.firstPage a, .pageNation p.lastPage a{background-size: 11px auto;}
+    .pageNation p.prev a, .pageNation p.next a{background-size: 9px auto;}
+    .pageNation ul li{width: auto;height: auto;margin: 0 2px;padding: 0 2px;border: 0;}
+    .pageNation ul li.active{background-color: #fff;}
+    .pageNation ul li.active a{color: rgb(235 12 49);}
+
+    #contents .group .cont h4{font-size: 17px;margin-bottom: 10px;}
+    .formBox{padding: 15px;}
+    .formBox>p:not(.findPw) label{flex-direction: column;align-items: flex-start;}
+    .formBox#signupForm>p label{flex-direction: row;flex-wrap: wrap;}
+    .formBox>p label span{width: 100%;margin-bottom: 3px;}
+    .formBox>p span.required{padding: 0;font-size: 12px;}
+
+    .formBox#signupForm>p label input[type=email]{width: calc(100% - 100px);}
+    .formBox#signupForm>p label select, .formBox#signupForm>p label input[type=number]{width: calc(33.3% - 3px);}
+}
 
 

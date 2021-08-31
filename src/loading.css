@@ -3,5 +3,6 @@
 .mainSliderGrp .loading{position: absolute;top: 100px;background-size: 100px auto;background-color: rgba(0,0,0,0.1);z-index: 9;}
 
 @media screen and (max-width: 1024px) {
-    .mainSliderGrp .loading{top: 50px;}
+    .loading{background-size: 150px;}
+    .mainSliderGrp .loading{top: 50px;background-size: 80px}
 }

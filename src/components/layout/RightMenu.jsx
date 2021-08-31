@@ -28,7 +28,7 @@ const RightMenu = memo(({menuClose})=>{
     
     const {loginSucces, userAuthInfo} = useSelector(({userInfo})=>{return userInfo});
     const userNic = loginSucces && loginSucces.data ? loginSucces.data.userNic : userAuthInfo &&  userAuthInfo.data && userAuthInfo.data.userNic;
-    const logoutMenu = [ <span key='signin'><NavLink exact to="/login" onClick={menuClose}>로그인</NavLink></span>, <span key='signup'><NavLink exact to="/signup">회원가입</NavLink></span>]
+    const logoutMenu = [ <span key='signin'><NavLink exact to="/login" onClick={menuClose}>로그인</NavLink></span>, <span key='signup'><NavLink exact to="/signup" onClick={menuClose}>회원가입</NavLink></span>]
     const loginMenu = <span><Link to='/userProfile' onClick={menuClose}>{userNic}</Link> 님<button type='button' className='logout' onClick={logout}>로그아웃</button></span>
     return (
         <>
