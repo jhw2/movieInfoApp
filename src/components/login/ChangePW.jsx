@@ -26,6 +26,8 @@ const ChangePW = memo(({history})=>{
         e.preventDefault();
         const signupForm = document.getElementById('findIdForm');
         const userData = new FormData(signupForm);
+        userData.append('userEmail', localStorage.getItem('userId'));
+
         setIsLoadingDone(false);
 
         UserService.changePw(userData).then(response=>{
