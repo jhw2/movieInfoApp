@@ -17,6 +17,7 @@ const RightMenu = memo(({menuClose})=>{
                 localStorage.removeItem('userNo');
                 localStorage.removeItem('token');
                 menuClose();
+                window.location.reload();
             }else{
                 alert('로그아웃 실패');
             }
