@@ -60,7 +60,11 @@ export const getMothLastWeekNo = (dateObj = lastWeek)=>{
 //주차의 처음 날짜 
 export const getWeekFirstDate = (year, month, week)=>{
     const firstOfDay = new Date(year, month - 1, 1);
-    let day = ((week-1) * 7) + (7 - getNewDay(firstOfDay)) - 6;
+    
+    let day = 1;
+    if(week > 1){
+        day = ((week-1) * 7) + (7 - getNewDay(firstOfDay)) - 6;
+    }
     
     month = month < 10 ? '0'+ month : month; 
     day = day < 10 ? '0'+ day : day; 

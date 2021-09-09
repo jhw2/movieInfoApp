@@ -1,10 +1,13 @@
 
-import { useState, useEffect, useMemo, memo } from 'react';
+import { useState, useEffect, useMemo, useRef, memo } from 'react';
 import { getDateObj, getMothLastWeekNo } from '../../utils/dayInfo';
 
 const thisYear = new Date().getFullYear();
 const WeeklySearchForm = memo(({currentMonth, currentWeek, searchList, weekGb})=>{
     const [weekSelect, setWeekSelect] = useState(); 
+    const year = useRef();
+    const week = useRef();
+    const month = useRef();
 
     /**
      * 월 셀렉트박스 option 태그 생성
@@ -22,7 +25,7 @@ const WeeklySearchForm = memo(({currentMonth, currentWeek, searchList, weekGb})=
         for(let i = 1; i <= countWeek; i++){
             weekOption.push(<option key={'week'+i} value={i}>{i}</option>);
         }
-        const weekSelect = <select name='week' defaultValue={defaultWeek}>{weekOption}</select>;
+        const weekSelect = <select name='week' ref={week} defaultValue={defaultWeek}>{weekOption}</select>;
         return weekSelect;
     },[])
     /**
@@ -30,13 +33,12 @@ const WeeklySearchForm = memo(({currentMonth, currentWeek, searchList, weekGb})=
      * @param {*} event 
      */
     const changeWeekNo = useMemo(()=>({target})=>{
-        const year = target.parentNode.parentNode.year.value;
-        let month = target.value;
-        month = month < 10 ? '0' + month : month; 
+        let monthNum = month.current.value;
+        monthNum = monthNum < 10 ? '0' + monthNum : monthNum; 
 
-        let date = getDateObj(`${year}${month}01`);
+        let date = getDateObj(`${year.current.value}${monthNum}01`);
         let lastWeek = getMothLastWeekNo(date);
-        target.parentNode.parentNode.week.value = '1';
+        week.current.value = '1';
 
         setWeekSelect(createWeekSelect(lastWeek, 1));
     },[createWeekSelect])
@@ -56,13 +58,13 @@ const WeeklySearchForm = memo(({currentMonth, currentWeek, searchList, weekGb})=
             <form action="/" onSubmit={searchList}>
                 <p>
                     <label className='lineSelect'>
-                        <select name='year'>
+                        <select name='year' ref={year}>
                             <option value={thisYear}>{thisYear}</option>
                         </select>
                         년
                     </label>
                     <label className='lineSelect'>
-                        <select name='month' defaultValue={currentMonth} onChange={changeWeekNo}>
+                        <select name='month' ref={month} defaultValue={currentMonth} onChange={changeWeekNo}>
                             {createMonthOption}
                         </select>
                         월
