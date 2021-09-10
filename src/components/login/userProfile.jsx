@@ -39,7 +39,7 @@ const phoneFormatter = (num, type)=> {
 
 const ChangePW = memo(()=>{
     const {userAuthInfo} = useSelector(({userInfo})=>{return userInfo});
-    if(userAuthInfo){
+    if(userAuthInfo?.data){
         const {userEmail, userRealName, userNic, userPhone} = userAuthInfo.data;
         return (
             <>

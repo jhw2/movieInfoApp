@@ -15,7 +15,7 @@ const RightMenu = memo(({menuClose})=>{
             if(respons.payload.success){ 
                 alert(respons.payload.msg)
                 localStorage.removeItem('userNo');
-                localStorage.removeItem('token');
+                localStorage.removeItem('mToken');
                 menuClose();
                 window.location.reload();
             }else{

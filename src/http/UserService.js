@@ -4,13 +4,13 @@ import http from "./http-common-user";
  * url : http://localhost:8081/swagger-ui.html
  * 
  */
+
 class UserService {
   signupUser(userData) { 
     return http.post(`/signup`, userData);
   }
   signoutUser() { 
-    const config ={headers: {'X-AUTH-TOKEN': localStorage.getItem('token')}}
-    return http.post(`/signout`, {}, config);
+    return http.post(`/signout`, {});
   }
   checkEmail(email) { 
     return http.get(`/count`, {params: {email}});
@@ -22,13 +22,11 @@ class UserService {
     return http.post(`/reset`, email );
   }
   changePw(userData) { 
-    const config ={headers: {'X-AUTH-TOKEN': localStorage.getItem('token')}}
-    return http.post(`/update-password`, userData, config);
+    return http.post(`/update-password`, userData);
   }
   userProfile() {
-    const config ={headers: {'X-AUTH-TOKEN': localStorage.getItem('token')}}
     const userNo = localStorage.getItem('userNo');
-    return http.get(`/${userNo}`, config);
+    return http.get(`/${userNo}`);
   }
 
 }
