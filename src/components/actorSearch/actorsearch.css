@@ -1,0 +1,13 @@
+.actorList{border-top: 1px solid #000;}
+.actorList>li{padding: 15px 20px;border: 1px solid #ddd;margin-bottom: -1px;}
+.actorList>li>div{font-size: 16px;color: #000;margin-bottom: 5px;}
+.actorList>li>div>a{text-decoration: underline;}
+.actorList>li>p{color: #777;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+
+@media screen and (max-width: 768px) {
+    .actorList>li{padding: 10px;}
+    .actorList>li>div{font-size: 15px;}
+    .actorDetail{padding: 15px;}
+    .actorDetail h5{font-size: 18px;margin-bottom: 7px;word-break: break-all;}
+    .actorDetail h5::before {margin-right: 3px;width: 20px;height: 20px;background-size: 20px;}
+}

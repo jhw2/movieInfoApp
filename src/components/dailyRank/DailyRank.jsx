@@ -1,4 +1,6 @@
 
+import './dailyRank.css';
+import './movielist.css';
 import { useEffect, memo, useCallback } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
 import { callDailyBoxofficeThunk } from '../../modules/movieRankModule';

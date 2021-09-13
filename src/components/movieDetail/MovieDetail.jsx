@@ -1,3 +1,4 @@
+import './moviedetail.css';
 import { useParams, useLocation } from 'react-router-dom';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';

@@ -1,0 +1,31 @@
+#contents .group .cont h4{font-size: 18px;text-align: center;margin-bottom: 20px;}
+.formBox{border: 1px solid #ddd;padding: 25px;max-width: 500px;margin: 0 auto;}
+.formBox#loginForm, .formBox#findPwForm{max-width: 400px;}
+.formBox>p:not(:last-child){margin-bottom: 10px;}
+.formBox>p label{display: flex;align-items: center;}
+.formBox>p label>span{display: inline-block;min-width: 80px;}
+.formBox>p span.required{display: block;font-weight: 400;font-size: 13px;color: rgb(218, 47, 47);padding-left: 80px;margin-top: 3px;}
+.formBox>p span.required::before{content: '※';}
+.formBox>p .t-red, .formBox>p .t-blue{padding-left: 80px;margin-top: 3px;}
+.formBox>p .t-red:empty, .formBox>p .t-blue:empty{display: none;}
+.formBox>p label input[type=text], .formBox>p label input[type=email], .formBox>p label input[type=password]{width: 100%;}
+.formBox>p label input[type=number]{width: 100%;margin: 0 2px;}
+.formBox input[type=button]{min-width: 100px;height: 35px;;background-color: #eee;color: #555;padding: 0 5px;border: 1px solid #ccc;}
+.formBox input[type=submit]{height: 45px;width: 100%;margin-top: 5px;background-color: #eb0c31;color: #fff;border: 0;font-size: 15px;}
+.findPw{display: flex;align-items: center;margin-top: 18px;}
+.findPw>a{border-left: 1px solid #ddd;line-height: 13px;height: 13px;margin-left: 10px;padding-left: 10px;}
+.formBox + .box{background: #f4f4f4;max-width: 400px;margin: 10px auto 0; padding: 15px;border: 1px solid #ddd;}
+
+
+
+@media screen and (max-width: 768px) {
+    #contents .group .cont h4{font-size: 17px;margin-bottom: 10px;}
+    .formBox{padding: 15px;}
+    .formBox>p:not(.findPw) label{flex-direction: column;align-items: flex-start;}
+    .formBox#signupForm>p label{flex-direction: row;flex-wrap: wrap;}
+    .formBox>p label span{width: 100%;margin-bottom: 3px;}
+    .formBox>p span.required{padding: 0;font-size: 12px;}
+
+    .formBox#signupForm>p label input[type=email]{width: calc(100% - 100px);}
+    .formBox#signupForm>p label select, .formBox#signupForm>p label input[type=number]{width: calc(33.3% - 3px);}
+}

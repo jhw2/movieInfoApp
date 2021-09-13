@@ -1,3 +1,4 @@
+import './actordetail.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';

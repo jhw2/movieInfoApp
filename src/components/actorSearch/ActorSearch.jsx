@@ -1,4 +1,4 @@
-
+import './actorsearch.css';
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';

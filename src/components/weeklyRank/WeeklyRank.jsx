@@ -1,5 +1,6 @@
 
 import "react-datepicker/dist/react-datepicker.css";
+import './weeklyRank.css';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
 import { callWeeklyBoxofficeThunk } from '../../modules/movieWeeklyRankModule';

@@ -1,3 +1,4 @@
+import './main.css';
 import { useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { getDayTxt, getDateObj } from '../../utils/dayInfo';

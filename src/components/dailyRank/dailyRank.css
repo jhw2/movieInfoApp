@@ -1,0 +1,5 @@
+.search-form.daily input[type='text']{background: url('../../images/ic-calendar.svg') no-repeat right 10px center / 21px;width: 160px;border-color: #666;}
+
+@media screen and (max-width: 768px) {
+    .search-form.daily input[type='text']{height: 30px;background-size: 18px;background-position: center right 7px;width: 130px;}
+}

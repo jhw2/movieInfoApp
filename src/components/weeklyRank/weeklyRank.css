@@ -1,0 +1,20 @@
+.search-grp{display: flex;align-items: flex-end;margin-bottom: 15px;}
+.search-grp .period{margin-left: auto;color: #666;}
+.search-grp .period::before{content: '※';}
+.search-grp .search-form{margin-bottom: 0;}
+.search-grp .search-form form{display: flex;}
+.search-form.week label{margin-right: 10px;}
+.search-form.week .lineSelect{border-bottom: 1px solid #555;font-size: 14px;padding-right: 10px;}
+.search-form.week .lineSelect select{border: 0;font-size: 15px;margin-right: 4px;}
+.search-form.week input[type=submit]{border-color: #555;color: #000;background-color: #fff;}
+
+@media screen and (max-width: 768px) {
+    .search-grp{flex-direction: column;align-items: flex-start;margin-bottom: 10px;}
+    .search-grp .search-form{width: 100%;margin-bottom: 8px;}
+    .search-grp .search-form form{flex-direction: column;}
+    .search-grp .search-form p{margin-bottom: 7px;display: flex;}
+    .search-form.week label{font-size: 13px;margin-right: 10px;}
+    .search-form.week .lineSelect{display: flex;white-space: nowrap;align-items: center;width: 33.33%;margin-right: 5px;}
+    .search-form.week .lineSelect select{height: 30px;font-size: 13px;padding: 2px 5px;width: 100%}
+    .search-form.week input[type=submit]{margin-left: 0;}
+}
