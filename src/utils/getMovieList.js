@@ -1,6 +1,6 @@
 import MovieSearchService from '../http/movieSearchService';
 
-export const getPoster = async(movieNm)=>{
+export const getPoster = (movieNm)=>{
     return new Promise((resolve,reject)=>{
         MovieSearchService.getSearchPoster(movieNm).then(({data})=>{
             let poster = 'no-data';
@@ -12,4 +12,11 @@ export const getPoster = async(movieNm)=>{
             resolve('no-data')
         });
     });
+}
+
+export const posterPromiseList = (dataList)=>{
+    return dataList.map( async (val, i)=>{
+        const {movieNm} = val;
+        return await getPoster(movieNm);
+    })
 }
