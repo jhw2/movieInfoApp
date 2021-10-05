@@ -55,7 +55,7 @@ const MainSlider = memo(({movieList, title, done})=>{
                                 return (
                                     <div key={movieCd}>
                                         <img src={poster} alt={movieNm + '포스터'} />
-                                        <h6><Link to={linkOption}><strong className={rankOldAndNew}>{rankOldAndNew}</strong>{movieNm}</Link></h6>
+                                        <h6 title={movieNm}><Link to={linkOption}><strong className={rankOldAndNew}>{rankOldAndNew}</strong>{movieNm}</Link></h6>
                                         <ul>
                                             <li><em>관객수</em><span>{audiAcc.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</span></li>
                                             <li><em>개봉일</em><span>{openDt}</span></li>
