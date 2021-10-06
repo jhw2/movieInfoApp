@@ -12,6 +12,7 @@ import userProfile from '../components/login/userProfile';
 
 export const menuList = [ 
     {key: 'main', txt: '메인', cont: '메인', url: '/', component: Main, gnb: false, auth: null},
+    {key: 'main', txt: '메인', cont: '메인', url: '/index.html', component: Main, gnb: false, auth: null},
     {key: 'signup', txt: '회원가입', cont: '회원가입', url: '/signup', component: Signup, gnb: false, auth: false},
     {key: 'login', txt: '로그인', cont: '로그인', url: '/login', component: Login, gnb: false, auth: false},
     {key: 'findPw', txt: '비밀번호 찾기', cont: '로그인', url: '/findPw', component: FindPW, gnb: false, auth: false},
