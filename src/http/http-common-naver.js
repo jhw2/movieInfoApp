@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://openapi.naver.com/v1/search",
+  baseURL: "https://cors-jin.herokuapp.com/https://openapi.naver.com/v1/search",
   headers: {
     "Content-type": "application/json",
     'X-Naver-Client-Id': "QA8UjSKONNKwkAUuOXtp",
