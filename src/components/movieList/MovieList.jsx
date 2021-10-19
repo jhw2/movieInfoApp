@@ -27,9 +27,9 @@ const MovieList = memo(({rankList})=>{
                                     </p>
                                     <h6><Link to={linkOption}>{movieNm}</Link></h6>
                                     <p><em>개봉일</em><span>{openDt}</span></p>
-                                    <p><em>관객수</em><span>{audiAcc.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</span></p>
-                                    <p><em>스크린수</em><span>{scrnCnt.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</span></p>
-                                    <p><em>메츨액</em><span>{salesAmt.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</span></p>
+                                    <p><em>관객수</em><span>{audiAcc.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span></p>
+                                    <p><em>스크린수</em><span>{scrnCnt.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span></p>
+                                    <p><em>메츨액</em><span>{salesAmt.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span></p>
                                 </div>
                             </li>;
                 })
