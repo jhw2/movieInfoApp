@@ -31,11 +31,15 @@ const RightMenu = memo(({menuClose})=>{
     const userNic = loginSucces && loginSucces.data ? loginSucces.data.userNic : userAuthInfo &&  userAuthInfo.data && userAuthInfo.data.userNic;
     const logoutMenu = [ <span key='signin'><NavLink exact to="/login" onClick={menuClose}>로그인</NavLink></span>, <span key='signup'><NavLink exact to="/signup" onClick={menuClose}>회원가입</NavLink></span>]
     const loginMenu = <span><Link to='/userProfile' onClick={menuClose}>{userNic}</Link> 님<button type='button' className='logout' onClick={logout}>로그아웃</button></span>
+    let rightMenu = '';
+    if( process.env.REACT_APP_TYPE === 'dev'){
+        rightMenu = userNic ? loginMenu : logoutMenu
+    }
     return (
         <>
             <Loading done={isLodingDone} />
             <div className='right'>
-            {userNic ? loginMenu : logoutMenu}
+            {rightMenu}
             <button className='ic-mobile-close' type='button' onClick={menuClose}>닫기</button>
         </div>
         </>
