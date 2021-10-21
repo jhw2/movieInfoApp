@@ -1,5 +1,5 @@
 import { memo } from 'react';
-const Tab = memo(({repNationCd, tabEvt})=>{
+const Tab = memo(({repNationCd = '', tabEvt})=>{
     return (
         <ul className='mv-tab'>
             <li className={repNationCd === '' ? 'on':''} data-index='0'><a href="/" data-type='' onClick={tabEvt}>전체</a></li>

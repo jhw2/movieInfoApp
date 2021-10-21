@@ -28,7 +28,9 @@ const DailyRank = memo(()=>{
   },[currentDate, callList]);
   
   useEffect(()=>{
-    callList();
+    if(dailyRankList.length < 1){
+      callList();
+    }
   },[callList]); 
 
   return (

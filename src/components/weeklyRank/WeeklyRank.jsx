@@ -29,7 +29,9 @@ const WeeklyRank = ()=>{
   },[callList])
 
   useEffect(()=>{
-      callList(getWeekNo(), '0');
+      if(WeeklyRankList.length < 1){
+        callList(getWeekNo(), '0');
+      }
   },[callList]);
 
   return (
