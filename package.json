@@ -50,7 +50,7 @@
     ]
   },
   "engines": { 
-    "node": "4.16.0" 
+    "node": "6.11.1" 
   } ,
   "proxy": "https://openapi.naver.com/"
 }
