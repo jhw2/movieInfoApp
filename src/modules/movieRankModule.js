@@ -1,5 +1,5 @@
 import MoviService from '../http/MoviService';
-import {posterPromiseList} from '../utils/getMovieList';
+import {getPosterData} from '../utils/getMovieList';
 
 export const CALL_DAILYBOXOFFICE = 'CALL_DAILYBOXOFFICE';
 export const DAILY_CALL_LOADING = 'CALL_LOADING';
@@ -18,12 +18,11 @@ export const dataError = (error)=>{
 export const callDailyBoxofficeThunk = ({currentDateTxt, currentDate, repNationCd}) => (dispatch, getState) => {
     dispatch(dailycallLoading(false))
     MoviService.getDailyBoxoffice(currentDateTxt, repNationCd).then( async ({data, status})=>{
-        let dataList = data.boxOfficeResult.dailyBoxOfficeList;
-        let posters = await Promise.all(posterPromiseList(dataList));
-        posters.forEach((poster, i)=>{
-            dataList[i].poster = poster;
-        })
-        dispatch(callDailyBoxoffice({currentDate, data: dataList, status, repNationCd}));
+        const dataList = data.boxOfficeResult.dailyBoxOfficeList;
+        console.log(dataList)
+        const dataListHasPoster = await getPosterData(dataList);
+        
+        dispatch(callDailyBoxoffice({currentDate, data: dataListHasPoster, status, repNationCd}));
 
     }).catch(error=>{dispatch(dataError(error))});
 

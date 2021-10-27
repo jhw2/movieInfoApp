@@ -134,7 +134,7 @@ footer{padding: 15px 0;color: #888;background-color: #f9fafc;}
     .mv-header .gnb li a::before{content: '';display: inline-block;width: 3px;height: 3px;background-color: #333;margin-right: 5px;vertical-align: middle;}
     .mv-header .gnb li a.active::before{background-color: rgb(235 12 49);}
     .mv-header .gnb li a.active:after, .mv-header .gnb li a:hover:after{display: none;}
-    .mv-header .right{position: fixed;z-index: 999;top: 0;left: 0;width: 90%;max-width: 400px;background-color: rgb(235 12 49);padding: 15px 10px;box-sizing: border-box;color: #fff;transition: transform 0.3s linear;transform: translate(-100%, 0)}
+    .mv-header .right{position: fixed;z-index: 999;top: 0;left: 0;width: 90%;max-width: 400px;height: 53px;;background-color: rgb(235 12 49);padding: 15px 10px;box-sizing: border-box;color: #fff;transition: transform 0.3s linear;transform: translate(-100%, 0)}
     .nav-open.mv-header .right{transform: translate(0,0);}
     .mv-header .right span{color: #fff;font-size: 15px;}
     .mv-header .right span a{color: #fff;font-size: 15px;}
