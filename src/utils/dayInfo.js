@@ -1,5 +1,5 @@
 const today = new Date();
-const yesterday = new Date(new Date().setDate(today.getDate() - 1));
+export const yesterday = new Date(new Date().setDate(today.getDate() - 1));
 const lastWeek = new Date(new Date().setDate(today.getDate() - 7));
 
 const getNewDay = (date)=>{

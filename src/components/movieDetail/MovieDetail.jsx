@@ -38,13 +38,13 @@ const MovieDetail = ()=>{
             <p><em>장르</em>
               [
                 {genres.map(({genreNm}, i)=>{
-                  const type = genres.length-1 === i ?  genreNm : genreNm+'>';
+                  const type = genres.length-1 === i ?  <span key={genreNm}>{genreNm}</span> : <span key={genreNm}>{genreNm+'>'}</span>;
                   return type;
                 })}
               ]
             </p>
             <p><em>감독</em> {directors.map(({peopleNm}, i)=>{
-                        const nm = directors.length-1 === i ?  peopleNm : peopleNm+',';
+                        const nm = directors.length-1 === i ?  <span key={peopleNm}>{peopleNm}</span> : <span key={peopleNm}>{peopleNm+','}</span>;
                         return nm;
                       })}
             </p>

@@ -1,5 +1,6 @@
 import MoviService from '../http/MoviService';
 import {getPosterData} from '../utils/getMovieList';
+import {getDayTxt} from '../utils/dayInfo';
 
 export const CALL_DAILYBOXOFFICE = 'CALL_DAILYBOXOFFICE';
 export const DAILY_CALL_LOADING = 'CALL_LOADING';
@@ -15,11 +16,18 @@ export const dataError = (error)=>{
     return {type: ERROR, error}
 }
 
-export const callDailyBoxofficeThunk = ({currentDateTxt, currentDate, repNationCd}) => (dispatch, getState) => {
+export const callDailyBoxofficeThunk = ({currentDateTxt, currentDate, repNationCd = ''}) => (dispatch, getState) => {
+    //기존과 동일한 데이터를 요청한 경우 api call 막음
+    const prevData  = getState().movieRankList
+    if( getDayTxt(new Date(prevData.currentDate)) === currentDateTxt 
+        && prevData.repNationCd === repNationCd
+        && prevData.dailyRankList.length > 0){
+        return false;
+    }
+
     dispatch(dailycallLoading(false))
     MoviService.getDailyBoxoffice(currentDateTxt, repNationCd).then( async ({data, status})=>{
         const dataList = data.boxOfficeResult.dailyBoxOfficeList;
-        console.log(dataList)
         const dataListHasPoster = await getPosterData(dataList);
         
         dispatch(callDailyBoxoffice({currentDate, data: dataListHasPoster, status, repNationCd}));

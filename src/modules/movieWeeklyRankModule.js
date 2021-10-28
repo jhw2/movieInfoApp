@@ -16,7 +16,14 @@ export const dataError = (error)=>{
     return {type: ERROR, error}
 }
 
-export const callWeeklyBoxofficeThunk = ({year, month, week, weekGb}) => (dispatch, getState) => {
+export const callWeeklyBoxofficeThunk = ({year, month, week, weekGb = '0'}) => (dispatch, getState) => {
+    //기존과 동일한 데이터를 요청한 경우 api call 막음
+    const prevData  = getState().movieWeeklyRankList;
+    if( prevData.year === year && prevData.month === month && prevData.week === week 
+        && prevData.weekGb === weekGb 
+        && prevData.WeeklyRankList.length > 0){
+        return false;
+    }
     dispatch(weeklyCallLoading(false))
     let date = getWeekFirstDate(year, month, week);
     MoviService.getWeeklyBoxOffice(date, weekGb).then( async ({data, status})=>{

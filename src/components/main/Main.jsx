@@ -20,9 +20,7 @@ const Main = memo(()=>{
     },[dispatch]);
     
     useEffect(()=>{
-        if(dailyRankList.length > 0){
-            dispatch(callWeeklyBoxofficeThunk(getWeekNo(), '0'));
-        }
+        dispatch(callWeeklyBoxofficeThunk(getWeekNo(), '0'));
     },[dispatch, dailyRankList]);
 
     return (

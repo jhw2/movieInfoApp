@@ -4,7 +4,7 @@ import './movielist.css';
 import { useEffect, memo, useCallback } from 'react';
 import { useSelector, useDispatch, shallowEqual  } from 'react-redux';
 import { callDailyBoxofficeThunk } from '../../modules/movieRankModule';
-import { getDayTxt, getDateObj } from '../../utils/dayInfo';
+import { getDayTxt, yesterday } from '../../utils/dayInfo';
 import Loading from '../common';
 import DailyRankSearchFrom from './DailyRankSearchFrom';
 import Tab from './MovieTypeTab';
@@ -16,7 +16,7 @@ const DailyRank = memo(()=>{
   const dispatch = useDispatch();
   const {dailyRankList, currentDate, repNationCd, done} = useSelector(({movieRankList})=>{return movieRankList}, shallowEqual);
 
-  const callList = useCallback((date = getDateObj(getDayTxt()), repNationCd = '')=>{
+  const callList = useCallback((date = yesterday, repNationCd = '')=>{
       dispatch(callDailyBoxofficeThunk({currentDateTxt: getDayTxt(date), currentDate: date, repNationCd}));
     }
   , [dispatch]);
@@ -28,9 +28,7 @@ const DailyRank = memo(()=>{
   },[currentDate, callList]);
   
   useEffect(()=>{
-    if(dailyRankList.length < 1){
       callList();
-    }
   },[callList]); 
 
   return (

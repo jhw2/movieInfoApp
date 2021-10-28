@@ -7,9 +7,10 @@ export const getPosterData = async (dataList)=>{
         return MovieSearchService.getSearchPoster(movieNm);
     });
 
-    const posters = await Promise.all(promiseList)
-    posters.forEach(({ data }, i)=>{
+    const posters = await Promise.allSettled(promiseList)
+    posters.forEach(({ value }, i)=>{
         let poster = 'no-data';
+        const data = value.data;
         if(data.items.length !== 0){
             poster = data.items[0].image;
         }
