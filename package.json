@@ -49,9 +49,9 @@
       "last 1 safari version"
     ]
   },
-  "engines": { 
-    "node": "6.11.1" ,
+  "engines": {
+    "node": "6.11.1",
     "npm": "6.14.11"
-  } ,
+  },
   "proxy": "https://openapi.naver.com/"
 }
