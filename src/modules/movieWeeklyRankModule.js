@@ -22,6 +22,7 @@ export const callWeeklyBoxofficeThunk = ({year, month, week, weekGb = '0'}) => (
     if( prevData.year === year && prevData.month === month && prevData.week === week 
         && prevData.weekGb === weekGb 
         && prevData.WeeklyRankList.length > 0){
+        dispatch(weeklyCallLoading(true));
         return false;
     }
     dispatch(weeklyCallLoading(false))

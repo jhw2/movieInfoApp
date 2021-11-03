@@ -22,6 +22,7 @@ export const callDailyBoxofficeThunk = ({currentDateTxt, currentDate, repNationC
     if( getDayTxt(new Date(prevData.currentDate)) === currentDateTxt 
         && prevData.repNationCd === repNationCd
         && prevData.dailyRankList.length > 0){
+        dispatch(dailycallLoading(true));
         return false;
     }
 
