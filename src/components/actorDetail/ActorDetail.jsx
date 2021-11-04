@@ -2,12 +2,14 @@ import './actordetail.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { callactorDetailThunk } from '../../modules/actorDetailInfoModul';
+import { getPosterData } from '../../utils/getMovieList'
 
 const ActorDetail = ()=>{
     const {peopleCd} = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
     const {actorInfo} = useSelector(({actorDetailInfo})=>{return actorDetailInfo});
     let {peopleNm, filmos, repRoleNm, sex, homepages} = actorInfo;
     if(!filmos){filmos = []};
@@ -20,6 +22,12 @@ const ActorDetail = ()=>{
         callActorInfo();
     },[callActorInfo])
 
+    const goToMovieDetail = useCallback( async (e, url, movieNm)=>{
+        e.preventDefault();
+        const movieData =  await getPosterData([{movieNm}]);
+        history.push({pathname: url, state: {poster: movieData[0].poster, key: 'movieDetail'}});
+    },[history]);
+   
 
     if(peopleCd){
         return(
@@ -33,7 +41,7 @@ const ActorDetail = ()=>{
                             filmos.map((filmo, i)=>{
                                 const {movieCd, movieNm, moviePartNm} = filmo;
                                 return <li key={movieCd}>
-                                            <Link to={'/movieDetail/'+movieCd}>{movieNm}[{moviePartNm}]</Link>
+                                            <a href='/' onClick={(e)=>{goToMovieDetail(e,'/movieDetail/'+movieCd, movieNm)}}>{movieNm}</a>[{moviePartNm}]
                                         </li>
                             })
                         }
