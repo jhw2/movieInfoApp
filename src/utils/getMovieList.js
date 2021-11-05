@@ -1,4 +1,4 @@
-import MovieSearchService from '../http/movieSearchService';
+import MovieSearchService from '../http/MovieSearchService';
 const moviePosters = localStorage.moviePosters ? JSON.parse(localStorage.moviePosters) : {};
 
 export const getPosterData = async (dataList)=>{

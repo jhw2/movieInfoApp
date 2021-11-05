@@ -24,8 +24,8 @@ const ActorSearch = ({ location })=>{
 
 
     useEffect(()=>{
-        dispatch(callActorListThunk({curPage: 1, peopleNm: searchTxt}));
-    },[dispatch, searchTxt]);
+        callList(1, searchTxt)
+    },[callList, searchTxt]);
 
     return (
     <div>

@@ -10,6 +10,7 @@
 .movie-detail .movie-txt div p{font-weight: 500;margin: 5px 0;}
 .movie-detail .movie-txt div p::before{content: '';display: inline-block;width: 3px;height: 3px;background-color: #333;vertical-align: middle;margin-right: 4px;}
 .movie-detail .movie-txt div div{color: #666;padding-left: 8px;}
+.movie-detail .movie-txt div div a{text-decoration: underline;}
 .movie-detail .movie-txt div div em{color: #333;}
 
 

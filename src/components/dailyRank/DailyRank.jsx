@@ -12,10 +12,10 @@ import MovieList from '../movieList';
  
 const DailyRank = memo(()=>{
   
-
+  
   const dispatch = useDispatch();
   const {dailyRankList, currentDate, repNationCd, done} = useSelector(({movieRankList})=>{return movieRankList}, shallowEqual);
-
+  
   const callList = useCallback((date = yesterday, repNationCd = '')=>{
       dispatch(callDailyBoxofficeThunk({currentDateTxt: getDayTxt(date), currentDate: date, repNationCd}));
     }

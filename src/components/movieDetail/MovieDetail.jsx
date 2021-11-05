@@ -1,17 +1,20 @@
 import './moviedetail.css';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { callMovieDetailThunk } from '../../modules/moviDetailInfoModule';
+import MoviService from '../../http/MoviService';
 import noImage from '../../images/no-data.jpg';
 
 const MovieDetail = ()=>{
+  const history = useHistory();
   const {movieCd} = useParams();
   const {state} = useLocation();
   let poster = state && state.poster;
   if(!poster || poster === 'no-data'){ 
     poster = noImage;
   }
+ 
   const dispatch = useDispatch();
   const {movieInfo} = useSelector(({movieDetailInfo})=>{return movieDetailInfo});
   const {movieNm, movieNmEn, actors, audits, companys, directors, genres, openDt} = movieInfo;
@@ -24,8 +27,17 @@ const MovieDetail = ()=>{
   
   useEffect(()=>{
     callMovieInfo();
-  },[callMovieInfo])
+  },[callMovieInfo]);
 
+  const moveActorDetail = useCallback((e)=>{
+    e.preventDefault();
+    MoviService.getActorList({curPage: 1, peopleNm: e.target.innerText, filmoNames: movieNm}).then(({data})=>{
+      const peopleCd = data.peopleListResult.peopleList[0]?.peopleCd;
+      if(peopleCd){
+        history.push({pathname: '/actorDetail/'+peopleCd});
+      }
+    });
+}, [history, movieNm])
   
   if(movieNm){
     return(
@@ -44,7 +56,7 @@ const MovieDetail = ()=>{
               ]
             </p>
             <p><em>감독</em> {directors.map(({peopleNm}, i)=>{
-                        const nm = directors.length-1 === i ?  <span key={peopleNm}>{peopleNm}</span> : <span key={peopleNm}>{peopleNm+','}</span>;
+                        const nm = directors.length-1 === i ?  <span key={peopleNm + i}>{peopleNm}</span> : <span key={peopleNm}>{peopleNm+','}</span>;
                         return nm;
                       })}
             </p>
@@ -61,7 +73,9 @@ const MovieDetail = ()=>{
               <div>
                 {
                   actors.map(({peopleNm, cast}, i)=>{
-                    const peopleNmCast = actors.length-1 === i ? <span key={peopleNm+cast}><em>{peopleNm}</em>({cast})</span> : <span><em>{peopleNm}</em>({cast}), </span>;
+                    const castTxt = cast ? '(' + cast + ')' : '';
+                    const peopleNmCast = actors.length-1 === i ? <span key={peopleNm+cast}><em><a href='/' onClick={moveActorDetail}>{peopleNm}</a></em>{castTxt}</span> : 
+                                                                <span key={peopleNm+cast}><em><a href='/' onClick={moveActorDetail}>{peopleNm}</a></em>{castTxt}, </span>;
                     return peopleNmCast;
                   })
                 }
@@ -69,12 +83,10 @@ const MovieDetail = ()=>{
             </div>
           </div>
           
-          
       </div>
     );
   }else{
     return <div></div>
   }
 }
-
 export default MovieDetail;

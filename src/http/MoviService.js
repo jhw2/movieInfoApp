@@ -17,8 +17,8 @@ class MoviService {
     return http.get(`/movie/searchMovieInfo.json`, {params: {movieCd: code}});
   }
 
-  getActorList({curPage, itemPerPage, peopleNm}) {
-    return http.get(`/people/searchPeopleList.json`, {params: {curPage, itemPerPage, peopleNm}});
+  getActorList({curPage, itemPerPage, peopleNm, filmoNames}) {
+    return http.get(`/people/searchPeopleList.json`, {params: {curPage, itemPerPage, peopleNm, filmoNames}});
   }
 
   getActorDetailInfo(peopleCd){
