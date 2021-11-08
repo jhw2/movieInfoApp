@@ -20,8 +20,7 @@ export const getDayTxt = (date = yesterday) => {
 }
 export const getDateObj = (dateTxt)=>{
     if(dateTxt.length !== 8){
-        console.log('날짜형식 틀림(yyyymmdd)');
-        return;
+        throw new Error('날짜형식 틀림(yyyymmdd)');
     }
     let year = dateTxt.substring(0,4);
     let month = dateTxt.substring(4,6) - 1;
@@ -41,7 +40,9 @@ export const getWeekNo = (date = lastWeek)=>{
     let _month = dateObj.getMonth()+1;
     let _date = dateObj.getDate();
 
-    const week = parseInt((6 + _date - getNewDay(dateObj)) / 7) + 1;
+    const firstOfDay =  getNewDay(new Date(_year, _month - 1, 1));
+
+    const week = firstOfDay > 0 ? parseInt((6 + _date - getNewDay(dateObj)) / 7) + 1 : parseInt((6 + _date - getNewDay(dateObj)) / 7);
     return {year: _year, month: _month, week};
 }
 
