@@ -1,7 +1,8 @@
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick";
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../common';
 import noImage from '../../images/no-data.jpg';
