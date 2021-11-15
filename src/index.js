@@ -9,6 +9,7 @@ import './index.css';
 import App from './App';
 import movieReducer from './modules';
 import reportWebVitals from './reportWebVitals';
+import Scroll from './components/Scroll';
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
 
@@ -20,6 +21,7 @@ ReactDOM.render(
 )}>
     <BrowserRouter>
       <App />
+      <Scroll />
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
