@@ -1,4 +1,5 @@
 import './App.css';
+import { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Header, VisualTxt, Footer } from './components/layout'; 
 import menu from './menus';
@@ -6,6 +7,14 @@ import Auth from './hoc/auth';
 
 const App = ()=>{
   const {menuList} = menu;
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+  }, []);
 
   return (
     <div id="wrap" >
