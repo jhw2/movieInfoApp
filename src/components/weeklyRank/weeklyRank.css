@@ -5,7 +5,7 @@
 .search-grp .search-form form{display: flex;}
 .search-form.week label{margin-right: 10px;}
 .search-form.week .lineSelect{border-bottom: 1px solid #555;font-size: 14px;padding-right: 10px;}
-.search-form.week .lineSelect select{border: 0;font-size: 15px;margin-right: 4px;}
+.search-form.week .lineSelect select{border: 0;font-size: 15px;margin-right: 4px;appearance: none;}
 .search-form.week input[type=submit]{border-color: #555;color: #000;background-color: #fff;}
 
 @media screen and (max-width: 768px) {
